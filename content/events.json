@@ -1,0 +1,65 @@
+[
+	{
+		"title": "Plenum",
+		"start": "2014-02-06T19:42:00Z",
+		"end":   "2014-02-06T20:42:00Z",
+		"allDay": false,
+		"color": "green"
+	},
+	{
+		"title": "Plenum",
+		"start": "2014-02-18T19:42:00Z",
+		"end":   "2014-02-18T20:42:00Z",
+		"allDay": false,
+		"color": "green"
+	},
+	{
+		"title": "Plenum",
+		"start": "2014-02-27T19:42:00Z",
+		"end":   "2014-02-27T20:42:00Z",
+		"allDay": false,
+		"color": "green"
+	},
+	{
+		"title": "Chaostreff",
+		"start": "2014-02-05T19:00:00Z",
+		"end":   "2014-02-05T21:00:00Z",
+		"allDay": false,
+		"color": "blue"
+	},
+	{
+		"title": "Chaostreff",
+		"start": "2014-02-19T19:00:00Z",
+		"end":   "2014-02-19T21:00:00Z",
+		"allDay": false,
+		"color": "blue"
+	},
+	{
+		"title": "Fahrradelektronik",
+		"start": "2014-02-08T16:00:00Z",
+		"end":   "2014-02-08T18:00:00Z",
+		"allDay": false,
+		"color": "goldenrod"
+	},
+	{
+		"title": "Fahrradelektronik",
+		"start": "2014-02-13T19:00:00Z",
+		"end":   "2014-02-13T21:00:00Z",
+		"allDay": false,
+		"color": "goldenrod"
+	},
+	{
+		"title": "Fahrradelektronik",
+		"start": "2014-02-22T16:00:00Z",
+		"end":   "2014-02-22T18:00:00Z",
+		"allDay": false,
+		"color": "goldenrod"
+	},
+	{
+		"title": "Fahrradelektronik",
+		"start": "2014-02-27T19:00:00Z",
+		"end":   "2014-02-27T21:00:00Z",
+		"allDay": false,
+		"color": "goldenrod"
+	}
+]

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% block starthead %}{% endblock starthead %}
+    <meta charset="{{ resource.meta.charset }}">
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <title>{% block title %}{{ resource.meta.title }}{% endblock %} | {{ site_title }}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="{{ resource.meta.description }}">
+    <meta name="author" content="{{ resource.meta.author }}">
+
+    {# Le HTML5 shim, for IE6-8 support of HTML elements #}
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    {% block basecss %}
+    <link href="{{ media_url('css/bootstrap.css') }}" rel="stylesheet">
+    <link href="{{ media_url('css/offcanvas.css') }}" rel="stylesheet">
+    <link href="{{ media_url('css/site.css') }}" rel="stylesheet">
+
+    {% endblock basecss %}
+    {% block css %}{% endblock %}
+
+
+
+    {% block favicons %}
+    {# Place favicon.ico & apple-touch-icon.png in the root of your domain and delete these references #}
+    <link rel="shortcut icon" href="{{ media_url('img/favicon.ico') }}">
+    <link rel="apple-touch-icon" href="{{ media_url('img/apple-touch-icon.png') }}">
+    <link rel="apple-touch-icon" sizes="72x72" href="{{ media_url('img/appleimgim-touch-icon-72x72.png') }}">
+    <link rel="apple-touch-icon" sizes="114x114" href="{{ media_url('img/apple-touch-icon-114x114.png') }}">
+    {% endblock favicons %}
+
+    {% block headjs %}
+    {% endblock headjs %}
+
+    {% block endhead %}{% endblock endhead %}
+  </head>
+
+  <body class="{{ resource.meta.id if resource.meta.id else resource.slug }}">
+
+    {% block body %}
+    {% block jumbotron %}{% endblock jumbotron %}
+    <div class="container" id="top">
+      {% mark container -%}
+      {% block container %}
+      {% endblock container %}
+      {%- endmark %}
+      <hr>
+      <footer>
+        {% block footer %}
+        <p style="text-align: center;">&copy; 2014 <a href="{{ author.url }}">{{ author.name }}</a> | License: <a href="http://creativecommons.org/licenses/by-sa/3.0/de/">CC-BY-SA 3.0</a>  | <a href="{{ content_url('impressum.html') }}">Impressum</a></p>
+        {% endblock footer %}
+      </footer>
+    </div> <!-- /container -->
+    {% endblock body %}
+
+    {% block js %}
+    {# Javascript at the bottom for fast page loading #}
+    {% block jquery %}
+    <script src="{{ media_url('js/libs/jquery.min.js') }}"></script>
+    {% endblock jquery %}
+
+    {% block bootstrap_scripts %}
+    <script src="{{ media_url('js/libs/bootstrap.min.js') }}"></script>
+    {# Uncomment any of these lines to enable that plugin on your site #}
+{#    <script src="{{ media_url('js/libs/affix.js') }}"></script>#}
+{#    <script src="{{ media_url('js/libs/alert.js') }}"></script>#}
+{#    <script src="{{ media_url('js/libs/button.js') }}"></script>#}
+{#    <script src="{{ media_url('js/libs/carousel.js') }}"></script>#}
+{#    <script src="{{ media_url('js/libs/collapse.js') }}"></script>#}
+{#    <script src="{{ media_url('js/libs/dropdown.js') }}"></script>#}
+{#    <script src="{{ media_url('js/libs/modal.js') }}"></script>#}
+{#    <script src="{{ media_url('js/libs/popover.js') }}"></script>#}
+{#    <script src="{{ media_url('js/libs/scrollspy.js') }}"></script>#}
+{#    <script src="{{ media_url('js/libs/tab.js') }}"></script>#}
+{#    <script src="{{ media_url('js/libs/tooltip.js') }}"></script>#}
+{#    <script src="{{ media_url('js/libs/transition.js') }}"></script>#}
+    <script src="{{ media_url('js/libs/offcanvas.js') }}"></script>
+    {% endblock bootstrap_scripts %}
+
+    {% block scripts %}
+    {% endblock scripts %}
+
+
+    <!--[if lt IE 7 ]>
+      <script src="{{ media_url('js/libs/dd_belatedpng.js') }}"></script>
+      <script>DD_belatedPNG.fix('img, .png_bg'); // Fix any <img> or .png_bg bg-images. Also, please read goo.gl/mZiyb </script>
+    <![endif]-->
+
+
+
+    {% endblock js %}
+  </body>
+</html>

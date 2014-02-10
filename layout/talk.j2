@@ -1,0 +1,68 @@
+{# layout for talks #}
+
+{% extends "topbar.j2" %}
+
+{% block scripts %}
+<script type="text/javascript">
+function playVideo(vcode, width, height) {
+  "use strict";
+  $("#video").html('<iframe width="'+width+'" height="'+height+'" src="//www.youtube.com/embed/'+vcode+'?autoplay=1&loop=1&rel=0&wmode=transparent" frameborder="0" allowfullscreen></iframe>');
+}
+
+var canvas = document.getElementById('canvas');
+var context = canvas.getContext('2d');
+var coverImage = new Image();
+var playImage = new Image();
+var whiteImage = new Image();
+
+coverImage.onload = function() {
+	context.drawImage(coverImage, 0, 0);
+	whiteImage.src = "{{ content_url('data/white.svg') }}";
+};
+
+whiteImage.onload = function() {
+	context.drawImage(whiteImage, 0, 0);
+	playImage.src = "{{ content_url('data/play.svg') }}";
+};
+
+playImage.onload = function() {
+	context.drawImage(playImage, 245, 100);
+};
+
+coverImage.src = "{{ content_url(resource.meta.cover) }}";
+</script>
+{{ super() }}
+{% endblock scripts %}
+
+{% block container %}
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h3 class="panel-title">{{ resource.meta.title }}</h3>
+		Vortragender: {{ resource.meta.speaker }}
+	</div>
+	<div class="panel-body">
+		{% if resource.meta.youtube is defined %}
+		<div id="video" style="float:right; padding-left: 10px;">
+			<a href="#video" onClick="playVideo('{{ resource.meta.youtube }}','640','360');">
+				<canvas id="canvas" width="640" height="360"></canvas>
+			</a>
+		</div>
+		{% else %}
+			{% if resource.meta.cover is defined %}
+			<img src="{{ content_url(resource.meta.cover) }}" style="float:right; padding-left: 10px;" />
+			{% endif %}
+		{% endif %}
+
+		<p>
+		{% block description %}
+		{% endblock description %}
+		</p>
+
+		{% if resource.meta.slides is defined %}
+		<p><a href="{{ content_url(resource.meta.slides) }}">Download Slides</a></p>
+		{% endif %}
+
+		<div style="clear: both;"></div>
+	</div>
+</div>
+{% endblock container %}

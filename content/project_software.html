@@ -1,0 +1,33 @@
+---
+title: Software Projekte
+---
+
+{% extends "topbar.j2" %}
+
+{% block headjs %}
+	<script src="{{ media_url('js/libs/holder/holder.js') }}"></script>
+	{{ super() }}
+{% endblock headjs %}
+
+{% block container %}
+
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h3 class="panel-title">Software Projekte</h3>
+	</div>
+	<div class="panel-body">
+		<div class="row">
+			{% for res in site.content.node_from_relative_path("project").walk_resources_sorted_by_time() %}
+			{% if res.meta.project_type == "software" %}
+			<div class="col-xs-6 col-md-3">
+				<div class="caption"><h4>{{ res.meta.title }}</h4></div>
+				<a href="{{ content_url(res.url) }}" class="thumbnail">
+					<img data-src="{{ res.meta.thumbnail }}" alt="{{ res.meta.title }}">
+				</a>
+			</div>
+			{% endif %}
+			{% endfor %}
+		</div>
+	</div>
+</div>
+{% endblock container %}

@@ -1,0 +1,67 @@
+---
+title: Unterstützen!
+---
+
+{% extends "topbar.j2" %}
+
+{% block container %}
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h3 class="panel-title">Unterstützen!</h3>
+	</div>
+	<div class="panel-body">
+		<h3>Mitgliedschaft</h3>
+		<p>Natürlich freuen wir uns immer über neue Mitglieder, die den Verein
+		durch ihren Mitgliedsbeitrag auch finanziell unterstützen. Alles
+		weitere darüber können Sie unter <a href="{{ content_url("membership.html") }}">Mitgliedschaft</a> finden.</p>
+
+		<h3>Geld- und Sachspenden</h3>
+		<p>Wir nehmen zur Verwirklichung unserer Ziele gerne auch Unterstützung
+		in Form von Geld- oder Sachspenden entgegen. Da wir ein als
+		gemeinnützig anerkannter eingetragener Verein sind, können bei Bedarf
+		natürlich Spendenbescheinigungen hierüber ausgestellt werden; sprechen
+		Sie uns einfach darauf an (in der Regel reicht dem Finanzamt bei
+		kleineren Beträgen aber ein Kontoauszug oder dergleichen als
+		Beleg).</p>
+
+		<div class="panel panel-default">
+			<div class="panel-body">
+				<div class="row">
+					<div class="col-xs-6 col-md-4">
+						Raiffeisenbank Oldenburg<br>
+						Kontonummer 37018500<br>
+						Bankleitzahl 28060228
+					</div>
+					<div class="col-xs-6 col-md-4">
+						<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+							<input type="hidden" name="cmd" value="_s-xclick" />
+							<input type="hidden" name="hosted_button_id" value="74LC3HDX97ZBL" />
+							<input type="image" name="submit" src="{{ content_url('media/img/donate.png') }}" alt="Spende via PayPal" />
+						</form>
+					</div>
+					<div class="col-xs-6 col-md-4">
+						<a href="http://flattr.com/thing/365466/Kreativitat-trifft-Technik-e-V-">
+							<img src="{{ content_url('media/img/flattr.png') }}" alt="Spende via Flattr" />
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<h3>Unterstützung des Vereins via Partnerprogramm-Links</h3>
+		<p>Sollten Sie eh einen Online-Einkauf planen, können Sie den Verein
+		unterstützen indem Sie den jeweiligen Shop über unsere
+		Partnerprogramm-Links von hier aus besuchen. Das kostet Sie nichts,
+		aber der Verein erhält eine Provision für jeden so getätigten
+		Einkauf.</p>
+
+		<a href="http://www.amazon.de/?tag=kreattrifftec-21"><img src="{{ content_url('media/img/affiliate/amazon.gif') }}" alt="amazon.de" height="40px" /></a>
+		<a href="http://www.getdigital.de/?her=KTT"><img src="{{ content_url('media/img/affiliate/get_digital.png') }}" alt="getDigital.de" height="40px" /></a>
+		<a href="http://partners.webmasterplan.com/click.asp?ref=572581&site=4605&type=b1&bnb=1"><img src="{{ content_url('media/img/affiliate/elv.gif') }}" alt="ELV" height="40px" /></a>
+		<a href="http://partners.webmasterplan.com/click.asp?ref=572581&site=8948&type=b4&bnb=4"><img src="{{ content_url('media/img/affiliate/reichelt.gif') }}" alt="reichelt.de" height="40px" /></a>
+		<a href="http://partners.webmasterplan.com/click.asp?ref=572581&site=2945&type=b229&bnb=229"><img src="{{ content_url('media/img/affiliate/conrad.png') }}" alt="conrad.de" height="40px" /></a>
+		<a href="http://www.jacob-computer.de/?ref=1736"><img src="{{ content_url('media/img/affiliate/jacob_elektronik.png') }}" alt="Jacob Elektronik" height="40px" /></a>
+		<a href="http://partners.webmasterplan.com/click.asp?ref=572581&site=8883&type=b19&bnb=19"><img src="{{ content_url('media/img/affiliate/redcoon.jpg') }}" alt="redcoon.de" height="80px" /></a>
+	</div>
+</div>
+{% endblock container %}

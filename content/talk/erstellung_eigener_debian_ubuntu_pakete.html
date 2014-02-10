@@ -1,0 +1,27 @@
+---
+title: Erstellung eigener Debian/Ubuntu Pakete
+description: >
+    Erstellung von eigenen Debian/Ubuntu Paketen (Paketierung)
+created: !!timestamp '2013-06-01 19:00:00'
+status: recorded
+speaker: sre
+youtube: uCE8FyruXvM
+thumbnail: data/talk-0006/thumbnail.png
+cover: data/talk-0006/cover.png
+slides: data/talk-0006/slides.pdf
+---
+
+{% filter markdown|typogrify -%}
+* Was genau ist eine *.deb Datei eigentlich?
+* Was ist "Upstream"?
+* Wo ist der Unterschied zwischen einem Source und einem Binär Paket?
+* Aufbau des debian/ Verzeichnisses
+	* debhelper
+	* debconf
+* Wofür braucht man pbuilder?
+* Was steht in der "Debian Policy"?
+* Was steht im "Debian New Maintainer Guide"?
+* Sonderfall Bibliotheken
+	* Multiarch
+* Wie gelangt das Paket in die Standard Repositories?
+{%- endfilter %}

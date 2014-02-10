@@ -1,0 +1,13 @@
+Layouts:
+ [ ] Layout für Vorträge verbessern (Thumbnails, Videoeinbettung, Link zum Kalender)
+ [ ] Layout für Projekte anlegen
+ [ ] Layout für Gruppen anlegen
+
+Technical:
+ [ ] Event-Liste implementieren
+ [ ] Kalender Source implementieren (Google?)
+ [ ] Bilder Seite implementieren
+
+Jinja Documentation:
+ * http://jinja.pocoo.org/docs/templates/#filters
+ * http://jinja.pocoo.org/docs/templates/#builtin-filters

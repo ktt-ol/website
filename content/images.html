@@ -1,0 +1,21 @@
+---
+title: Bilder
+---
+
+{% extends "topbar.j2" %}
+
+{% block headjs %}
+	<script src="{{ media_url('js/libs/holder/holder.js') }}"></script>
+	{{ super() }}
+{% endblock headjs %}
+
+{% block container %}
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h3 class="panel-title">Bilder</h3>
+	</div>
+	<div class="panel-body">
+		<a href="{{ content_url('images/images_from_space.html') }}">Images from Space</a>
+	</div>
+</div>
+{% endblock container %}

@@ -1,0 +1,125 @@
+---
+title: Kontakt
+---
+
+{% extends "topbar.j2" %}
+
+{% block container %}
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h3 class="panel-title">Impressum</h3>
+	</div>
+	<div class="panel-body">
+		<div class="row equalheight">
+			<div class="col-xs-6 col-md-6">
+				<div class="panel panel-default" style="height:90%;">
+					<div class="panel-heading">
+						<h4>Vereinsanschrift</h4>
+					</div>
+					<div class="panel-body">
+						Kreativität trifft Technik e.V.<br>
+						Raiffeisenstraße 27<br>
+						26122 Oldenburg<br>
+						<br>
+						Kontakt:<br>
+						<a href="vorstand@kreativitaet-trifft-technik.de">vorstand@kreativitaet-trifft-technik.de</a>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-xs-6 col-md-6">
+				<div class="panel panel-default" style="height:90%;">
+					<div class="panel-heading">
+						<h4>Vorstand</h4>
+					</div>
+					<div class="panel-body">
+						<ul>
+							<li>Patrick Günther</li>
+							<li>Florian Festi</li>
+							<li>Christian Schuhmann</li>
+						</ul>
+						(jeweils über den Verein zu laden)
+					</div>
+				</div>
+			</div>
+
+			<div class="col-xs-6 col-md-6">
+				<div class="panel panel-default" style="height:90%;">
+					<div class="panel-heading">
+						<h4>Finanzamt</h4>
+					</div>
+					<div class="panel-body">
+						<p>Der Verein ist vom Finanzamt Oldenburg als
+						gemeinnützig anerkannt und im Registergericht im AG
+						Oldenburg unter der Registernummer <b>VR 201044</b>
+						eingetragen.</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-xs-6 col-md-6">
+				<div class="panel panel-default" style="height:90%;">
+					<div class="panel-heading">
+						<h4>Verantwortung nach § 55 Abs. 2 RStV</h4>
+					</div>
+					<div class="panel-body">
+						Patrick Günther<br>
+						Kreativität trifft Technik e.V.<br>
+						Raiffeisenstraße 27<br>
+						26122 Oldenburg
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock container %}
+
+{% block scripts %}
+<script type="text/javascript">
+$.fn.eqHeights = function(options) {
+
+    var defaults = {  
+        child: false 
+    };  
+    var options = $.extend(defaults, options); 
+
+    var el = $(this);
+    if (el.length > 0 && !el.data('eqHeights')) {
+        $(window).bind('resize.eqHeights', function() {
+            el.eqHeights();
+        });
+        el.data('eqHeights', true);
+    }
+
+    if( options.child && options.child.length > 0 ){
+        var elmtns = $(options.child, this);
+    } else {
+        var elmtns = $(this).children();
+    }
+
+    var prevTop = 0;
+    var max_height = 0;
+    var elements = [];
+    elmtns.height('auto').each(function() {
+
+        var thisTop = this.offsetTop;
+
+        if (prevTop > 0 && prevTop != thisTop) {
+            $(elements).height(max_height);
+            max_height = $(this).height();
+            elements = [];
+        }
+        max_height = Math.max(max_height, $(this).height());
+
+        prevTop = this.offsetTop;
+        elements.push(this);
+    });
+
+    $(elements).height(max_height);
+};
+
+$('.equalheight').eqHeights();
+</script>
+{{ super() }}
+{% endblock scripts %}

@@ -1,0 +1,6 @@
+===
+title: Projects Feed
+crawl_directory: project
+extends: atom.j2
+listable: false
+===

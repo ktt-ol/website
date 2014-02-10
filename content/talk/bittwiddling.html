@@ -1,0 +1,37 @@
+---
+title: Bittwiddling
+description: >
+    ...
+created: !!timestamp '2013-05-03 19:00:00'
+status: recorded
+speaker: xinitrc
+youtube: kneOB2SCf6I
+slides: data/talk-0005/Bittwiddling.pdf
+thumbnail: data/talk-0005/thumbnail.png
+cover: data/talk-0005/cover.png
+---
+
+{% filter markdown|typogrify -%}
+Viel der Arbeit im Space ist an Mikrocontrollern, die nur über vergleichsweise
+wenig Rechenleistung und Speicher verfügen. Trotzdem kommen häufig die selben
+Programmiertechniken zum Einsatz die auch auf normaler PC-Hardware (mehrere
+Abstraktionsebene, ...) verwendet werden. Neben dem Performanceverlust kann es
+hierdurch auch dazu kommen, dass Projekte gar nicht umgesetzt werden können, da
+nicht genug Speicher vorhanden ist.
+
+In diesem Vortrag will ich einen Einsteig in das
+[Bittwiddling](http://en.wikipedia.org/wiki/Bit_twiddling) geben, also
+Techniken die verschiedene Operationen direkt über die Manipulation der Bits
+durchführt und dadurch Rechenzeit und/oder Speicherplatz sparen. Dies soll an
+zwei Beispielen durchgeführt werden, einmal das extreme Optimieren von
+Durchläufen durch einen Flagbitvector [1, 2] und zweitens das extreme
+Optimieren von Zähloperationen von Ereignissen. Beide Techniken werden eine
+Ready-to-Run-Implementierung enthalten aber auch aufzeigen, dass man sich mit
+jedem diese Probleme im einzelnen Beschäftigen muss.
+
+[1] Wurde schon mal auf der Alpha III gehalten, dient aber als Vorarbeit für
+den zweiten Teil.
+
+[2] Ich werde ein bisschen schummeln und etwas MATHEMATIK (an dieser Stelle
+bitte Donnergrollen und ein diabolisches Lachen vorstellen) einsetzen.
+{%- endfilter %}

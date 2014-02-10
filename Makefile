@@ -1,0 +1,2 @@
+build:
+	hyde gen

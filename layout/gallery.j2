@@ -1,0 +1,79 @@
+{# layout for galleries #}
+
+{% extends "topbar.j2" %}
+
+{# find newest image to configure gallery #}
+{%set imgpath = site.content.node_from_relative_path(resource.meta.imagepath) -%}
+{%set newest_image = imgpath.walk_resources()|sort(attribute="name")|last -%}
+{%set image_max = newest_image.name|replace(".jpg", "")|int -%}
+
+{% block css %}
+	<link href="{{ media_url('css/bootstrap-glyphicons.css') }}" rel="stylesheet">
+	{{ super() }}
+{% endblock css %}
+
+{% block headjs %}
+	<script>
+		var MIN = 0;
+		var MAX = {{ image_max }};
+
+		function basename(path) {
+			return path.replace(/\\/g,'/').replace( /.*\//, '' );
+		}
+
+		function dirname(path) {
+			return path.replace(/\\/g,'/').replace(/\/[^\/]*$/, '');;
+		}
+
+		function noext(file) {
+			return file.substr(0, file.lastIndexOf('.')) || file;
+		}
+
+		function change(direction) {
+			var pad = "0000";
+			var file = $("#slider")[0].src;
+			var path = dirname(file);
+			var base = parseInt(noext(basename(file)), 10);
+			var next = (direction == "next") ? base - 1 : base + 1;
+			if (next <= MIN) {
+				next = MIN;
+				$("#next").css("color", "gray");
+			} else {
+				$("#next").css("color", "");
+			}
+			if (next >= MAX) {
+				next = MAX;
+				$("#prev").css("color", "gray");
+			} else {
+				$("#prev").css("color", "");
+			}
+			var nextstring = next.toString();
+			var padded = pad.substring(nextstring.length) + nextstring;
+			var newfile = path + "/" + padded + ".jpg";
+			$("#slider")[0].src = newfile;
+		}
+
+		function fullscreen() {
+			open($("#slider")[0].src)
+		}
+	</script>
+	{{ super() }}
+{% endblock headjs %}
+
+{% block container %}
+
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h3 class="panel-title">{{ resource.meta.title }}</h3>
+	</div>
+	<div class="panel-body">
+		<div style="display: inline-block;">
+			<a href="#" onclick="change('prev')" id="prev" style="font-size: 30px; color: gray;"><span class="glyphicon glyphicon-chevron-left"></span></a>
+			<a href="#" onclick="change('next')" id="next" style="font-size: 30px;"><span class="glyphicon glyphicon-chevron-right"></span></a>
+			<a href="#" onclick="fullscreen()" style="font-size: 30px; float: right;"><span class="glyphicon glyphicon glyphicon-fullscreen"></span></a>
+			<div class="clear"></div>
+			<img id="slider" src="{{ content_url(resource.meta.imagepath + newest_image.name) }}" style="max-height: 480px" />
+		</div>
+	</div>
+</div>
+{% endblock container %}

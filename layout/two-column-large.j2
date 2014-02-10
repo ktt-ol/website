@@ -1,0 +1,14 @@
+{# two columns template #}
+
+{% extends "topbar.j2" %}
+
+{% block container %}
+<div class="row">
+	<div class="col-md-8">
+		{% block mainbox %}{% endblock mainbox %}
+	</div>
+	<div class="col-md-4">
+		{% block sidebox %}{% endblock sidebox %}
+	</div>
+</div>
+{% endblock container %}

@@ -1,0 +1,4 @@
+listable: true
+extends: talk.j2
+parent_menu_entry: events
+default_block: description

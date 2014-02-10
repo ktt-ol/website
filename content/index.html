@@ -1,0 +1,161 @@
+---
+title: Mainframe
+---
+
+{% extends "two-column.j2" %}
+
+{% block headjs %}
+	<script src="{{ media_url('js/libs/holder/holder.js') }}"></script>
+	{{ super() }}
+{% endblock headjs %}
+
+{% block css %}
+	<link href="{{ media_url('js/libs/gcalflow/jquery.gcal_flow.css') }}" rel="stylesheet">
+	{{ super() }}
+{% endblock css %}
+
+{% block endhead %}
+	<link href="projects.atom.xml" type="application/atom+xml" rel="alternate" title="Projects ATOM Feed">
+	{{ super() }}
+{% endblock endhead %}
+
+{% block mainbox %}
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h3 class="panel-title">Mainframe</h3>
+	</div>
+	<div class="panel-body">
+		<p>Der Mainframe ist ein <a href="//de.wikipedia.org/wiki/Hackerspace">Hackspace</a>
+		in <a href="//de.wikipedia.org/wiki/Oldenburg_(Oldenburg)">Oldenburg</a>. Er stellt
+		einen Treffpunkt für Personen bereit, welche sich über Technik und
+		damit verbundene Themen austauschen und gemeinsam »hacken«.  Hierunter
+		wird die Erforschung von technischen, sozialen und politischen Systemen
+		auf Potentiale und Grenzen verstanden.</p>
+
+		<p>Der Mainframe stellt auf ca. 200 Quadratmetern die nötige Infrastruktur zur
+		Verfügung: Einen Konferenzraum zum Arbeiten und für <a href="{{
+		content_url('talks.html') }}">Vorträge</a>, eine Lounge, eine Holz-
+		&amp; Metallwerkstatt, eine Elektronikwerkstatt, eine ausgebaute Küche,
+		sowie einige weitere Räume.</p>
+
+		<p>Der Mainframe ist täglich ab spätestens 18:00 Uhr (häufig bereits früher) geöffnet
+		und Besucher, insbesondere anderer Hackspaces, sind jederzeit willkommen.</p>
+	</div>
+</div>
+
+<div class="panel panel-default">
+	<div class="panel-heading">
+		Aktuelle Projekte
+	</div>
+	<div class="panel-body">
+		<div class="row">
+			{% for res in site.content.node_from_relative_path("project").walk_resources_sorted_by_time() %}
+			{% if loop.index > 3 %} {% break %} {% endif %}
+			<div class="col-xs-6 col-md-4">
+				<div class="caption"><h4>{{ res.meta.title }}</h4></div>
+				<a href="{{ content_url(res.url) }}" class="thumbnail">
+					<img data-src="{{ res.meta.thumbnail }}" alt="{{ res.meta.title }}">
+				</a>
+			</div>
+			{% endfor %}
+		</div>
+	</div>
+</div>
+
+<div class="panel panel-default">
+	<div class="panel-heading">
+		Aktuelle Vorträge
+	</div>
+	<div class="panel-body">
+		<div class="row">
+			{% for res in site.content.node_from_relative_path("talk").walk_resources_sorted_by_time() if not res.meta.status == "scheduled" %}
+			{% if loop.index > 3 %} {% break %} {% endif %}
+			<div class="col-xs-6 col-md-4">
+				<div class="caption"><h4>{{ res.meta.title }}</h4></div>
+				<a href="{{ content_url(res.url) }}" class="thumbnail">
+					{% if res.meta.thumbnail is defined %}
+					<img src="{{ res.meta.thumbnail }}" alt="{{ res.meta.title }}">
+					{% else %}
+					<img data-src="holder.js/100%x180" alt="{{ res.meta.title }}">
+					{% endif %}
+				</a>
+			</div>
+			{% endfor %}
+		</div>
+	</div>
+</div>
+{% endblock mainbox %}
+
+
+{% block sidebox %}
+<div class="panel panel-default">
+	<div class="panel-heading">Status</div>
+	<div class="panel-body">
+		<div id="status">Space Status Unbekannt.</div>
+	</div>
+</div>
+
+<div class="panel panel-default">
+	<div class="panel-heading">Sponsoren</div>
+	<div class="panel-body">
+		<center>
+			<a href="http://www.wuerttembergische.de/oliver.majer">
+				<img src="{{ media_url('img/sponsor1.jpg') }}" />
+			</a>
+			<br><br>
+			<a href="https://www.ovh.com/cgi-bin/partners/clickCounter.cgi?affiliation=de">
+				<img src="{{ media_url('img/sponsor2.png') }}" />
+			</a>
+		</center>
+	</div>
+</div>
+
+<div class="panel panel-default">
+	<div class="panel-heading">Termine</div>
+	<div class="panel-body">
+		<div id="gcf-simple">
+			<div class="gcf-item-container-block">
+				<div class="gcf-item-block">
+					<div class="gcf-item-header-block">
+						<div class="gcf-item-date-block">
+							[<span class="gcf-item-daterange"></span>]
+						</div>
+						<div class="gcf-item-title-block">
+							<strong class="gcf-item-title"></strong>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock sidebox %}
+
+{% block scripts %}
+	<script src="{{ media_url('js/libs/gcalflow/jquery.gcal_flow.min.js') }}"></script>
+
+	<script type="text/javascript">
+		(function() {
+			$.getJSON("http://status.mainframe.io/api/spaceInfo", function( data ) {
+				if(data["state"]["open"]) {
+					$('#status').html("<b>Hochgefahren!</b>");
+					$('#status').parent().parent().addClass("panel-success")
+				} else {
+					$('#status').html("<b>Runtergefahren!</b>");
+					$('#status').parent().parent().addClass("panel-danger")
+				}
+			});
+		})();
+	</script>
+
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$(function() { $('#gcf-simple').gCalFlow({
+				calid: 'h9pni2ps2qj8iu9cie1iv9rt2o@group.calendar.google.com',
+				maxitem: 5
+			});});
+		});
+	</script>
+
+	{{ super() }}
+{% endblock scripts %}

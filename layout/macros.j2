@@ -1,0 +1,64 @@
+{% macro render_main_menu() -%}
+
+{% for item in menu -%}
+    {% set active = False -%}
+
+	{% if item.type == 'menu' -%}
+		<li class="dropdown
+		{% if resource.meta.parent_menu_entry == item.basename -%}
+				active
+		{% else -%}
+		{% for subitem in item.menu -%}
+			{% if site.content.resource_from_relative_path(subitem.url).url == resource.url -%}
+				active
+			{%- endif %}
+		{%- endfor %}
+		{%- endif %}
+		">
+			<a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ item.title }} <b class="caret"></b></a>
+			<ul class="dropdown-menu">
+				{% for subitem in item.menu -%}
+					<li><a href="{{ content_url(subitem.url) }}">{{ subitem.title }}</a></li>
+				{%- endfor %}
+			</ul>
+		</li>
+	{% else -%}
+		{% if item.type == 'page' -%}
+			{% set active = (resource.url ==
+				site.content.resource_from_relative_path(item.url).url) -%}
+		{% else -%}
+			{% set active = (node ==
+				site.content.node_from_relative_path(item.url)) -%}
+		{%- endif %}
+		<li {% if active %}class="active"{% endif %}>
+			<a href="{{ content_url(item.url) }}">{{ item.title }}</a>
+		</li>
+	{%- endif %}
+{%- endfor %}
+
+{%- endmacro %}
+
+{% macro render_sidebar() -%}
+<ul class="nav nav-list">
+    <li class="nav-header">Sidebar</li>
+{% for sidebar_item in sidebar -%}
+  <li{% if sidebar_item.url == resource.url or sidebar_item.active %} class="active"{% endif %}><a href="{{ sidebar_item.url }}">{{ sidebar_item.title }}</a></li>
+{%- endfor %}
+</ul>
+{%- endmacro %}
+
+{% macro render_excerpt(res, class=None) %}
+{% refer to res.relative_path as post %}
+<div class="container">
+<h3><a href="{{ content_url(res.url) }}">{{ res.meta.title }}</a></h3>
+<p><small>
+  <time datetime="{{ res.meta.created.strftime('%Y-%m-%d') }}">
+    Posted: {{ res.meta.created.strftime('%a, %d %b %Y') }}
+  </time>
+</small></p>
+{{ post.excerpt|markdown|typogrify }}<a href="{{ content_url(res.url) }}">Read more&hellip;</a>
+</div>
+{% endmacro %}
+
+
+

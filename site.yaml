@@ -1,0 +1,72 @@
+mode: development # Use "hyde publish -c prod.yaml to have this automatically switch to production
+media_root: media # Relative path from content folder.
+media_url: /media # URL where the media files are served from.
+plugins:
+    - hyde.ext.plugins.meta.MetaPlugin
+    - hyde.ext.plugins.auto_extend.AutoExtendPlugin
+    - hyde.ext.plugins.syntext.SyntextPlugin
+    - hyde.ext.plugins.textlinks.TextlinksPlugin
+    - hyde.ext.plugins.sorter.SorterPlugin
+context:
+    data:
+        site_title: Mainframe
+        author:
+            name: Kreativität trifft Technik
+            url: "http://www.kreativitaet-trifft-technik.de"
+        home_url: index.html
+        menu:
+            - title: Home
+              basename: home
+              type: page
+              url: index.html
+            - title: Projects
+              type: menu
+              basename: projects
+              menu:
+                - title: Projektgruppen
+                  url: project_groups.html
+                - title: Hardwareprojekte
+                  url: project_hardware.html
+                - title: Softwareprojekte
+                  url: project_software.html
+                - title: Infrastrukturprojekte
+                  url: project_infrastructure.html
+            - title: Events
+              type: menu
+              basename: events
+              menu:
+                - title: Events
+                  url: events.html
+                - title: Vorträge
+                  url: talks.html
+            - title: Bilder
+              type: page
+              basename: images
+              url: images/images_from_space.html
+            - title: Der Verein
+              type: menu
+              basename: club
+              menu:
+                - title: Über Uns
+                  url: about.html
+                - title: Vereinsgeschichte
+                  url: history.html
+                - title: Mitgliedschaft
+                  url: membership.html
+                - title: Satzung und Beitragsordnung
+                  url: club_rules.html
+                - title: Unterstützen
+                  url: support.html
+            - title: Kontakt
+              type: page
+              basename: contact
+              url: contact.html
+
+sorter:
+    time:
+        attr:
+            - meta.created
+        reverse: true
+        filters:
+            source.kind: html
+            meta.listable: true
