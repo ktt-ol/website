@@ -1,12 +1,18 @@
-Layouts:
- [ ] Layout für Vorträge verbessern (Thumbnails, Videoeinbettung, Link zum Kalender)
- [ ] Layout für Projekte anlegen
- [ ] Layout für Gruppen anlegen
+=== TODO ===
 
-Technical:
- [ ] Event-Liste implementieren
- [ ] Kalender Source implementieren (Google?)
- [ ] Bilder Seite implementieren
+ [ ] Layout für Gruppen anlegen
+ [ ] Voträge auf dem Index werden nicht korrekt vertical aligned
+ [ ] Kalender in einen Google Kalender migrieren
+ [ ] Fehlende Thumbnails
+  [ ] Fahrradelektronik
+  [ ] Forumslader
+  [ ] Shopsystem
+  [ ] Inventarsystem
+  [ ] Spaceschalter
+ [ ] Geplante-Vorträge importieren/anlegen
+ [ ] Zustand "Keine geplanten Vorträge" unterstützen
+ [ ] Vortragsvorschläge in Wiki oder Pad migrieren
+ [ ] Vortragssuche in Wiki oder Pad migrieren
 
 Jinja Documentation:
  * http://jinja.pocoo.org/docs/templates/#filters
