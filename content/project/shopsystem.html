@@ -1,10 +1,35 @@
 ---
 title: Shopsystem
 thumbnail: holder.js/100%x180
-description: >
-    Shop System for selling Mate
 created: !!timestamp '2011-01-01 10:00:00'
 project_type: software
+author:
+ - sre
+ - lhw
+status: stable
+repository: https://github.com/ktt-ol/serial-barcode-scanner/ 
 ---
 
-TODO.
+{% filter markdown|typogrify -%}
+Mit steigender Mitgliederzahl und mehr als 5 verschiedenen Produkten im "Kiosk"
+des Hackspaces wurde das führen und auswerten von Strichlisten immer aufwändiger.
+Aus diesem Grund wurde von uns Software entwickelt, welche die Daten von Beginn
+an digital vorhält.
+
+Das Shopsystem läuft auf einem Raspberry Pi, an welchen ein serieller Barcode
+Scanner angeschlossen ist. Desweiteren ist an den Raspberry Pi ein Monitor
+angeschlossen, welcher die letzten Vorgänge protokolliert. Jedes Mitglied
+kann sich mit einem (ungeschützten und leicht fälschbaren) Barcode einloggen,
+dann beliebige Produkte kaufen indem er deren EAN Barcode scannt und sich
+schließlich mittels eines logout barcodes ausloggen. Um zu verhindern, dass
+Personen den Barcode anderer Mitglieder scannen bekommen diese gegen 8 Uhr
+eine E-Mail, in der die eingekauften Produkte des Vortages aufgelistet sind.
+Am Anfang des folgenden Monats kommt dann, ebenfalls per E-Mail, die Rechnung
+für den gesamten Monat. Diese wird, zusammen mit einer einfach auswertbaren
+CSV-Datei auch an den Schatzmeister geschickt, welcher dann das Geld von den
+Mitglieder Konten einzieht.
+
+Das Eintragen neuer Produkte geschieht über ein Web-Interface. Über dieses
+kann auch die Mitgliederdatenbank des Systems aktualisiert werden (import
+einer CSV-Datei) oder der aktuelle Warenbestand eingesehen werden.
+{%- endfilter %}

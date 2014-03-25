@@ -1,0 +1,43 @@
+{# layout for talks #}
+
+{% extends "topbar.j2" %}
+
+{% block container %}
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h3 class="panel-title">{{ resource.meta.title }}</h3>
+	</div>
+	<div class="panel-body">
+		<div style="float: right; border: 1px solid black; padding: 5px;">
+			<b>{{ resource.meta.title }}</b><br>
+
+			{% if resource.meta.status is defined %}
+				<b>Status:</b> {{ resource.meta.status }}<br>
+			{% endif %}
+
+
+			{% if resource.meta.cover is defined %}
+			<img src="{{ content_url(resource.meta.cover) }}" style="float:right; padding-left: 10px;" />
+			{% endif %}
+
+			{% if resource.meta.repository is defined %}
+				<b>Repository:</b> <a href="{{ resource.meta.repository }}">{{ resource.meta.repository }}</a><br>
+			{% endif %}
+			{% if resource.meta.author is defined %}
+				{% if resource.meta.author is string %}
+				<b>Autor:</b> {{ resource.meta.author }}<br>
+				{% else %}
+					<b>Autoren:</b>
+					{% set pipe = joiner(",") %}
+					{% for author in resource.meta.author %}{{ pipe() }} {{ author }}{% endfor %}
+				{% endif %}
+			{% endif %}
+		</div>
+
+		{% block description %}
+		{% endblock description %}
+
+		<div style="clear: both;"></div>
+	</div>
+</div>
+{% endblock container %}
