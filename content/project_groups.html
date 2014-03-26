@@ -21,7 +21,11 @@ title: Projektgruppen
 			<div class="col-xs-6 col-md-3">
 				<div class="caption"><h4>{{ res.meta.title }}</h4></div>
 				<a href="{{ content_url(res.url) }}" class="thumbnail">
-					<img data-src="{{ res.meta.thumbnail }}" alt="{{ res.meta.title }}">
+					{% if res.meta.thumbnail is defined %}
+					<img src="{{ res.meta.thumbnail }}" alt="{{ res.meta.title }}">
+					{% else %}
+					<img data-src="holder.js/100%x180" alt="{{ res.meta.title }}">
+					{% endif %}
 				</a>
 			</div>
 			{% endfor %}
