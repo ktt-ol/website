@@ -5,7 +5,9 @@
 {# find newest image to configure gallery #}
 {%set imgpath = site.content.node_from_relative_path(resource.meta.imagepath) -%}
 {%set newest_image = imgpath.walk_resources()|sort(attribute="name")|last -%}
+{% if newest_image is defined %}
 {%set image_max = newest_image.name|replace(".jpg", "")|int -%}
+{% endif %}
 
 {% block css %}
 	<link href="{{ media_url('css/bootstrap-glyphicons.css') }}" rel="stylesheet">
@@ -13,6 +15,7 @@
 {% endblock css %}
 
 {% block headjs %}
+{% if image_max is defined %}
 	<script>
 		var MIN = 0;
 		var MAX = {{ image_max }};
@@ -57,6 +60,7 @@
 			open($("#slider")[0].src)
 		}
 	</script>
+{% endif %}
 	{{ super() }}
 {% endblock headjs %}
 
@@ -67,6 +71,7 @@
 		<h3 class="panel-title">{{ resource.meta.title }}</h3>
 	</div>
 	<div class="panel-body">
+		{% if image_max is defined %}
 		<div style="display: inline-block;">
 			<a href="#" onclick="change('prev')" id="prev" style="font-size: 30px; color: gray;"><span class="glyphicon glyphicon-chevron-left"></span></a>
 			<a href="#" onclick="change('next')" id="next" style="font-size: 30px;"><span class="glyphicon glyphicon-chevron-right"></span></a>
@@ -74,6 +79,9 @@
 			<div class="clear"></div>
 			<img id="slider" src="{{ content_url(resource.meta.imagepath + newest_image.name) }}" style="max-height: 480px" />
 		</div>
+		{% else %}
+			Gallerie ist leer!
+		{% endif %}
 	</div>
 </div>
 {% endblock container %}
