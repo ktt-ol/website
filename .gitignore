@@ -1,3 +1,4 @@
 deploy
 *.hyde_deps
 *.swp
+.idea
