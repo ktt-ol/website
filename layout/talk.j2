@@ -3,6 +3,7 @@
 {% extends "topbar.j2" %}
 
 {% block scripts %}
+{% if resource.meta.cover is defined %}
 <script type="text/javascript">
 function playVideo(vcode, width, height) {
   "use strict";
@@ -31,6 +32,7 @@ playImage.onload = function() {
 
 coverImage.src = "{{ content_url(resource.meta.cover) }}";
 </script>
+{% endif %}
 {{ super() }}
 {% endblock scripts %}
 
