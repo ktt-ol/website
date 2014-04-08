@@ -16,8 +16,7 @@ title: Mainframe Vorträge
 	</div>
 	<div class="panel-body">
 		<div class="row">
-			{% for res in site.content.node_from_relative_path("talk").walk_resources_sorted_by_time()|reverse %}
-			{% if res.meta.status == "scheduled" %}
+			{% for res in site.content.node_from_relative_path("talk").walk_resources_sorted_by_time()|reverse if res.meta.status == "scheduled" %}
 			<div class="col-xs-6 col-md-3">
 				<div class="caption"><h4>{{ res.meta.title }}</h4></div>
 				<a href="{{ content_url(res.url) }}" class="thumbnail">
@@ -28,7 +27,10 @@ title: Mainframe Vorträge
 					{% endif %}
 				</a>
 			</div>
-			{% endif %}
+			{% else %}
+				<div class="panel-body">
+					Zur Zeit sind keine weiteren Vorträge geplant!
+				</div>
 			{% endfor %}
 		</div>
 	</div>
@@ -40,8 +42,7 @@ title: Mainframe Vorträge
 	</div>
 	<div class="panel-body">
 		<div class="row">
-			{% for res in site.content.node_from_relative_path("talk").walk_resources_sorted_by_time() %}
-			{% if res.meta.status != "scheduled" %}
+			{% for res in site.content.node_from_relative_path("talk").walk_resources_sorted_by_time() if res.meta.status != "scheduled" %}
 			<div class="col-xs-6 col-md-3" style="margin-bottom: 20px;">
 				<div class="caption" style="height: 30pt;"><h4>{{ res.meta.title }}</h4></div>
 				<a href="{{ content_url(res.url) }}" class="thumbnail">
@@ -52,7 +53,10 @@ title: Mainframe Vorträge
 					{% endif %}
 				</a>
 			</div>
-			{% endif %}
+			{% else %}
+				<div class="panel-body">
+					Bisher haben keine Vorträge stattgefunden!
+				</div>
 			{% endfor %}
 		</div>
 	</div>
