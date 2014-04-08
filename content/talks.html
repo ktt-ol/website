@@ -4,11 +4,6 @@ title: Mainframe Vorträge
 
 {% extends "default.j2" %}
 
-{% block headjs %}
-	<script src="{{ media_url('js/libs/holder/holder.js') }}"></script>
-	{{ super() }}
-{% endblock headjs %}
-
 {% block mainbox %}
 <div class="panel panel-default">
 	<div class="panel-heading">
@@ -23,7 +18,7 @@ title: Mainframe Vorträge
 					{% if res.meta.thumbnail is defined %}
 					<img src="{{ content_url(res.meta.thumbnail) }}" alt="{{ res.meta.title }}">
 					{% else %}
-					<img data-src="holder.js/100%x180" alt="{{ res.meta.title }}">
+					<img src="{{ media_url("img/talk.svg") }}" alt="{{ res.meta.title }}">
 					{% endif %}
 				</a>
 			</div>
@@ -49,7 +44,7 @@ title: Mainframe Vorträge
 					{% if res.meta.thumbnail is defined %}
 					<img src="{{ content_url(res.meta.thumbnail) }}" alt="{{ res.meta.title }}">
 					{% else %}
-					<img data-src="holder.js/100%x180" alt="{{ res.meta.title }}">
+					<img src="{{ media_url("img/talk.svg") }}" alt="{{ res.meta.title }}">
 					{% endif %}
 				</a>
 			</div>
