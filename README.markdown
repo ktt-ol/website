@@ -34,3 +34,8 @@ hyde serve
 ```
 
 to open a local web server for a preview ( http://localhost:8080 ).
+
+## Jinja Documentation
+
+ * http://jinja.pocoo.org/docs/templates/#filters
+ * http://jinja.pocoo.org/docs/templates/#builtin-filters

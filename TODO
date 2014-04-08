@@ -1,12 +1,17 @@
-=== TODO ===
+=== Backend ===
 
- [ ] Layout für Gruppen anlegen
+ [ ] Layout für Projektgruppen anlegen
+
+=== Rendering ===
+
  [ ] Voträge auf dem Index werden nicht korrekt vertical aligned
- [ ] Geplante-Vorträge importieren/anlegen
- [ ] Zustand "Keine geplanten Vorträge" unterstützen
+ [ ] Menu Wrapping im Pixelbereich 769-992 Pixel unterdrücken
+
+=== Inhalt ===
+
  [ ] Vortragsvorschläge in Wiki oder Pad migrieren
  [ ] Vortragssuche in Wiki oder Pad migrieren
-
-Jinja Documentation:
- * http://jinja.pocoo.org/docs/templates/#filters
- * http://jinja.pocoo.org/docs/templates/#builtin-filters
+ [ ] Mitglieder dazu bringen Projekte zu beschreiben:
+     http://pad.kreativitaet-trifft-technik.de/p/Webseitenprojekte
+ [ ] Redirects für alte Links auf dem Server einrichten:
+     http://pad.kreativitaet-trifft-technik.de/p/old-urls
