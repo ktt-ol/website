@@ -4,11 +4,6 @@ title: Mainframe
 
 {% extends "default.j2" %}
 
-{% block headjs %}
-	<script src="{{ media_url('js/libs/holder/holder.js') }}"></script>
-	{{ super() }}
-{% endblock headjs %}
-
 {% block endhead %}
 	<link href="projects.atom.xml" type="application/atom+xml" rel="alternate" title="Projects ATOM Feed">
 	{{ super() }}
@@ -56,9 +51,9 @@ title: Mainframe
 				<div class="caption"><h4>{{ res.meta.title }}</h4></div>
 				<a href="{{ content_url(res.url) }}" class="thumbnail">
 					{% if res.meta.thumbnail is defined %}
-					<img src="{{ res.meta.thumbnail }}" alt="{{ res.meta.title }}">
+					<img src="{{ content_url(res.meta.thumbnail) }}" alt="{{ res.meta.title }}">
 					{% else %}
-					<img data-src="holder.js/100%x180" alt="{{ res.meta.title }}">
+					<img src="{{ media_url("img/project.svg") }}" alt="{{ res.meta.title }}">
 					{% endif %}
 				</a>
 			</div>
@@ -79,9 +74,9 @@ title: Mainframe
 				<div class="caption"><h4>{{ res.meta.title }}</h4></div>
 				<a href="{{ content_url(res.url) }}" class="thumbnail">
 					{% if res.meta.thumbnail is defined %}
-					<img src="{{ res.meta.thumbnail }}" alt="{{ res.meta.title }}">
+					<img src="{{ content_url(res.meta.thumbnail) }}" alt="{{ res.meta.title }}">
 					{% else %}
-					<img data-src="holder.js/100%x180" alt="{{ res.meta.title }}">
+					<img src="{{ media_url("img/talk.svg") }}" alt="{{ res.meta.title }}">
 					{% endif %}
 				</a>
 			</div>
