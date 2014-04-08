@@ -52,8 +52,10 @@ title: Kontakt
 	var toProjection   = new OpenLayers.Projection("EPSG:900913"); // to Spherical Mercator Projection
 	var position       = new OpenLayers.LonLat(lon, lat).transform( fromProjection, toProjection);
 
+	var layer          = new OpenLayers.Layer.OSM("OSM", ["//www.kreativitaet-trifft-technik.de/tiles/${z}/${x}/${y}.png"]);
+
 	map = new OpenLayers.Map("map", { controls: [] });
-	map.addLayer(new OpenLayers.Layer.OSM());
+	map.addLayer(layer);
 
 	var markers = new OpenLayers.Layer.Markers( "Markers" );
 	map.addLayer(markers);
