@@ -1,6 +1,6 @@
 {# layout for talks #}
 
-{% extends "topbar.j2" %}
+{% extends "default.j2" %}
 
 {% block scripts %}
 {% if resource.meta.cover is defined %}
@@ -36,7 +36,7 @@ coverImage.src = "{{ content_url(resource.meta.cover) }}";
 {{ super() }}
 {% endblock scripts %}
 
-{% block container %}
+{% block mainbox %}
 <div class="panel panel-default">
 	<div class="panel-heading">
 		<h3 class="panel-title">{{ resource.meta.title }}</h3>
@@ -67,4 +67,4 @@ coverImage.src = "{{ content_url(resource.meta.cover) }}";
 		<div style="clear: both;"></div>
 	</div>
 </div>
-{% endblock container %}
+{% endblock mainbox %}

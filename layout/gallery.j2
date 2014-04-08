@@ -1,6 +1,6 @@
 {# layout for galleries #}
 
-{% extends "topbar.j2" %}
+{% extends "default.j2" %}
 
 {# find newest image to configure gallery #}
 {%set imgpath = site.content.node_from_relative_path(resource.meta.imagepath) -%}
@@ -64,7 +64,7 @@
 	{{ super() }}
 {% endblock headjs %}
 
-{% block container %}
+{% block mainbox %}
 
 <div class="panel panel-default">
 	<div class="panel-heading">
@@ -84,4 +84,4 @@
 		{% endif %}
 	</div>
 </div>
-{% endblock container %}
+{% endblock mainbox %}

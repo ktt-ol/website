@@ -2,9 +2,9 @@
 title: Kontakt
 ---
 
-{% extends "topbar.j2" %}
+{% extends "default.j2" %}
 
-{% block container %}
+{% block mainbox %}
 <div class="panel panel-default">
 	<div class="panel-heading">
 		<h3 class="panel-title">Anschrift &amp; Kontakt</h3>
@@ -39,7 +39,7 @@ title: Kontakt
 		</div>
 	</div>
 </div>
-{% endblock container %}
+{% endblock mainbox %}
 
 {% block scripts %}
 <script type="text/javascript" src="{{ media_url('js/libs/openlayers/OpenLayers.js') }}"></script>

@@ -2,14 +2,14 @@
 title: Projektgruppen
 ---
 
-{% extends "topbar.j2" %}
+{% extends "default.j2" %}
 
 {% block headjs %}
 	<script src="{{ media_url('js/libs/holder/holder.js') }}"></script>
 	{{ super() }}
 {% endblock headjs %}
 
-{% block container %}
+{% block mainbox %}
 
 <div class="panel panel-default">
 	<div class="panel-heading">
@@ -32,4 +32,4 @@ title: Projektgruppen
 		</div>
 	</div>
 </div>
-{% endblock container %}
+{% endblock mainbox %}

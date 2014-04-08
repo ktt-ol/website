@@ -2,17 +2,12 @@
 title: Mainframe
 ---
 
-{% extends "two-column.j2" %}
+{% extends "default.j2" %}
 
 {% block headjs %}
 	<script src="{{ media_url('js/libs/holder/holder.js') }}"></script>
 	{{ super() }}
 {% endblock headjs %}
-
-{% block css %}
-	<link href="{{ media_url('js/libs/gcalflow/jquery.gcal_flow.css') }}" rel="stylesheet">
-	{{ super() }}
-{% endblock css %}
 
 {% block endhead %}
 	<link href="projects.atom.xml" type="application/atom+xml" rel="alternate" title="Projects ATOM Feed">
@@ -20,7 +15,6 @@ title: Mainframe
 {% endblock endhead %}
 
 {% block mainbox %}
-
 <div class="panel panel-default">
 	<div class="panel-heading">
 		<h3 class="panel-title">Mainframe</h3>
@@ -96,75 +90,3 @@ title: Mainframe
 	</div>
 </div>
 {% endblock mainbox %}
-
-
-{% block sidebox %}
-<div class="panel panel-default">
-	<div class="panel-heading"><a href="//status.kreativitaet-trifft-technik.de">Status</a></div>
-	<div class="panel-body">
-		<div id="status">Space Status Unbekannt.</div>
-	</div>
-</div>
-
-<div class="panel panel-default">
-	<div class="panel-heading">Sponsoren</div>
-	<div class="panel-body" style="text-align: center;">
-		<a href="http://www.wuerttembergische.de/oliver.majer">
-			<img src="{{ media_url('img/sponsor1.jpg') }}" alt="Württembergische" />
-		</a>
-		<br><br>
-		<a href="https://www.ovh.com/cgi-bin/partners/clickCounter.cgi?affiliation=de">
-			<img src="{{ media_url('img/sponsor2.png') }}" alt="OVH" />
-		</a>
-	</div>
-</div>
-
-<div class="panel panel-default hidden-xs hidden-sm">
-	<div class="panel-heading"><a href="events.html">Termine</a></div>
-	<div class="panel-body">
-		<div id="gcf-simple">
-			<div class="gcf-item-container-block">
-				<div class="gcf-item-block">
-					<div class="gcf-item-header-block">
-						<div class="gcf-item-date-block">
-							[<span class="gcf-item-daterange"></span>]
-						</div>
-						<div class="gcf-item-title-block">
-							<strong class="gcf-item-title"></strong>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-{% endblock sidebox %}
-
-{% block scripts %}
-	<script src="{{ media_url('js/libs/gcalflow/jquery.gcal_flow.min.js') }}"></script>
-
-	<script type="text/javascript">
-		(function() {
-			$.getJSON("//status.kreativitaet-trifft-technik.de/api/spaceInfo", function( data ) {
-				if(data["state"]["open"]) {
-					$('#status').html("<b>Hochgefahren!</b>");
-					$('#status').parent().parent().addClass("panel-success")
-				} else {
-					$('#status').html("<b>Runtergefahren!</b>");
-					$('#status').parent().parent().addClass("panel-danger")
-				}
-			});
-		})();
-	</script>
-
-	<script type="text/javascript">
-		$(document).ready(function() {
-			$(function() { $('#gcf-simple').gCalFlow({
-				calid: 'markusframer@gmail.com',
-				maxitem: 5
-			});});
-		});
-	</script>
-
-	{{ super() }}
-{% endblock scripts %}
