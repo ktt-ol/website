@@ -1,4 +1,4 @@
 listable: true
-extends: topbar.j2
+extends: group.j2
 parent_menu_entry: projects
-default_block: container
+default_block: description
