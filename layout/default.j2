@@ -60,10 +60,28 @@
 	</script>
 
 	<script type="text/javascript">
+		function leadingZero(value) {
+			return (value < 10) ? '0' + value : value;
+		}
+
 		$(document).ready(function() {
 			$(function() { $('#gcf-simple').gCalFlow({
 				calid: 'markusframer@gmail.com',
-				maxitem: 5
+				maxitem: 5,
+				daterange_formatter: function(ds, de, allday_p) {
+					var dayoftheweek = [ "So", "Mo", "Di", "Mi", "Do", "Fr", "Sa" ];
+					var monthname = [ "Jan", "Feb", "Mär", "Apr", "Mai", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dez" ];
+					var base = dayoftheweek[ds.getDay()] + ", " + ds.getDate() + ". " + monthname[ds.getMonth()];
+					var times = leadingZero(ds.getHours()) + ":" + leadingZero(ds.getMinutes()) + " - " + leadingZero(de.getHours()) + ":" + leadingZero(de.getMinutes());
+
+					if(ds.getDate() != de.getDate() || ds.getMonth() != de.getMonth())
+						return base + " - " + de.getDate() + ". " + monthname[de.getMonth()]
+
+					if(allday_p)
+						return base
+
+					return base + ", " + times
+				}
 			});});
 		});
 	</script>
