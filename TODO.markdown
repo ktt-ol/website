@@ -5,10 +5,6 @@
 - Atom-Feeds für Images from Space bereitstellen
 - Software schreiben, welche Bilder per E-Mail annimmt und zu Images from Space hinzufügt
 
-# Rendering
-
-- Menu Wrapping im Pixelbereich 769-992 Pixel unterdrücken
-
 # Inhalt
 
 - Vortragsvorschläge in Wiki oder Pad migrieren
