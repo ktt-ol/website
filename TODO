@@ -4,8 +4,6 @@
      render_thumbnail(title, thumbnail, placeholder-thumbnail, link)
  [ ] Live-Update Unterstützung für Status-Widget
  [ ] Atom-Feeds für Images from Space bereitstellen
- [ ] Makefile erweitern, so dass es Dateien touch'd, die von hyde neu generiert werden sollen
-     z.B. content/project_hardware.html: content/project/*.html
  [ ] Software schreiben, welche Bilder per E-Mail annimmt und zu Images from Space hinzufügt
 
 === Rendering ===

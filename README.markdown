@@ -25,7 +25,12 @@ or
 hyde gen -r
 ```
 
-to generate all files.
+to generate all files. Alternatively you can use make, which calls hyde
+gen, but takes care of the dependencies unknown to hyde:
+
+```
+make
+```
 
 You'll find the generated homepage in the ```deploy/``` directory. Use
 
