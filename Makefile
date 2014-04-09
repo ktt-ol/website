@@ -1,7 +1,7 @@
 projects = content/project/*.html
 groups = content/group/*.html
 talks = content/talk/*.html
-forcegenfiles = index.html \
+forcegenfiles = content/index.html \
                 content/projects.atom.xml \
 				content/project_hardware.html \
 				content/project_software.html \
@@ -13,7 +13,7 @@ build: $(forcegenfiles)
 	hyde gen
 
 # manual dependencies, touching files makes hyde regenerating it
-index.html: $(projects) $(talks)
+content/index.html: $(projects) $(talks)
 	touch $@
 content/projects.atom.xml: $(projects)
 	touch $@
