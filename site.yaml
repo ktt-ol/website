@@ -19,7 +19,7 @@ context:
               basename: home
               type: page
               url: index.html
-            - title: Projects
+            - title: Projekte
               type: menu
               basename: projects
               menu:
