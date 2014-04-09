@@ -12,16 +12,7 @@ title: Mainframe Vorträge
 	<div class="panel-body">
 		<div class="row">
 			{% for res in site.content.node_from_relative_path("talk").walk_resources_sorted_by_time()|reverse if res.meta.status == "scheduled" %}
-			<div class="col-xs-6 col-md-3 vbottom">
-				<div class="caption"><h4>{{ res.meta.title }}</h4></div>
-				<a href="{{ content_url(res.url) }}" class="thumbnail">
-					{% if res.meta.thumbnail is defined %}
-					<img src="{{ content_url(res.meta.thumbnail) }}" alt="{{ res.meta.title }}">
-					{% else %}
-					<img src="{{ media_url("img/talk.svg") }}" alt="{{ res.meta.title }}">
-					{% endif %}
-				</a>
-			</div>
+			{{ render_thumbnail(res, "img/talk.svg") }}
 			{% else %}
 				<div class="panel-body">
 					Zur Zeit sind keine weiteren Vorträge geplant!
@@ -38,16 +29,7 @@ title: Mainframe Vorträge
 	<div class="panel-body">
 		<div class="row">
 			{% for res in site.content.node_from_relative_path("talk").walk_resources_sorted_by_time() if res.meta.status != "scheduled" %}
-			<div class="col-xs-6 col-md-3 vbottom">
-				<div class="caption"><h4>{{ res.meta.title }}</h4></div>
-				<a href="{{ content_url(res.url) }}" class="thumbnail">
-					{% if res.meta.thumbnail is defined %}
-					<img src="{{ content_url(res.meta.thumbnail) }}" alt="{{ res.meta.title }}">
-					{% else %}
-					<img src="{{ media_url("img/talk.svg") }}" alt="{{ res.meta.title }}">
-					{% endif %}
-				</a>
-			</div>
+			{{ render_thumbnail(res, "img/talk.svg") }}
 			{% else %}
 				<div class="panel-body">
 					Bisher haben keine Vorträge stattgefunden!

@@ -47,16 +47,7 @@ title: Mainframe
 		<div class="row">
 			{% for res in site.content.node_from_relative_path("project").walk_resources_sorted_by_time() %}
 			{% if loop.index > 3 %} {% break %} {% endif %}
-			<div class="col-xs-6 col-md-4 vbottom">
-				<div class="caption"><h4>{{ res.meta.title }}</h4></div>
-				<a href="{{ content_url(res.url) }}" class="thumbnail">
-					{% if res.meta.thumbnail is defined %}
-					<img src="{{ content_url(res.meta.thumbnail) }}" alt="{{ res.meta.title }}">
-					{% else %}
-					<img src="{{ media_url("img/project.svg") }}" alt="{{ res.meta.title }}">
-					{% endif %}
-				</a>
-			</div>
+			{{ render_thumbnail(res, "img/project.svg") }}
 			{% endfor %}
 		</div>
 	</div>
@@ -70,16 +61,7 @@ title: Mainframe
 		<div class="row">
 			{% for res in site.content.node_from_relative_path("talk").walk_resources_sorted_by_time() if not res.meta.status == "scheduled" %}
 			{% if loop.index > 3 %} {% break %} {% endif %}
-			<div class="col-xs-6 col-md-4 vbottom">
-				<div class="caption"><h4>{{ res.meta.title }}</h4></div>
-				<a href="{{ content_url(res.url) }}" class="thumbnail">
-					{% if res.meta.thumbnail is defined %}
-					<img src="{{ content_url(res.meta.thumbnail) }}" alt="{{ res.meta.title }}">
-					{% else %}
-					<img src="{{ media_url("img/talk.svg") }}" alt="{{ res.meta.title }}">
-					{% endif %}
-				</a>
-			</div>
+			{{ render_thumbnail(res, "img/talk.svg") }}
 			{% endfor %}
 		</div>
 	</div>

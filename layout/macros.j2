@@ -60,5 +60,15 @@
 </div>
 {% endmacro %}
 
-
-
+{% macro render_thumbnail(res, fallback_thumbnail) %}
+<div class="col-xs-6 col-md-4 vbottom">
+	<div class="caption"><h4>{{ res.meta.title }}</h4></div>
+	<a href="{{ content_url(res.url) }}" class="thumbnail">
+		{% if res.meta.thumbnail is defined %}
+		<img src="{{ content_url(res.meta.thumbnail) }}" alt="{{ res.meta.title }}">
+		{% else %}
+		<img src="{{ media_url(fallback_thumbnail) }}" alt="{{ res.meta.title }}">
+		{% endif %}
+	</a>
+</div>
+{% endmacro %}
