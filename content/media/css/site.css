@@ -24,3 +24,12 @@ body {
 		5px;
 	}
 }
+
+.vbottom {
+	float: none;
+	display: inline-block;
+	vertical-align: bottom;
+
+	/* whitespace removal hack (inline-block accounts whitespaces between elements) */
+	margin: 0 -0.125em;
+}

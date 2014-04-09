@@ -47,7 +47,7 @@ title: Mainframe
 		<div class="row">
 			{% for res in site.content.node_from_relative_path("project").walk_resources_sorted_by_time() %}
 			{% if loop.index > 3 %} {% break %} {% endif %}
-			<div class="col-xs-6 col-md-4">
+			<div class="col-xs-6 col-md-4 vbottom">
 				<div class="caption"><h4>{{ res.meta.title }}</h4></div>
 				<a href="{{ content_url(res.url) }}" class="thumbnail">
 					{% if res.meta.thumbnail is defined %}
@@ -57,6 +57,8 @@ title: Mainframe
 					{% endif %}
 				</a>
 			</div>
+			{% if loop.index == 2 %} <div class="clearfix visible-xs visible-sm"></div> {% endif %}
+			{% if loop.index == 3 %} <div class="clearfix hidden-xs hidden-sm"></div> {% endif %}
 			{% endfor %}
 		</div>
 	</div>
@@ -70,7 +72,7 @@ title: Mainframe
 		<div class="row">
 			{% for res in site.content.node_from_relative_path("talk").walk_resources_sorted_by_time() if not res.meta.status == "scheduled" %}
 			{% if loop.index > 3 %} {% break %} {% endif %}
-			<div class="col-xs-6 col-md-4">
+			<div class="col-xs-6 col-md-4 vbottom">
 				<div class="caption"><h4>{{ res.meta.title }}</h4></div>
 				<a href="{{ content_url(res.url) }}" class="thumbnail">
 					{% if res.meta.thumbnail is defined %}
@@ -80,6 +82,8 @@ title: Mainframe
 					{% endif %}
 				</a>
 			</div>
+			{% if loop.index == 2 %} <div class="clearfix visible-xs visible-sm"></div> {% endif %}
+			{% if loop.index == 3 %} <div class="clearfix hidden-xs hidden-sm"></div> {% endif %}
 			{% endfor %}
 		</div>
 	</div>
