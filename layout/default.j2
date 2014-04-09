@@ -53,18 +53,10 @@
 {% block scripts %}
 	<script src="{{ media_url('js/libs/gcalflow/jquery.gcal_flow.min.js') }}"></script>
 
+	<script src="{{ media_url('js/libs/status.js') }}"></script>
+
 	<script type="text/javascript">
-		(function() {
-			$.getJSON("//status.kreativitaet-trifft-technik.de/api/spaceInfo", function( data ) {
-				if(data["state"]["open"]) {
-					$('#status').html("<b>Hochgefahren!</b>");
-					$('#status').parent().parent().addClass("panel-success")
-				} else {
-					$('#status').html("<b>Runtergefahren!</b>");
-					$('#status').parent().parent().addClass("panel-danger")
-				}
-			});
-		})();
+		spaceStatusPoll();
 	</script>
 
 	<script type="text/javascript">
@@ -74,6 +66,10 @@
 				maxitem: 5
 			});});
 		});
+	</script>
+
+	<script type="text/javascript">
+		spaceStatusPush();
 	</script>
 
 	{{ super() }}
