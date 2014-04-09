@@ -57,6 +57,8 @@ context:
                   url: club_rules.html
                 - title: Unterstützen
                   url: support.html
+                - title: Pressespiegel
+                  url: press_review.html
             - title: Kontakt
               type: page
               basename: contact
