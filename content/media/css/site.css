@@ -41,3 +41,21 @@ body {
 	margin-left: auto;
 	margin-right: auto;
 }
+
+.article-list h3 {
+  margin-top: 5px;
+}
+.article-list small.date {
+  color: #999;
+}
+
+.article__image-left {
+  float: left;
+  padding-right: 20px;
+  padding-bottom: 10px;
+}
+.article__image-right {
+  float: right;
+  padding-left: 20px;
+  padding-bottom: 10px;
+}

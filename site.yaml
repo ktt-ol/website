@@ -35,10 +35,12 @@ context:
               type: menu
               basename: events
               menu:
-                - title: Events
-                  url: events.html
+                - title: Kalender
+                  url: calendar.html
                 - title: Vorträge
                   url: talks.html
+                - title: Aktionen
+                  url: events.html
             - title: Bilder
               type: page
               basename: images

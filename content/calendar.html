@@ -1,0 +1,59 @@
+---
+title: Events
+---
+
+{% extends "topbar.j2" %}
+
+{% block container %}
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">Events</h3>
+    </div>
+    <div class="panel-body">
+        <div id='calendar'></div>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">Abonnieren</h3>
+    </div>
+    <div class="panel-body">
+        <span class="label label-primary">Tipp:</span> Du kannst diesen Kalender auch direkt benutzen. Die iCal URl dazu ist
+        <blockquote><code>https://www.google.com/calendar/ical/markusframer%40gmail.com/public/basic.ics</code></blockquote>
+    </div>
+</div>
+
+
+{% endblock container %}
+
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{{ media_url('css/fullcalendar.css') }}" />
+{{ super() }}
+{% endblock %}
+
+{% block scripts %}
+<script type="text/javascript" src="{{ media_url('js/libs/fullcalendar.js') }}"></script>
+<script type="text/javascript" src="{{ media_url('js/libs/gcal.js') }}"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#calendar').fullCalendar({
+            header: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'month,agendaWeek,agendaDay'
+            },
+            timeFormat: {
+                agenda: 'HH:mm{ - HH:mm}',
+                '': 'HH:mm'
+            },
+            weekMode: 'variable', /* variable numbers of weeks instead of always using 6 */
+            firstDay: 1, /* start on monday */
+            events: {
+                url: '//www.kreativitaet-trifft-technik.de/calendar/feeds/markusframer%40gmail.com/public/basic'
+            }
+        })
+    });
+</script>
+{{ super() }}
+{% endblock scripts %}
