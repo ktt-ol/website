@@ -1,0 +1,17 @@
+{% extends "default.j2" %}
+
+{% block mainbox %}
+
+<div class="panel panel-default article-event">
+    <div class="panel-heading text-right">
+        geschrieben {{resource.meta.created.strftime("am %d.%m.%Y um %H:%M Uhr")}}
+    </div>
+    <div class="panel-body">
+        <h1>{{resource.meta.title}}</h1>
+
+        {% block content %}
+        {% endblock content %}
+
+    </div>
+</div>
+{% endblock mainbox %} 

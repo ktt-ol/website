@@ -1,78 +1,65 @@
 ---
 title: Wir sind Verein des Monats!
-thumbnail: events/Wir_sind_Verein_des_Monats/1000_2013-11-23_16-19-16.jpg
+thumbnail: Wir_sind_Verein_des_Monats/1000_2013-11-23_16-19-16.jpg
 created: !!timestamp '2013-12-09 20:37:00'
 teaser: Das famila Einkaufsland Wechloy hat uns für den November 2013 zum "Verein des Monats" gewählt.
 ---
 
-{% block mainbox %}
-
-<div class="panel panel-default article-event">
-    <div class="panel-heading text-right">
-        geschrieben {{resource.meta.created.strftime("am %d.%m.%Y um %H:%M Uhr")}}
-    </div>
-    <div class="panel-body">
-        <h1>{{resource.meta.title}}</h1>
-
-        <div class="article__image-left">
-            <img src="Wir_sind_Verein_des_Monats/1000_2013-11-23_16-19-16.jpg" class="img-thumbnail"/>
-        </div>
-
-        <p>
-            {{resource.meta.teaser}}
-        </p>
-
-        <p>
-            Daher haben wir am 23. November 2013 auf den Weg in das Einkaufszentrum gemacht, um den Preis entgegenzunehmen und uns einen ganzen Tag lang den
-            Besuchern zu präsentieren. Ein großer Messestand, Tische und Stühle wurden uns gestellt und wir durften alles mit Leben füllen.
-        </p>
-
-        <div class="clearfix"></div>
-
-        <p>
-            Wir haben dabei den halben Space mitgenommen und neben vielen Beispielen auch 3D-Drucker, Styroschneider und die CNC-Fräse eingepackt, um
-            live ein wenig vom Treiben im Space zu zeigen. Viele begeisterte Helfer vom Verein haben in bester Lage direkt am Springbrunnen den Mainframe
-            präsentiert und mit den kleinen Besuchern Klackerlaken gebastelt. Andere hörten interessiert zu, wie einzelne Mitglieder den Druck von
-            dreidimensionalen Objekten oder die Idee hinter dem Freifunk Projekt erklärten.
-        </p>
-
-        <div class="article__image-left">
-            <img src="Wir_sind_Verein_des_Monats/1000_2013-11-23_15-48-09.jpg" alt="" class="img-thumbnail"/>
-        </div>
-        <div class="article__image-left">
-            <img src="Wir_sind_Verein_des_Monats/1000_2013-11-23_16-21-25.jpg" alt="" class="img-thumbnail"/>
-        </div>
-
-        <div class="clearfix"></div>
-
-        <p>Dabei war unter anderem</p>
-        <ul>
-            <li>der Lasercutter</li>
-            <li>die Fräse</li>
-            <li>der Styro-Schneider</li>
-            <li>der 3D-Drucker</li>
-            <li>eine Lötecke</li>
-            <li>der große LED-Cube</li>
-            <li>und viel Kleinkram</li>
-        </ul>
-        <p>Vieles davon könnt ihr im <a href="https://albums.kreativitaet-trifft-technik.de/?p=/(2013.11)%20Verein%20des%20Monats/">dazugehörigen
-            Fotoalbum sehen</a>.</p>
-
-        <p>Wir hatten im Vorfeld weniger damit gerechnet, dass wir viele Neumitglieder direkt erreichen. Viel mehr war das Ziel,
-            unsere Bekanntheit bei der Allgemeinheit zu erhöhen und dass so Leute im Bekannten- und Kollegenkreis über uns informiert werden - und
-            genau das
-            ist passiert. Gleich am Dienstag nach der Aktion kam der erste Hobbytüftler vorbei, der nicht selbst bei uns am Stand war, sondern von
-            einem
-            famila-Besucher eine Kopie (!) unseres Flyers bekommen hatte ;)</p>
-
-        <p>Darüber hinaus gab es über den ganzen Tag und besonders zum Abend hin viele
-            Gespräche mit Menschen, die wir bestimmt bald im Space begrüßen können, weil sie sich für eins unserer Lieblingsthemen interessieren und
-            gar nicht
-            wussten, dass es eine Gemeinschaft wie uns gibt, die Raum, Werkzeug, Maschinen und Wissen teilt.</p>
-
-        <p>Am Abend waren wir alle mehr als platt,
-            aber glücklich. Und ab sofort drücken wir immer mindestens drei Flyer in die Hand, damit niemand Kopien machen muss ;)</p>
-
-    </div>
+<div class="article__image-left">
+    <img src="{{ resource.meta.thumbnail }}" alt="" class="img-thumbnail"/>
 </div>
-{% endblock mainbox %} 
+
+<p>
+    {{resource.meta.teaser}}
+</p>
+
+<p>
+    Daher haben wir am 23. November 2013 auf den Weg in das Einkaufszentrum gemacht, um den Preis entgegenzunehmen und uns einen ganzen Tag lang den
+    Besuchern zu präsentieren. Ein großer Messestand, Tische und Stühle wurden uns gestellt und wir durften alles mit Leben füllen.
+</p>
+
+<div class="clearfix"></div>
+
+<p>
+    Wir haben dabei den halben Space mitgenommen und neben vielen Beispielen auch 3D-Drucker, Styroschneider und die CNC-Fräse eingepackt, um
+    live ein wenig vom Treiben im Space zu zeigen. Viele begeisterte Helfer vom Verein haben in bester Lage direkt am Springbrunnen den Mainframe
+    präsentiert und mit den kleinen Besuchern Klackerlaken gebastelt. Andere hörten interessiert zu, wie einzelne Mitglieder den Druck von
+    dreidimensionalen Objekten oder die Idee hinter dem Freifunk Projekt erklärten.
+</p>
+
+<div class="article__image-left">
+    <img src="Wir_sind_Verein_des_Monats/1000_2013-11-23_15-48-09.jpg" alt="" class="img-thumbnail"/>
+</div>
+<div class="article__image-left">
+    <img src="Wir_sind_Verein_des_Monats/1000_2013-11-23_16-21-25.jpg" alt="" class="img-thumbnail"/>
+</div>
+
+<div class="clearfix"></div>
+
+<p>Dabei war unter anderem</p>
+<ul>
+    <li>der Lasercutter</li>
+    <li>die Fräse</li>
+    <li>der Styro-Schneider</li>
+    <li>der 3D-Drucker</li>
+    <li>eine Lötecke</li>
+    <li>der große LED-Cube</li>
+    <li>und viel Kleinkram</li>
+</ul>
+<p>Vieles davon könnt ihr im <a href="https://albums.kreativitaet-trifft-technik.de/?p=/(2013.11)%20Verein%20des%20Monats/">dazugehörigen
+    Fotoalbum sehen</a>.</p>
+
+<p>Wir hatten im Vorfeld weniger damit gerechnet, dass wir viele Neumitglieder direkt erreichen. Viel mehr war das Ziel,
+    unsere Bekanntheit bei der Allgemeinheit zu erhöhen und dass so Leute im Bekannten- und Kollegenkreis über uns informiert werden - und
+    genau das
+    ist passiert. Gleich am Dienstag nach der Aktion kam der erste Hobbytüftler vorbei, der nicht selbst bei uns am Stand war, sondern von
+    einem
+    famila-Besucher eine Kopie (!) unseres Flyers bekommen hatte ;)</p>
+
+<p>Darüber hinaus gab es über den ganzen Tag und besonders zum Abend hin viele
+    Gespräche mit Menschen, die wir bestimmt bald im Space begrüßen können, weil sie sich für eins unserer Lieblingsthemen interessieren und
+    gar nicht
+    wussten, dass es eine Gemeinschaft wie uns gibt, die Raum, Werkzeug, Maschinen und Wissen teilt.</p>
+
+<p>Am Abend waren wir alle mehr als platt,
+    aber glücklich. Und ab sofort drücken wir immer mindestens drei Flyer in die Hand, damit niemand Kopien machen muss ;)</p>
