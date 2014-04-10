@@ -51,6 +51,8 @@ context:
               menu:
                 - title: Über Uns
                   url: about.html
+                - title: Unsere Räume
+                  url: mainframe.html
                 - title: Vereinsgeschichte
                   url: history.html
                 - title: Mitgliedschaft

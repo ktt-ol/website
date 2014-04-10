@@ -1,0 +1,113 @@
+---
+title: Mainframe
+extends: default.j2
+---
+
+{% block mainbox %}
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h3 class="panel-title">Mainframe</h3>
+	</div>
+	<div class="panel-body">
+{% filter markdown|typogrify -%}
+### Was ist denn ein Mainframe?
+
+Mainframe ist der Name von unserem Hackspace in Oldenburg. Auf ca. 200
+Quadratmeter haben wir uns verschiedene Räume eingerichtet:
+
+### Konferenzraum
+
+<img src="{{ content_url("room/conference.jpg") }} " />
+
+Hier finden Vorträge und Meetings bei Beamerlicht statt. Auch wird hier
+Selbstgekochtes gegessen und wenn nichts besonderes anliegt, dann findet man
+hier Notebook-Arbeitsplätze.
+
+### Lounge
+
+<img src="{{ content_url("room/lounge.jpg") }} " />
+
+Unser  Raum zum entspannten Abhängen und Diskutieren. Hier steht auch unser
+Shopsystem mit Mate und anderen Koffein-haltigen Getränken.
+
+### Küche
+
+<img src="{{ content_url("room/kitchen.jpg") }} " />
+
+Wir haben eine prächtig ausgestattete Küche mit Spülmaschine, Backofen,
+Mikrowelle und zwei Kühlschränken. Das ganze nutzen wir auch fleißig beim
+Spacecooking, das wir als Alternative zum Pizzadienst und Döner sehen.
+
+### FabLab 1
+
+<img src="{{ content_url("room/fablab1.jpg") }} " />
+
+Hier stehen unsere verschiedenen 3D-Drucker und 3D-Scanner. ... 
+
+### FabLab 2
+
+<img src="{{ content_url("room/fablab2.jpg") }} " />
+
+Hier steht der Lasercutter. Ja, ihr habt richtig gelesen. Wir haben hier
+wirklich einen Lasercutter stehen. Außerdem befindet sich noch ein
+selbstgebauter Styroporschneider hier. 
+
+### Elektronikwerkstatt
+
+<img src="{{ content_url("room/electronics.jpg") }} " />
+
+Dies ist der richtige Ort zum Löten und Elektronikbasteln. WIr haben 6
+Lötarbeitsplätze und viel Material. 
+
+### Holz- und Metall-Werkstatt
+
+<img src="{{ content_url("room/workshop.jpg") }} " />
+
+Neben Hand- und Elektrowerkzeugen stehen hier auch eine Fräse und eine
+Drehbank.
+
+### Storage
+
+<img src="{{ content_url("room/storage.jpg") }} " />
+
+Tja, wer hätte es gedacht, hier lagern wir Dinge und Kram. Außerdem stehen hier
+Schließfächer, in denen unsere Mitglieder ihre privaten Sachen unterbringen
+können.
+
+### Grundriss
+
+<img src="{{ content_url("room/layout.jpg") }} " />
+
+### Das klingt ja alles richtig super, wann habt ihr denn auf?
+
+Wir haben fast jeden Arbeitstag ab 18.00 Uhr (bis Open End)
+geöffnet. Häufig, insbesondere am Wochenende auch noch früher. Am besten prüfst du vor einem Besuch auf
+unserer [Status-Seite](http://status.kreativitaet-trifft-technik.de), ob der
+Hackspace gerade geöffnet ist. Für Prognosen steht auch eine Seite mit
+[Öffnungsstatistiken](https://status.kreativitaet-trifft-technik.de/stats.html)
+bereit.
+
+Im [Kalender]({{ content_url("/calendar.html") }}) und in der rechten
+Seitenspalte finden sich die Veranstaltungen und Treffen, die im Mainframe
+stattfinden.
+
+Neben regelmäßigen Treffen von Arbeitsgruppen, unseren eigenen Vorträgen und
+Veranstaltungen treffen sich auch einige befreundete Gruppen wie der
+[Chaostreff](https://www.ccc-ol.de), der
+[Web-Stammtisch](http://www.webstammtisch-oldenburg.de/) und der
+[Web-Montag](http://webmontagol.mixxt.de/) im Mainframe.
+
+Komm doch einfach mal vorbei!
+
+### Und wo finde ich euch?
+
+Aus Richtung Innenstadt: Vom Lappan aus am Horst-Janssen-Museum vorbei bis zum
+Gebäude direkt vor der Eisenbahnbrücke auf der selben Strassenseite vordringen.
+
+	Raiffeisenstraße 27
+	26122 Oldenburg
+	0441 / 30962031
+{%- endfilter %}
+	</div>
+</div>
+{% endblock mainbox %}
