@@ -31,3 +31,13 @@ body {
 	/* whitespace removal hack (inline-block accounts whitespaces between elements) */
 	margin: 0 -0.125em;
 }
+
+.project-img {
+	width: 480px;
+}
+
+.centered {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
