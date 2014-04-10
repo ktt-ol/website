@@ -10,7 +10,9 @@ title: Aktionen
     {% for res in site.content.node_from_relative_path("events").walk_resources_sorted_by_time() %}
     <li class="list-group-item row">
         <div class="col-xs-6 col-md-3">
-            <img src="{{ res.meta.thumbnail }}" alt="" style="max-height: 150px;" class="img-thumbnail"/>
+			<a href="{{ content_url(res.url) }}">
+				<img src="{{ res.meta.thumbnail }}" alt="" style="max-height: 150px;" class="img-thumbnail"/>
+			</a>
         </div>
         <div class="col-xs-6 col-md-9">
             <small class="date">{{res.meta.created.strftime("am %d.%m.%Y um %H:%M Uhr")}}</small>
