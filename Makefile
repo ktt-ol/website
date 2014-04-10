@@ -2,6 +2,7 @@ projects = content/project/*.html
 groups = content/group/*.html
 talks = content/talk/*.html
 press = content/press_release/*.html
+events = content/events/*.html
 forcegenfiles = content/index.html \
                 content/projects.atom.xml \
 				content/project_hardware.html \
@@ -9,7 +10,8 @@ forcegenfiles = content/index.html \
 				content/project_infrastructure.html \
 				content/project_groups.html \
 				content/talks.html \
-				content/press_release.html
+				content/press_release.html \
+				content/events.html
 
 build: $(forcegenfiles)
 	hyde gen
@@ -30,6 +32,8 @@ content/project_groups.html: $(groups)
 content/talks.html: $(talks)
 	touch $@
 content/press_release.html: $(press)
+	touch $@
+content/events.html: $(events)
 	touch $@
 
 .PHONY: build
