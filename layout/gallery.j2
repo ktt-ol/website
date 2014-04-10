@@ -14,11 +14,58 @@
 	{{ super() }}
 {% endblock css %}
 
-{% block headjs %}
+{% block scripts %}
 {% if image_max is defined %}
 	<script>
 		var MIN = 0;
 		var MAX = {{ image_max }};
+
+		function getURLParameter(sParam) {
+			var sPageURL = window.location.search.substring(1);
+			var sURLVariables = sPageURL.split('&');
+			for (var i = 0; i < sURLVariables.length; i++) {
+				var sParameterName = sURLVariables[i].split('=');
+				if (sParameterName[0] == sParam) {
+					return sParameterName[1];
+				}
+			}
+			return "";
+		}
+
+		function setNum(num) {
+			var pad = "0000";
+			var path = dirname($("#slider")[0].src);
+
+			if (num <= MIN) {
+				num = MIN;
+				$("#next").css("color", "gray");
+			} else
+				$("#next").css("color", "");
+
+			if (num >= MAX) {
+				num = MAX;
+				$("#prev").css("color", "gray");
+			} else
+				$("#prev").css("color", "");
+
+			var nextstring = num.toString();
+			var padded = pad.substring(nextstring.length) + nextstring;
+			var newfile = path + "/" + padded + ".jpg";
+			$("#slider")[0].src = newfile;
+		}
+
+		function setDirect(numvar) {
+			num = parseInt(numvar, 10);
+			setNum(num);
+		}
+
+		function initGallery() {
+			console.log("init images from space");
+			var position = getURLParameter("image");
+			console.log("image: ", position);
+			if(position != "")
+				setDirect(position);
+		}
 
 		function basename(path) {
 			return path.replace(/\\/g,'/').replace( /.*\//, '' );
@@ -38,31 +85,18 @@
 			var path = dirname(file);
 			var base = parseInt(noext(basename(file)), 10);
 			var next = (direction == "next") ? base - 1 : base + 1;
-			if (next <= MIN) {
-				next = MIN;
-				$("#next").css("color", "gray");
-			} else {
-				$("#next").css("color", "");
-			}
-			if (next >= MAX) {
-				next = MAX;
-				$("#prev").css("color", "gray");
-			} else {
-				$("#prev").css("color", "");
-			}
-			var nextstring = next.toString();
-			var padded = pad.substring(nextstring.length) + nextstring;
-			var newfile = path + "/" + padded + ".jpg";
-			$("#slider")[0].src = newfile;
+			setNum(next)
 		}
 
 		function fullscreen() {
 			open($("#slider")[0].src)
 		}
+
+		initGallery();
 	</script>
 {% endif %}
 	{{ super() }}
-{% endblock headjs %}
+{% endblock scripts %}
 
 {% block mainbox %}
 
