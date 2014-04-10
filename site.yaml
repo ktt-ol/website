@@ -59,6 +59,8 @@ context:
                   url: support.html
                 - title: Pressespiegel
                   url: press_review.html
+                - title: Pressemitteilungen
+                  url: press_release.html
             - title: Kontakt
               type: page
               basename: contact

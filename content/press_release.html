@@ -1,0 +1,25 @@
+---
+title: Pressemitteilungen
+---
+
+{% extends "default.j2" %}
+
+{% block mainbox %}
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h3 class="panel-title">Pressemitteilungen</h3>
+	</div>
+	<div class="panel-body">
+		<div class="row">
+            <ul>
+                {% for res in site.content.node_from_relative_path("press_release").walk_resources_sorted_by_time() %}
+                <li>
+                    <strong>{{ res.meta.created.strftime("%Y-%m-%d")}}</strong>
+                <a href="{{ content_url(res.url) }}"> {{ res.meta.title }}</a></li>
+            {% endfor %}
+            </ul>
+		</div>
+	</div>
+</div>
+
+{% endblock %}
