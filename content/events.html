@@ -1,59 +1,24 @@
 ---
-title: Events
+title: Aktionen
 ---
 
-{% extends "topbar.j2" %}
+{% extends "default.j2" %}
 
-{% block container %}
-<div class="panel panel-default">
-	<div class="panel-heading">
-		<h3 class="panel-title">Events</h3>
-	</div>
-	<div class="panel-body">
-		<div id='calendar'></div>
-	</div>
-</div>
+{% block mainbox %}
 
-<div class="panel panel-default">
-    <div class="panel-heading">
-        <h3 class="panel-title">Abonnieren</h3>
-    </div>
-    <div class="panel-body">
-        <span class="label label-primary">Tipp:</span> Du kannst diesen Kalender auch direkt benutzen. Die iCal URl dazu ist
-        <blockquote><code>https://www.google.com/calendar/ical/markusframer%40gmail.com/public/basic.ics</code></blockquote>
-    </div>
-</div>
+<ul class="list-group article-list">
+    {% for res in site.content.node_from_relative_path("events").walk_resources_sorted_by_time() %}
+    <li class="list-group-item row">
+        <div class="col-xs-6 col-md-3">
+            <img src="{{ res.meta.thumbnail }}" alt="" style="max-height: 150px;" class="img-thumbnail"/>
+        </div>
+        <div class="col-xs-6 col-md-9">
+            <small class="date">{{res.meta.created.strftime("am %d.%m.%Y um %H:%M Uhr")}}</small>
+            <h3><a href="{{ content_url(res.url) }}"> {{ res.meta.title }}</a></h3>
+            <p>{{ res.meta.teaser }}</p>
+        </div>
+    </li>
+    {% endfor %}
+</ul>
 
-
-{% endblock container %}
-
-{% block css %}
-<link rel="stylesheet" type="text/css" href="{{ media_url('css/fullcalendar.css') }}" />
-{{ super() }}
 {% endblock %}
-
-{% block scripts %}
-<script type="text/javascript" src="{{ media_url('js/libs/fullcalendar.js') }}"></script>
-<script type="text/javascript" src="{{ media_url('js/libs/gcal.js') }}"></script>
-<script type="text/javascript">
-$(document).ready(function() {
-    $('#calendar').fullCalendar({
-		header: {
-			left: 'prev,next today',
-			center: 'title',
-			right: 'month,agendaWeek,agendaDay'
-		},
-		timeFormat: {
-			agenda: 'HH:mm{ - HH:mm}',
-			'': 'HH:mm'
-		},
-		weekMode: 'variable', /* variable numbers of weeks instead of always using 6 */
-		firstDay: 1, /* start on monday */
-		events: {
-			url: '//www.kreativitaet-trifft-technik.de/calendar/feeds/markusframer%40gmail.com/public/basic'
-		}
-    })
-});
-</script>
-{{ super() }}
-{% endblock scripts %}
