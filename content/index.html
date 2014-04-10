@@ -3,6 +3,7 @@ title: Mainframe
 ---
 
 {% extends "default.j2" %}
+{% from "macros.j2" import render_event_excerpt with context %}
 
 {% block endhead %}
 	<link href="projects.atom.xml" type="application/atom+xml" rel="alternate" title="Projects ATOM Feed">
@@ -38,6 +39,21 @@ title: Mainframe
 		und Besucher, insbesondere anderer Hackspaces, sind jederzeit willkommen.</p>
 	</div>
 </div>
+
+<div class="panel panel-default">
+	<div class="panel-heading">
+		Aktuelle Events
+	</div>
+	<div class="panel-body">
+		<ul class="list-group article-list">
+			{% for res in site.content.node_from_relative_path("events").walk_resources_sorted_by_time() %}
+			{% if loop.index > 3 %} {% break %} {% endif %}
+			{{ render_event_excerpt(res, "borderless") }}
+			{% endfor %}
+		</ul>
+	</div>
+</div>
+
 
 <div class="panel panel-default">
 	<div class="panel-heading">

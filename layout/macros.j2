@@ -72,3 +72,22 @@
 	</a>
 </div>
 {% endmacro %}
+
+{% macro render_event_excerpt(res, class="") %}
+<li class="list-group-item row {{ class }}">
+	<div class="col-xs-6 col-md-3">
+		<a href="{{ content_url(res.url) }}">
+			{% if res.meta.thumbnail is defined %}
+			<img src="events/{{ res.meta.thumbnail }}" alt="" style="max-height: 150px; max-width: 150px;" class="img-thumbnail"/>
+			{% else %}
+			<img src="{{ media_url("img/event.svg") }}" alt="" style="max-height: 150px; max-width: 150px;" class="img-thumbnail"/>
+			{% endif %}
+		</a>
+	</div>
+	<div class="col-xs-6 col-md-9">
+		<small class="date">{{res.meta.created.strftime("am %d.%m.%Y um %H:%M Uhr")}}</small>
+		<h3><a href="{{ content_url(res.url) }}"> {{ res.meta.title }}</a></h3>
+		<p>{{ res.meta.teaser }}</p>
+	</div>
+</li>
+{% endmacro %}

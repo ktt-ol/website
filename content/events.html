@@ -3,27 +3,13 @@ title: Aktionen
 ---
 
 {% extends "default.j2" %}
+{% from "macros.j2" import render_event_excerpt with context %}
 
 {% block mainbox %}
 
 <ul class="list-group article-list">
     {% for res in site.content.node_from_relative_path("events").walk_resources_sorted_by_time() %}
-    <li class="list-group-item row">
-        <div class="col-xs-6 col-md-3">
-			<a href="{{ content_url(res.url) }}">
-				{% if res.meta.thumbnail is defined %}
-				<img src="events/{{ res.meta.thumbnail }}" alt="" style="max-height: 150px; max-width: 150px;" class="img-thumbnail"/>
-				{% else %}
-				<img src="{{ media_url("img/event.svg") }}" alt="" style="max-height: 150px; max-width: 150px;" class="img-thumbnail"/>
-				{% endif %}
-			</a>
-        </div>
-        <div class="col-xs-6 col-md-9">
-            <small class="date">{{res.meta.created.strftime("am %d.%m.%Y um %H:%M Uhr")}}</small>
-            <h3><a href="{{ content_url(res.url) }}"> {{ res.meta.title }}</a></h3>
-            <p>{{ res.meta.teaser }}</p>
-        </div>
-    </li>
+    {{ render_event_excerpt(res) }}
     {% endfor %}
 </ul>
 

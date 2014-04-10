@@ -42,6 +42,10 @@ body {
 	margin-right: auto;
 }
 
+.borderless {
+	border: 0px;
+}
+
 .article-list h3 {
   margin-top: 5px;
 }
