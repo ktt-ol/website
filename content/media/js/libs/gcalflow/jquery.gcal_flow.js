@@ -125,9 +125,9 @@
       if (this.opts.feed_url) {
         return this.opts.feed_url;
       } else if (this.opts.mode === 'updates') {
-        return "https://www.kreativitaet-trifft-technik.de/calendar/feeds/" + this.opts.calid + "/public/full?alt=json-in-script&max-results=" + this.opts.maxitem + "&orderby=lastmodified&sortorder=descending";
+        return "//www.kreativitaet-trifft-technik.de/calendar/feeds/" + this.opts.calid + "/public/full?alt=json-in-script&max-results=" + this.opts.maxitem + "&orderby=lastmodified&sortorder=descending";
       } else {
-        return "https://www.kreativitaet-trifft-technik.de/calendar/feeds/" + this.opts.calid + "/public/full?alt=json-in-script&max-results=" + this.opts.maxitem + "&orderby=starttime&futureevents=true&sortorder=ascending&singleevents=true";
+        return "//www.kreativitaet-trifft-technik.de/calendar/feeds/" + this.opts.calid + "/public/full?alt=json-in-script&max-results=" + this.opts.maxitem + "&orderby=starttime&futureevents=true&sortorder=ascending&singleevents=true";
       }
     };
 

@@ -17,7 +17,7 @@ var applyAll = fc.applyAll;
 fc.sourceNormalizers.push(function(sourceOptions) {
 	if (sourceOptions.dataType == 'gcal' ||
 		sourceOptions.dataType === undefined &&
-		(sourceOptions.url || '').match(/^(http|https):\/\/www.kreativitaet-trifft-technik.de\/calendar\/feeds\//)) {
+		(sourceOptions.url || '').match(/^\/\/www.kreativitaet-trifft-technik.de\/calendar\/feeds\//)) {
 			sourceOptions.dataType = 'gcal';
 			if (sourceOptions.editable === undefined) {
 				sourceOptions.editable = false;
