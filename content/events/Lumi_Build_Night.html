@@ -1,0 +1,73 @@
+---
+title: Lumi Build Night
+thumbnail: Lumi_Build_Night/space-3.jpg
+created: !!timestamp '2013-09-08 12:57:00'
+teaser: Gestern fand bei uns eine Lumi Build Night statt. Dabei wurden mit Hilfe von UV-sensibler Farbe und auf Folie ausgedruckten Negativ-Bildern Textilien bedruckt.
+---
+
+{% block css %}
+{{ super() }}
+<link rel="stylesheet" type="text/css" href="{{ media_url('css/lightbox/ekko-lightbox.min.css') }}"/>
+<link rel="stylesheet" type="text/css" href="{{ media_url('css/lightbox/dark.css') }}"/>
+{% endblock %}
+
+{% block scripts %}
+{{ super() }}
+<script type="text/javascript" src="{{ media_url('js/lightbox/ekko-lightbox.min.js') }}"></script>
+<script type="text/javascript">
+    $(document).ready(function ($) {
+
+        // delegate calls to data-toggle="lightbox"
+        $(document).delegate('*[data-toggle="lightbox"]', 'click', function (event) {
+            event.preventDefault();
+            return $(this).ekkoLightbox({
+                always_show_close: true
+            });
+        });
+    });
+</script>
+{% endblock scripts %}
+
+
+{% block content %}
+
+<p>
+    {{resource.meta.teaser}}
+</p>
+
+<p>Dazu wurde uns von <a href="http://www.instructables.com/">instructables.com</a> eine Zusammenstellung von <a href="http://lumi.co/">Lumi</a>-Produkten
+    zur Verfügung gestellt.
+</p>
+
+<p>Nach einer kurzen Erklärung, wie die Materialien zu bearbeiten sind, wurde Testweise ein Motiv zur Demonstration
+    belichtet. Leider eignet der Tintenstrahldrucker nicht sonderlich dazu Folie zu bedrucken, was zu Querstreifen auf dem Ergebnis führte. Andere
+    Versuche mit mehr Tinte verschwommen. Um nicht den <a href="http://lumi.co/products/inkofilm">Inkofilm von Lumi</a> mit Fehlversuchen zu versauen
+    entschied man sich, handelsübliche OHP-Folie zu bedrucken. Auf diesen Folien war allerdings die schwarze Tinte nicht dicht genug, und es konnte
+    Licht durchkommen.</p>
+
+<p>Wir entschieden uns also dafür, nun die Audrucke, die am besten geworden sind, auf die Textilien zu drucken. Das ein oder
+    andere Motiv wurde mit schwarzem Edding aufgebessert, um auch wirklich so deckend wie möglich zu sein.<br>Da man eigentlich bei sonnigem Wetter
+    belichten soll, es gestern aber eher regnerisch war, belichteten wir die Motive länger als die empfohlenen 20 Minuten.
+</p>
+
+<p>Die Ergebnisse waren
+    nicht alle optimal: durch dünne Tintenschichten wurde verdeckte Farbe leicht mit-belichtet, nicht dicht aufliegende Motive führten zu
+    verschwommenen Ergebnissen, aber das ein oder andere Motiv schien durchaus gelungen.
+</p>
+
+<p>Unterm Strich war dies mehr ein gemeinsames
+    Ausprobieren und Erfahrungen sammeln. Da wir aber noch etwas Farbe übrig haben, können wir diese Erfahrungen an einem sonnigeren Tag nutzen, um
+    noch ein paar schöne Motive zu nutzen.</p>
+
+<p>Wer Interesse daran hat und nicht beim Workshop war, darf sich gerne auf der Diskussionsliste
+    melden.</p>
+
+<p>Fotos von den Fertigen Produkten gibt es, wenn diese mit dem speziellen Waschmittel gereinigt wurden. Die bisherigen Fotos enthalten
+    immer noch überschüssige Farbe, die herausgewaschen wird!</p>
+
+<h2>Fotos</h2>
+
+{% from "macros.j2" import render_gallery with context %}
+{{ render_gallery("mygalley", "events/Lumi_Build_Night") }}
+
+{% endblock content %}

@@ -5,6 +5,8 @@ created: !!timestamp '2013-06-24 02:09:00'
 teaser: Lehrerfortbildung mit 10 Lehrern aus Niedersachsen zum Thema 3D-Drucker
 ---
 
+{% block content %}
+
 {% filter markdown|typogrify -%}
 
 Mit Hilfe von Geldern aus dem Programm „Zukunft und Innovation Niedersachsen“
@@ -42,3 +44,5 @@ endgültige Bewilligung eintreffen und die Finanzierung durch die Bank
 bestätigt. Dann kann es auch endlich mit dem eigentlichen Workshop los gehen ;)
 
 {%- endfilter %}
+
+{% endblock content %}
