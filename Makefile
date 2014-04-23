@@ -17,7 +17,7 @@ build: $(forcegenfiles)
 	hyde gen
 
 # manual dependencies, touching files makes hyde regenerating it
-content/index.html: $(projects) $(talks)
+content/index.html: $(projects) $(talks) $(events)
 	touch $@
 content/projects.atom.xml: $(projects)
 	touch $@
@@ -36,4 +36,8 @@ content/press_release.html: $(press)
 content/events.html: $(events)
 	touch $@
 
-.PHONY: build
+upload:
+	cd deploy && rsync -rluRP -e "ssh -p 2205" * root@v4.kreativitaet-trifft-technik.de:/var/www/
+	ssh -p 2205 root@v4.kreativitaet-trifft-technik.de "chmod -R a+r /var/www/"
+
+.PHONY: build upload
