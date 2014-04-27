@@ -42,6 +42,18 @@ body {
 	margin-right: auto;
 }
 
+.left-with-margin {
+	float: left;
+	margin-right: 10px;
+	margin-bottom: 10px;
+}
+
+.right-with-margin {
+	float: right;
+	margin-left: 10px;
+	margin-bottom: 10px;
+}
+
 .borderless {
 	border: 0px;
 }
