@@ -14,11 +14,21 @@ title: Kontakt
 			<div class="col-md-4">
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						<h3 class="panel-title">Anschrift</h3>
+						<h3 class="panel-title">Anschrift (Space 2.0)</h3>
 					</div>
 					<div class="panel-body">
 						Kreativität trifft Technik e.V.<br>
 						Raiffeisenstraße 27<br>
+						26122 Oldenburg<br>
+					</div>
+				</div>
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h3 class="panel-title">Anschrift (Space 3.0)</h3>
+					</div>
+					<div class="panel-body">
+						Kreativität trifft Technik e.V.<br>
+						Bahnhofsplatz 10<br>
 						26122 Oldenburg<br>
 					</div>
 				</div>
@@ -39,34 +49,78 @@ title: Kontakt
 		</div>
 	</div>
 </div>
+
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h3 class="panel-title">Space 3.0</h3>
+	</div>
+	<div class="panel-body">
+		<img src="{{ media_url('img/building.jpg') }}" style="width: 100%; max-width: 800px;" />
+	</div>
+</div>
 {% endblock mainbox %}
 
 {% block scripts %}
 <script type="text/javascript" src="{{ media_url('js/libs/openlayers/OpenLayers.js') }}"></script>
 <script type="text/javascript">
-	var lat            = 53.1450458;
-	var lon            = 8.215161;
-	var zoom           = 18;
+	var zoom           = 15;
 
 	var fromProjection = new OpenLayers.Projection("EPSG:4326");   // Transform from WGS 1984
 	var toProjection   = new OpenLayers.Projection("EPSG:900913"); // to Spherical Mercator Projection
-	var position       = new OpenLayers.LonLat(lon, lat).transform( fromProjection, toProjection);
+
+	var space20        = new OpenLayers.LonLat(8.215161, 53.1450458).transform(fromProjection, toProjection);
+	var space30        = new OpenLayers.LonLat(8.2207, 53.14375).transform(fromProjection, toProjection);
+	var center         = new OpenLayers.LonLat(8.2179, 53.144398).transform(fromProjection, toProjection);
 
 	var layer          = new OpenLayers.Layer.OSM("OSM", ["//www.kreativitaet-trifft-technik.de/tiles/${z}/${x}/${y}.png"]);
 
 	map = new OpenLayers.Map("map", { controls: [] });
 	map.addLayer(layer);
 
-	var markers = new OpenLayers.Layer.Markers( "Markers" );
-	map.addLayer(markers);
+	var vectorLayer = new OpenLayers.Layer.Vector("Overlay");
+
+	var feature = new OpenLayers.Feature.Vector(
+		new OpenLayers.Geometry.Point( 8.215161, 53.1450458 ).transform(fromProjection, toProjection),
+            {description:'Space 2.0'} ,
+            {externalGraphic: '/media/img/logo-small.svg', graphicHeight: 30, graphicWidth: 30, graphicXOffset:-15, graphicYOffset:-15  }
+        );    
+    vectorLayer.addFeatures(feature);
+
+	var feature = new OpenLayers.Feature.Vector(
+		new OpenLayers.Geometry.Point( 8.2207, 53.14375 ).transform(fromProjection, toProjection),
+            {description:'Space 3.0'} ,
+            {externalGraphic: '/media/img/logo-small.svg', graphicHeight: 30, graphicWidth: 30, graphicXOffset:-15, graphicYOffset:-15  }
+        );    
+    vectorLayer.addFeatures(feature);
+
+	map.addLayer(vectorLayer);
 
 	map.addControl(new OpenLayers.Control.Attribution());
 	map.addControl(new OpenLayers.Control.Navigation({'zoomWheelEnabled': false}));
 	map.addControl(new OpenLayers.Control.PanZoomBar());
 	map.addControl(new OpenLayers.Control.ScaleLine());
+	var selector = new OpenLayers.Control.SelectFeature(vectorLayer, { onSelect: createPopup, onUnselect: destroyPopup });
+	map.addControl(selector);
+	selector.activate();
 
-	markers.addMarker(new OpenLayers.Marker(position));
-	map.setCenter(position, zoom);
+	map.setCenter(center, zoom);
+
+	function createPopup(feature) {
+		feature.popup = new OpenLayers.Popup.FramedCloud("pop",
+			feature.geometry.getBounds().getCenterLonLat(),
+			null,
+			'<div class="markerContent">'+feature.attributes.description+'</div>',
+			null,
+			true,
+			function() { selector.unselectAll(); }
+		);
+		map.addPopup(feature.popup);
+	}
+
+	function destroyPopup(feature) {
+		feature.popup.destroy();
+		feature.popup = null;
+	}
 </script>
 {{ super() }}
 {% endblock scripts %}
