@@ -83,14 +83,16 @@ title: Kontakt
 		new OpenLayers.Geometry.Point( 8.215161, 53.1450458 ).transform(fromProjection, toProjection),
             {description:'Space 2.0'} ,
             {externalGraphic: '/media/img/logo-small.svg', graphicHeight: 30, graphicWidth: 30, graphicXOffset:-15, graphicYOffset:-15  }
-        );    
+        );
+	feature.style.cursor = "pointer";
     vectorLayer.addFeatures(feature);
 
 	var feature = new OpenLayers.Feature.Vector(
 		new OpenLayers.Geometry.Point( 8.2207, 53.14375 ).transform(fromProjection, toProjection),
             {description:'Space 3.0'} ,
             {externalGraphic: '/media/img/logo-small.svg', graphicHeight: 30, graphicWidth: 30, graphicXOffset:-15, graphicYOffset:-15  }
-        );    
+        );
+	feature.style.cursor = "pointer";
     vectorLayer.addFeatures(feature);
 
 	map.addLayer(vectorLayer);
