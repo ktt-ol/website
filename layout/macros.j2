@@ -18,7 +18,12 @@
 			<a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ item.title }} <b class="caret"></b></a>
 			<ul class="dropdown-menu">
 				{% for subitem in item.menu -%}
-					<li><a href="{{ content_url(subitem.url) }}">{{ subitem.title }}</a></li>
+                    {% if subitem.type == 'external' %}
+                        {% set url = subitem.url %}
+                    {% else %}
+                        {% set url = content_url(subitem.url) %}
+                    {% endif %}
+                    <li><a href="{{ url }}">{{ subitem.title }}</a></li>
 				{%- endfor %}
 			</ul>
 		</li>
