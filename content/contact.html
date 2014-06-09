@@ -14,17 +14,7 @@ title: Kontakt
 			<div class="col-md-4">
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						<h3 class="panel-title">Anschrift (Space 2.0)</h3>
-					</div>
-					<div class="panel-body">
-						Kreativität trifft Technik e.V.<br>
-						Raiffeisenstraße 27<br>
-						26122 Oldenburg<br>
-					</div>
-				</div>
-				<div class="panel panel-default">
-					<div class="panel-heading">
-						<h3 class="panel-title">Anschrift (Space 3.0)</h3>
+						<h3 class="panel-title">Anschrift</h3>
 					</div>
 					<div class="panel-body">
 						Kreativität trifft Technik e.V.<br>
@@ -38,7 +28,7 @@ title: Kontakt
 					</div>
 					<div class="panel-body">
 						Mail: <a href="mailto:vorstand@kreativitaet-trifft-technik.de">vorstand@kreativitaet-trifft-technik.de</a><br>
-						Space-Telefon: 0441-30962031<br>
+						<strike>Space-Telefon: 0441-30962031</strike> (zurzeit nicht verfügbar) <br>
 					</div>
 				</div>
 
@@ -52,7 +42,7 @@ title: Kontakt
 
 <div class="panel panel-default">
 	<div class="panel-heading">
-		<h3 class="panel-title">Space 3.0</h3>
+		<h3 class="panel-title">Eingang</h3>
 	</div>
 	<div class="panel-body">
 		<img src="{{ media_url('img/building.jpg') }}" style="width: 100%; max-width: 800px;" />
@@ -68,8 +58,6 @@ title: Kontakt
 	var fromProjection = new OpenLayers.Projection("EPSG:4326");   // Transform from WGS 1984
 	var toProjection   = new OpenLayers.Projection("EPSG:900913"); // to Spherical Mercator Projection
 
-	var space20        = new OpenLayers.LonLat(8.215161, 53.1450458).transform(fromProjection, toProjection);
-	var space30        = new OpenLayers.LonLat(8.2207, 53.14375).transform(fromProjection, toProjection);
 	var center         = new OpenLayers.LonLat(8.2179, 53.144398).transform(fromProjection, toProjection);
 
 	var layer          = new OpenLayers.Layer.OSM("OSM", ["//www.kreativitaet-trifft-technik.de/tiles/${z}/${x}/${y}.png"]);
@@ -79,6 +67,7 @@ title: Kontakt
 
 	var vectorLayer = new OpenLayers.Layer.Vector("Overlay");
 
+	/*
 	var feature = new OpenLayers.Feature.Vector(
 		new OpenLayers.Geometry.Point( 8.215161, 53.1450458 ).transform(fromProjection, toProjection),
             {description:'Space 2.0'} ,
@@ -86,10 +75,11 @@ title: Kontakt
         );
 	feature.style.cursor = "pointer";
     vectorLayer.addFeatures(feature);
+	*/
 
 	var feature = new OpenLayers.Feature.Vector(
 		new OpenLayers.Geometry.Point( 8.2207, 53.14375 ).transform(fromProjection, toProjection),
-            {description:'Space 3.0'} ,
+            {description:'Mainframe'} ,
             {externalGraphic: '/media/img/logo-small.svg', graphicHeight: 30, graphicWidth: 30, graphicXOffset:-15, graphicYOffset:-15  }
         );
 	feature.style.cursor = "pointer";
