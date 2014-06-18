@@ -75,3 +75,7 @@ body {
   padding-left: 20px;
   padding-bottom: 10px;
 }
+
+.panel-sponsors img {
+  max-width: 220px;
+}
