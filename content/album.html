@@ -1,0 +1,39 @@
+---
+title: Album
+---
+
+{% extends "topbar.j2" %}
+
+{% block css %}
+<!--<link rel="stylesheet" href="{{ media_url('mfGallery/styles/bootstrap-custom.css') }}">-->
+<link rel="stylesheet" href="{{ media_url('mfGallery/styles/main.css') }}">
+{{ super() }}
+{% endblock css %}
+
+{% block container %}
+<div class="panel panel-default" ng-app="mfGalleryApp">
+    <div class="panel-heading"><h3 class="panel-title">Album</h3></div>
+    <div class="panel-body">
+        <!--[if lt IE 7]>
+        <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a>
+            to improve your experience.</p>
+        <![endif]-->
+        <div class="container-fluid" ng-view=""></div>
+    </div>
+</div>
+
+<!--[if lt IE 9]>
+<script src="{{ media_url('mfGallery/scripts/ie_extras.js') }}"></script>
+<![endif]-->
+<script type="text/javascript">var mfGalleryConfig = {
+    staticPath: "{{ media_url('mfGallery/') }}",
+    folder: "{{ media_url('album-images/') }}",
+    preferedImageHeight: 300,
+    thumbSmall: 300,
+    thumbLightbox: 1000
+};</script>
+
+<script src="{{ media_url('mfGallery/scripts/vendor.js') }}"></script>
+<script src="{{ media_url('mfGallery/scripts/scripts.js') }}"></script>
+
+{% endblock container %}
