@@ -74,7 +74,7 @@ context:
             - title: {en: Contact, de: Kontakt}
               type: page
               basename: contact
-              url: contact.html
+              url: contact.de.html
 
 sorter:
     time:
