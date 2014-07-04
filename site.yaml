@@ -20,57 +20,57 @@ context:
               basename: home
               type: page
               url: index.html
-            - title: Projekte
+            - title: {de: Projekte, en: Projects}
               type: menu
               basename: projects
               menu:
-                - title: Projektgruppen
+                - title: {de: Projektgruppen, en: Projectgroups}
                   url: project_groups.html
-                - title: Hardwareprojekte
+                - title: {de: Hardwareprojekte, en: Hardwareprojects}
                   url: project_hardware.html
-                - title: Softwareprojekte
+                - title: {de: Softwareprojekte, en: Softwareprojects}
                   url: project_software.html
-                - title: Infrastrukturprojekte
+                - title: {de: Infrastrukturprojekte, en: Infrastructureprojects}
                   url: project_infrastructure.html
             - title: Events
               type: menu
               basename: events
               menu:
-                - title: Kalender
+                - title: {de: Kalender, en: Calendar}
                   url: calendar.html
-                - title: Vorträge
+                - title: {de: Vorträge, en: Talks}
                   url: talks.html
-                - title: Aktionen
+                - title: {de: Aktionen, en: Events}
                   url: events.html
-            - title: Bilder
+            - title: {de: Bilder, en: Images}
               type: menu
               basename: images
               menu:
                 - title: Images from Space
                   url: images_from_space.html
-                - title: Fotoalben
+                - title: {de: Fotoalben, en: Photo Albums}
                   url: album.html
-            - title: Der Verein
+            - title: {de: Der Verein, en: The Club}
               type: menu
               basename: club
               menu:
-                - title: Über Uns
+                - title: {de: Über Uns, en: About}
                   url: about.html
-                - title: Unsere Räume
+                - title: {de: Unsere Räume, en: Rooms}
                   url: mainframe.html
-                - title: Vereinsgeschichte
+                - title: {de: Vereinsgeschichte, en: History}
                   url: history.html
-                - title: Mitgliedschaft
+                - title: {de: Mitgliedschaft, en: Membership}
                   url: membership.html
-                - title: Satzung und Beitragsordnung
+                - title: {de: Satzung und Beitragsordnung, en: Club Rules}
                   url: club_rules.html
-                - title: Unterstützen
+                - title: {de: Unterstützen, en: Support}
                   url: support.html
-                - title: Pressespiegel
+                - title: {de: Pressespiegel, en: Press Review}
                   url: press_review.html
-                - title: Pressemitteilungen
+                - title: {de: Pressemitteilungen, en: Press Releases}
                   url: press_release.html
-            - title: Kontakt
+            - title: {en: Contact, de: Kontakt}
               type: page
               basename: contact
               url: contact.html

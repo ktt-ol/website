@@ -1,7 +1,8 @@
 {% macro render_main_menu() -%}
 
 {% for item in menu -%}
-    {% set active = False -%}
+	{% set lang = "de" -%}
+	{% set active = False -%}
 
 	{% if item.type == 'menu' -%}
 		<li class="dropdown
@@ -15,15 +16,28 @@
 		{%- endfor %}
 		{%- endif %}
 		">
-			<a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ item.title }} <b class="caret"></b></a>
+			<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+				{% if item.title is string -%}
+					{{ item.title }}
+				{% else -%}
+					{{ item.title[lang] }}
+				{% endif -%}
+				<b class="caret"></b>
+			</a>
 			<ul class="dropdown-menu">
 				{% for subitem in item.menu -%}
-                    {% if subitem.type == 'external' %}
-                        {% set url = subitem.url %}
-                    {% else %}
-                        {% set url = content_url(subitem.url) %}
-                    {% endif %}
-                    <li><a href="{{ url }}">{{ subitem.title }}</a></li>
+					{% if subitem.type == 'external' %}
+						{% set url = subitem.url %}
+					{% else %}
+						{% set url = content_url(subitem.url) %}
+					{% endif %}
+					<li><a href="{{ url }}">
+						{% if subitem.title is string -%}
+							{{ subitem.title }}
+						{% else -%}
+							{{ subitem.title[lang] }}
+						{% endif -%}
+					</a></li>
 				{%- endfor %}
 			</ul>
 		</li>
@@ -36,7 +50,13 @@
 				site.content.node_from_relative_path(item.url)) -%}
 		{%- endif %}
 		<li {% if active %}class="active"{% endif %}>
-			<a href="{{ content_url(item.url) }}">{{ item.title }}</a>
+			<a href="{{ content_url(item.url) }}">
+				{% if item.title is string -%}
+					{{ item.title }}
+				{% else -%}
+					{{ item.title[lang] }}
+				{% endif -%}
+			</a>
 		</li>
 	{%- endif %}
 {%- endfor %}
