@@ -1,5 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+{% set filedata = resource.relative_path|split(".") -%}
+{% set lang = filedata[-2] -%}
+{% if lang not in ["de", "en"] -%}
+{% set lang = "de" -%}
+{% endif -%}
+<html lang="{{ lang }}">
   <head>
     {% block starthead %}{% endblock starthead %}
     <meta charset="utf-8">

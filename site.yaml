@@ -7,6 +7,7 @@ plugins:
     - hyde.ext.plugins.syntext.SyntextPlugin
     - hyde.ext.plugins.textlinks.TextlinksPlugin
     - hyde.ext.plugins.sorter.SorterPlugin
+    - plugins.split.SplitPlugin
 #    - hyde.ext.plugins.images.ImageThumbnailsPlugin
 context:
     data:

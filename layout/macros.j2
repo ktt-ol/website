@@ -1,7 +1,11 @@
 {% macro render_main_menu() -%}
 
 {% for item in menu -%}
+	{% set filedata = resource.relative_path|split(".") -%}
+	{% set lang = filedata[-2] -%}
+	{% if lang not in ["de", "en"] -%}
 	{% set lang = "de" -%}
+	{% endif -%}
 	{% set active = False -%}
 
 	{% if item.type == 'menu' -%}
