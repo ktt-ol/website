@@ -1,6 +1,7 @@
 deploy
 *.hyde_deps
 *.swp
+*.pyc
 .idea
 content/media/ifs-images/
 content/media/album-images
