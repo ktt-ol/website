@@ -17,7 +17,13 @@
 </div>
 
 <div class="panel panel-default panel-sponsors">
-	<div class="panel-heading">Sponsoren</div>
+	<div class="panel-heading">
+		{% if lang == "de" -%}
+			Sponsoren
+		{% else -%}
+			Sponsors
+		{% endif -%}
+	</div>
 	<div class="panel-body" style="text-align: center;">
 		<a href="http://www.wuerttembergische.de/oliver.majer">
 			<img src="{{ media_url('img/sponsor1.jpg') }}" alt="Württembergische" />
@@ -32,7 +38,13 @@
 </div>
 
 <div class="panel panel-default hidden-xs hidden-sm">
-	<div class="panel-heading"><a href="calendar.html">Termine</a></div>
+	<div class="panel-heading"><a href="calendar.html">
+		{% if lang == "de" -%}
+			Termine
+		{% else -%}
+			Dates
+		{% endif -%}
+	</a></div>
 	<div class="panel-body">
 		<div id="gcf-simple">
 			<div class="gcf-item-container-block">
