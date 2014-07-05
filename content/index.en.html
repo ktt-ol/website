@@ -1,0 +1,89 @@
+---
+title: Mainframe
+---
+
+{% extends "default.j2" %}
+{% from "macros.j2" import render_event_excerpt with context %}
+
+{% block endhead %}
+	<link href="projects.atom.xml" type="application/atom+xml" rel="alternate" title="Projects ATOM Feed">
+	{{ super() }}
+{% endblock endhead %}
+
+{% block mainbox %}
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h3 class="panel-title">Mainframe</h3>
+	</div>
+	<div class="panel-body">
+        <p class="alert alert-info">
+            <strong>New Homepage!</strong><br />
+			You may have noticed, that the new homepage finally arrived. Not all
+			content has been moved, but we think it has matured enough to switch
+			away from our old Drupal based system. Hopefully you can find everything
+			of importance on the new website, otherwise the
+			
+            <a href="//oldwww.kreativitaet-trifft-technik.de" class="alert-link">old homepage can be found here</a>.
+        </p>
+
+		<p>The Mainframe is a <a href="//en.wikipedia.org/wiki/Hackerspace">Hackspace</a>
+		in <a href="//en.wikipedia.org/wiki/Oldenburg_(Oldenburg)">Oldenburg</a>. It
+		provides a meeting place for persons interested in engineering, computer science
+		and similar topics. At the Mainframe we are »hacking« together. This term is
+		understood as exploration of technical, social and political systems concerning
+		potentials and limits.</p>
+
+		<p>The Mainframe provides on approximately 600 square meters the required
+		infrastructure: A conference room for working and <a href="{{
+		content_url('talks.html')|i18n(resource.language) }}">Talks</a>, a Lounge
+		for chilling, a Wood- and Metall workshop, a workshop for electronics,
+		a kitchen and some more multi-purpose rooms.</p>
+
+		<p>The rooms are usually opened by no later than 18:00 (often earlier) and
+		visitors - especially from other hackspaces - are always welcome.</p>
+	</div>
+</div>
+
+<div class="panel panel-default">
+	<div class="panel-heading">
+		Recent Events
+	</div>
+	<div class="panel-body">
+		<ul class="list-group article-list">
+			{% for res in site.content.node_from_relative_path("events").walk_resources_sorted_by_time() if res.language == resource.language %}
+			{% if loop.index > 3 %} {% break %} {% endif %}
+			{{ render_event_excerpt(res, "borderless") }}
+			{% endfor %}
+		</ul>
+	</div>
+</div>
+
+
+<div class="panel panel-default">
+	<div class="panel-heading">
+		Recent Projects
+	</div>
+	<div class="panel-body">
+		<div class="row">
+			{% for res in site.content.node_from_relative_path("project").walk_resources_sorted_by_time() if res.language == resource.language %}
+			{% if loop.index > 3 %} {% break %} {% endif %}
+			{{ render_thumbnail(res, "img/project.svg") }}
+			{% endfor %}
+		</div>
+	</div>
+</div>
+
+<div class="panel panel-default">
+	<div class="panel-heading">
+		Recent Talks
+	</div>
+	<div class="panel-body">
+		<div class="row">
+			{% for res in site.content.node_from_relative_path("talk").walk_resources_sorted_by_time() if not res.meta.status == "scheduled" and res.language == resource.language %}
+			{% if loop.index > 3 %} {% break %} {% endif %}
+			{{ render_thumbnail(res, "img/talk.svg") }}
+			{% endfor %}
+		</div>
+	</div>
+</div>
+{% endblock mainbox %}
