@@ -9,7 +9,7 @@
 {% endblock css %}
 
 {% block infobox %}
-	{% if resource.auto_generated_language == True -%}
+	{% if resource.auto_generated_language == True and resource.meta.no_translation_needed is not defined -%}
 				<p class="alert alert-info">
 				{% if resource.language == "de" -%}
 					Sorry, diese Seite wurde noch nicht auf Deutsch übersetzt.
