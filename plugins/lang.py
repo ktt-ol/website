@@ -39,6 +39,9 @@ def get_i18n_path(path, lang):
     else:
         newpath = ".".join(tmp[0:-2]) + "." + lang + "." + tmp[-1]
 
+        if newpath[0] == '/':
+            newpath = newpath[1:]
+
         realpath = os.path.join("content", newpath)
         if not os.path.exists(realpath) and lang == default_language:
             newpath = ".".join(tmp[0:-2]) + "." + tmp[-1]
