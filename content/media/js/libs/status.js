@@ -1,12 +1,23 @@
 /* JS helpers for Space Status Widget */
 
+var statusmsg = {
+	"open": {
+		"de": "Hochgefahren",
+		"en": "Open"
+	},
+	"closed": {
+		"de": "Runtergefahren",
+		"en": "Closed"
+	}
+}
+
 function spaceStatusPoll() {
 	$.getJSON("//status.kreativitaet-trifft-technik.de/api/spaceInfo", function( data ) {
 		if(data["state"]["open"]) {
-			$('#status').html("<b>Hochgefahren!</b>");
+			$('#status').html("<b>"+statusmsg["open"][language]+"!</b>");
 			$('#status').parent().parent().addClass("panel-success")
 		} else {
-			$('#status').html("<b>Runtergefahren!</b>");
+			$('#status').html("<b>"+statusmsg["closed"][language]+"!</b>");
 			$('#status').parent().parent().addClass("panel-danger")
 		}
 	});
@@ -32,13 +43,13 @@ function spaceStatusPush() {
 		switch (data.state) {
 		case 'off':
 			console.log('EventSource: Space is off');
-			$('#status').html("<b>Runtergefahren!</b>");
+			$('#status').html("<b>"+statusmsg["closed"][language]+"!</b>");
 			$('#status').parent().parent().removeClass("panel-success panel-warning")
 			$('#status').parent().parent().addClass("panel-danger")
 			break;
 		case 'on':
 			console.log('EventSource: Space is on');
-			$('#status').html("<b>Hochgefahren!</b>");
+			$('#status').html("<b>"+statusmsg["open"][language]+"!</b>");
 			$('#status').parent().parent().removeClass("panel-danger panel-warning")
 			$('#status').parent().parent().addClass("panel-success")
 			break;
