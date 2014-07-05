@@ -8,11 +8,29 @@
 	{{ super() }}
 {% endblock css %}
 
+{% block infobox %}
+	{% if resource.auto_generated_language == True -%}
+				<p class="alert alert-info">
+				{% if resource.language == "de" -%}
+					Sorry, diese Seite wurde noch nicht auf Deutsch übersetzt.
+				{% elif resource.language == "en" -%}
+					Sorry, but this page has not yet been translated to English.
+				{% endif -%}
+				</p>
+	{% endif -%}
+
+	{{ super() }}
+{% endblock infobox %}
+
 {% block sidebox %}
 <div class="panel panel-default">
 	<div class="panel-heading"><a href="//status.kreativitaet-trifft-technik.de">Status</a></div>
 	<div class="panel-body">
+		{% if resource.language == "de" -%}
 		<div id="status">Space Status Unbekannt.</div>
+		{% else -%}
+		<div id="status">Space Status Unknown.</div>
+		{% endif -%}
 	</div>
 </div>
 
