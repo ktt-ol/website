@@ -47,10 +47,9 @@ context:
               basename: images
               menu:
                 - title: Images from Space
-                  url: images/images_from_space.html
+                  url: images_from_space.html
                 - title: Fotoalben
-                  type: external
-                  url: //albums.kreativitaet-trifft-technik.de
+                  url: album.html
             - title: Der Verein
               type: menu
               basename: club
