@@ -79,3 +79,7 @@ body {
 .panel-sponsors img {
   max-width: 220px;
 }
+
+.album .container {
+  width: 98%;
+}
