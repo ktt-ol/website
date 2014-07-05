@@ -1,11 +1,6 @@
 {% macro render_main_menu() -%}
 
 {% for item in menu -%}
-	{% set filedata = resource.relative_path|split(".") -%}
-	{% set lang = filedata[-2] -%}
-	{% if lang not in ["de", "en"] -%}
-	{% set lang = "de" -%}
-	{% endif -%}
 	{% set active = False -%}
 
 	{% if item.type == 'menu' -%}
@@ -24,7 +19,7 @@
 				{% if item.title is string -%}
 					{{ item.title }}
 				{% else -%}
-					{{ item.title[lang] }}
+					{{ item.title[resource.language|default("de")] }}
 				{% endif -%}
 				<b class="caret"></b>
 			</a>
@@ -39,7 +34,7 @@
 						{% if subitem.title is string -%}
 							{{ subitem.title }}
 						{% else -%}
-							{{ subitem.title[lang] }}
+							{{ subitem.title[resource.language|default("de")] }}
 						{% endif -%}
 					</a></li>
 				{%- endfor %}
@@ -58,7 +53,7 @@
 				{% if item.title is string -%}
 					{{ item.title }}
 				{% else -%}
-					{{ item.title[lang] }}
+					{{ item.title[resource.language|default("de")] }}
 				{% endif -%}
 			</a>
 		</li>
