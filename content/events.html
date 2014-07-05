@@ -9,6 +9,7 @@ title: Aktionen
 
 <ul class="list-group article-list">
     {% for res in site.content.node_from_relative_path("events").walk_resources_sorted_by_time() %}
+	{% if res.language != resource.language %} {% continue %} {% endif %}
     {{ render_event_excerpt(res) }}
     {% endfor %}
 </ul>

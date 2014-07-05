@@ -3,10 +3,15 @@
 import os
 from hyde.plugin import Plugin
 from hyde.site import Resource
+from jinja2 import contextfilter
 
 translatable_extensions = ["html"]
 available_languages = ["de", "en"]
 default_language = "de"
+
+@contextfilter
+def i18n(ctx, link, language):
+    return get_i18n_path(link, language) or link
 
 def get_lang(resource):
         language = resource.relative_path.split(".")[-2]
@@ -46,6 +51,7 @@ def new_i18n_resource(node, base_resource, language):
     res.set_relative_deploy_path(path)
 
     # set some hints for further processing in later steps
+    res.meta = base_resource.meta
     res.auto_generated_language = True
     res.content_language = get_lang(base_resource) or default_language
     res.language = language
@@ -66,13 +72,20 @@ def gen_i18n_resource(node, resource, language):
 
     return new_i18n_resource(node, resource, language)
 
+filters = {
+    'i18n' : i18n
+}
+
 class LangPlugin(Plugin):
 
     def __init__(self, site):
         super(LangPlugin, self).__init__(site)
 
-    def begin_site(self):
+    def template_loaded(self,template):
+        super(LangPlugin, self).template_loaded(template)
+        self.template.env.filters.update(filters)
 
+    def begin_site(self):
         for node in self.site.content.walk():
             added_resources = []
             for res in node.resources:
@@ -81,19 +94,8 @@ class LangPlugin(Plugin):
                     if newres is not None:
                         added_resources.append(newres)
                         self.logger.warn("auto-generated missing translation: %s [%s]" % (res.relative_path, lang))
+                if not hasattr(res, 'language'):
+                    res.language = get_lang(res)
+                    if res.language is None:
+                        res.language = default_language
             node.resources += added_resources
-
-    def begin_text_resource(self, resource, text):
-        if not resource.uses_template:
-            return text
-
-        if hasattr(resource, 'language'):
-            return text
-
-        # add language variable to resource
-        resource.language = get_lang(resource)
-        if resource.language is None:
-            del resource.language
-
-        return text
-

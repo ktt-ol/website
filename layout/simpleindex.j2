@@ -10,6 +10,7 @@
 	<div class="panel-body">
 		<div class="row">
 			{% for res in site.content.node_from_relative_path(resource.meta.type).walk_resources_sorted_by_time() if resource.meta.title is not defined or resource.meta.subtype == res.meta.type %}
+			{% if res.language != resource.language %} {% continue %} {% endif %}
 			{% if resource.meta.type == "group" %}
 			{{ render_thumbnail(res, "img/group.svg") }}
 			{% elif resource.meta.type == "project" %}

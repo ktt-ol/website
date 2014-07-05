@@ -12,6 +12,7 @@ title: Mainframe Vorträge
 	<div class="panel-body">
 		<div class="row">
 			{% for res in site.content.node_from_relative_path("talk").walk_resources_sorted_by_time()|reverse if res.meta.status == "scheduled" %}
+			{% if res.language != resource.language %} {% continue %} {% endif %}
 			{{ render_thumbnail(res, "img/talk.svg") }}
 			{% else %}
 				<div class="panel-body">
@@ -29,6 +30,7 @@ title: Mainframe Vorträge
 	<div class="panel-body">
 		<div class="row">
 			{% for res in site.content.node_from_relative_path("talk").walk_resources_sorted_by_time() if res.meta.status != "scheduled" %}
+			{% if res.language != resource.language %} {% continue %} {% endif %}
 			{{ render_thumbnail(res, "img/talk.svg") }}
 			{% else %}
 				<div class="panel-body">

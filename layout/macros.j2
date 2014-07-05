@@ -9,7 +9,7 @@
 				active
 		{% else -%}
 		{% for subitem in item.menu -%}
-			{% if site.content.resource_from_relative_path(subitem.url).url == resource.url -%}
+			{% if site.content.resource_from_relative_path(subitem.url).url|i18n(resource.language) == resource.url|i18n(resource.language) -%}
 				active
 			{%- endif %}
 		{%- endfor %}
@@ -19,7 +19,7 @@
 				{% if item.title is string -%}
 					{{ item.title }}
 				{% else -%}
-					{{ item.title[resource.language|default("de")] }}
+					{{ item.title[resource.language] }}
 				{% endif -%}
 				<b class="caret"></b>
 			</a>
@@ -30,11 +30,11 @@
 					{% else %}
 						{% set url = content_url(subitem.url) %}
 					{% endif %}
-					<li><a href="{{ url }}">
+					<li><a href="{{ url|i18n(resource.language) }}">
 						{% if subitem.title is string -%}
 							{{ subitem.title }}
 						{% else -%}
-							{{ subitem.title[resource.language|default("de")] }}
+							{{ subitem.title[resource.language] }}
 						{% endif -%}
 					</a></li>
 				{%- endfor %}
@@ -42,18 +42,18 @@
 		</li>
 	{% else -%}
 		{% if item.type == 'page' -%}
-			{% set active = (resource.url ==
-				site.content.resource_from_relative_path(item.url).url) -%}
+			{% set active = (resource.url|i18n(resource.language) ==
+				site.content.resource_from_relative_path(item.url).url|i18n(resource.language)) -%}
 		{% else -%}
 			{% set active = (node ==
 				site.content.node_from_relative_path(item.url)) -%}
 		{%- endif %}
 		<li {% if active %}class="active"{% endif %}>
-			<a href="{{ content_url(item.url) }}">
+			<a href="{{ content_url(item.url)|i18n(resource.language) }}">
 				{% if item.title is string -%}
 					{{ item.title }}
 				{% else -%}
-					{{ item.title[resource.language|default("de")] }}
+					{{ item.title[resource.language] }}
 				{% endif -%}
 			</a>
 		</li>

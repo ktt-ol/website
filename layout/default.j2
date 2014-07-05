@@ -56,7 +56,7 @@
 </div>
 
 <div class="panel panel-default hidden-xs hidden-sm">
-	<div class="panel-heading"><a href="calendar.html">
+	<div class="panel-heading"><a href="{{ content_url('calendar.html')|i18n(resource.language) }}">
 		{% if resource.language == "de" -%}
 			Termine
 		{% else -%}
