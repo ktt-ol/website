@@ -83,3 +83,7 @@ body {
 .album .container {
   width: 98%;
 }
+
+.olControlPanZoomBar {
+	z-index: 750 !important;
+}
