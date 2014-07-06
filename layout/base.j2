@@ -18,6 +18,8 @@
     <link href="{{ media_url('css/bootstrap.css') }}" rel="stylesheet">
     <link href="{{ media_url('css/offcanvas.css') }}" rel="stylesheet">
     <link href="{{ media_url('css/site.css') }}" rel="stylesheet">
+    <link href="{{ media_url('css/default.css') }}" rel="stylesheet" title="Default">
+    <link href="{{ media_url('css/dark.css') }}" rel="alternate stylesheet" title="Dark">
 
     {% endblock basecss %}
     {% block css %}{% endblock %}
@@ -63,7 +65,15 @@
     {# Javascript at the bottom for fast page loading #}
     {% block jquery %}
     <script src="{{ media_url('js/libs/jquery.min.js') }}"></script>
+    <script src="{{ media_url('js/libs/jquery.cookie.js') }}"></script>
+    <script src="{{ media_url('js/libs/style.js') }}"></script>
     {% endblock jquery %}
+
+    <script type="text/javascript">
+        if($.cookie("style")) {
+            switch_style($.cookie("style"));
+        }
+    </script>
 
     {% block bootstrap_scripts %}
     <script src="{{ media_url('js/libs/bootstrap.min.js') }}"></script>
