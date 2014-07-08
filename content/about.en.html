@@ -1,0 +1,56 @@
+---
+title: About Oldenburg's Hackspace
+---
+
+{% extends "two-column-large.j2" %}
+
+{% block mainbox %}
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h3 class="panel-title">About us...</h3>
+	</div>
+	<div class="panel-body">
+		<p>In July 2011 we founded the not-for-profit association »Kreativität
+		trifft Technik«. The association's aim was creating a room for technique-affine
+		and creative people in Oldenburg.</p>
+		
+		<p>At the beginning of November 2011 this has been achieved with
+		our first 20m² room called »Mainframe«. There we meet up for
+		crafting and realizing projects, such as 3D-printers, a styrofoam cutter
+		or window farms. Every 1.5 weeks we have a meeting to plan the next
+		big thing and taking care of public relations and similar stuff.</p>
+
+		<p>Everyone interested in us is welcome to come by. Our opening hours
+		can be found on the <a href="{{ content_url('index.html') }}">main
+		page</a> and our address can be found on the <a href="{{
+		content_url('contact.html') }}">contact page</a>.</p>
+	</div>
+</div>
+
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h3 class="panel-title">Mainframe / Fab-O-Lab / KtT ???</h3>
+	</div>
+	<div class="panel-body">
+		<p>Since <a href="//en.wikipedia.org/wiki/Hackerspace">Hackspaces</a>
+		and <a href="//en.wikipedia.org/wiki/Fablab">Fablabs</a> have similar
+		objectives we try to provide both in the same rooms. Since some persons
+		only know of the term Fablab we can also be found as FabLab under the
+		name <a href="//fab-o-lab.de">Fab-O-Lab</a>.</p>
+
+		<p>Another name, which may be heard in our environment is »Kreativität
+		trifft Technik« (creativity meets technology), which is the name of our
+		not-for-profit supporting association.</p>
+	</div>
+</div>
+{% endblock mainbox %}
+
+{% block sidebox %}
+<img src="media/img/mainframe.png" width="300px" />
+<br>
+<br>
+<img src="media/img/fab-o-lab.png" width="300px" />
+<br>
+<br>
+<img src="media/img/ktt.png" width="300px" />
+{% endblock sidebox %}
