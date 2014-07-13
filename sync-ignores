@@ -1,0 +1,5 @@
+*/album-images/*
+*/ifs-images/*
+/cache/**
+*.swp
+.hyde_deps
