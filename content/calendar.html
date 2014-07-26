@@ -30,6 +30,16 @@ title: Kalender
 {% block css %}
 <link rel="stylesheet" type="text/css" href="{{ media_url('css/fullcalendar.css') }}" />
 {{ super() }}
+<style type="text/css">
+.event-red {
+	background-color: rgb(255,0,0);
+	border-color: rgb(245,0,0);
+}
+
+.event-red :hover {
+	color: rgb(200,0,0);
+}
+</style>
 {% endblock %}
 
 {% block scripts %}
@@ -51,7 +61,12 @@ title: Kalender
             firstDay: 1, /* start on monday */
             events: {
                 url: '//www.kreativitaet-trifft-technik.de/calendar/feeds/markusframer%40gmail.com/public/basic'
-            }
+            },
+			eventAfterRender: function (event, element, view) {
+				if (event.title.indexOf("Plenum") > -1) {
+					element.addClass("event-red");
+				}
+			}
         })
     });
 </script>
