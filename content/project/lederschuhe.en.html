@@ -1,0 +1,142 @@
+---
+title: Celtic leather shoes
+thumbnail: project/lederschuhe/thumbnail.jpg
+created: !!timestamp '2013-07-18 20:25:00'
+type: software
+author: Fermate
+status: finished
+---
+
+{% filter markdown|typogrify -%}
+
+## Step 1: Prepare the pattern
+
+<img src="{{ content_url("project/lederschuhe/0000.jpg") }}" alt="Bundschuh" title="Celtic leather shoes" class="project-img centered" />
+
+Since I already had celtic shoes with I wanted to use as a pattern, I opened
+the laces and laid a shoe flat on the table. Then I took a picture. I imported
+the picture into a graphics tool (I used CorelDraw, but OpenSource Inkscape
+should also work). First I tried to vectorize it automatically, but the result
+didn't look good.
+
+Then I put the picture in the background and draw the outline with the mouse; I
+only placed a point at each corner, and then smoothed the lines (there is a
+option for line objects; sorry that I cannot give the correct technical terms,
+since I'm using the German version of the software). The second picture shows a
+screenshot of the pattern drawing with the line option symbols.
+
+In addition to the outline, I also drawed a little circle for a punch hole. And
+then I cloned it multiple times and placed it at each hole location of the
+photographed shoe.
+
+Be sure to clone the circle and not to copy it. If you copy and change the
+dimensions of one circle, all other circles remain the same. If you clone, you
+can change all circles at once. I wanted to have a template that scales!
+
+The final pattern (as DXF file and as PDF file) is available here:
+
+<a href="{{ content_url("project/lederschuhe/schuh.dxf") }}">DXF pattern</a><br>
+<a href="{{ content_url("project/lederschuhe/schuh.pdf") }}">PDF pattern</a>
+
+To scale it, I looked up the length of the foot (for a 6 month old baby between
+8-11 cm), and drawed two ellipses into the template to represent the foot. Then
+I scaled the whole thing until the ellipses had the right size.
+
+## Step 2: Prepare the laser cutter
+
+<img src="{{ content_url("project/lederschuhe/0003.jpg") }}" alt="Leather cutting tests" title="Leather cutting tests" class="project-img centered" />
+
+If you do not have a laser cutter, skip this step.
+
+To cut something with a laser cutter, you first have two important things:
+
+1. is it save to cut it? The laser beam will burn the material where it cuts.
+You do not want to have poisonous smoke or explosions.
+
+2. which settings?  The most important settings are speed (how fast does the
+laser beam move) and intensity (how strong is it). If you use not enough power,
+you might not cut the material. If you are to slow, you might get big burns at
+the corners.
+
+For 1., we were pretty sure that it should work, since leather is a natural
+material, and many people use soldering iron to make designs in leather.
+Nevertheless, since most leather was somehow colored, we had to be sure that
+the color does not contain chlorine, which when burnt by the laser, creates a
+gas that destroys the laser’s mechanism. So, we took a small sample of each
+leather and burned it with a lighter. There was no green light in the little
+flame, so we think that there was no chlorine in the leather.
+
+For 2., we tried out cutting a sample with different settings and noted them
+down. The picture is not meant to be readable -- each laser cutter has its own
+settings, and if you do not have one by yourself, ask the owner how to do this
+step!
+
+Leather can be cut pretty easily. On our 80W CO2 Laser we use the following
+speed settings with 70% power:
+
+<table class="table table-striped table-bordered">
+	<tr><th>leather thickness</th><th>speed</th></tr>
+	<tr><td>1.4 mm</td><td>100 m/s</td></tr>
+	<tr><td>1.7 mm</td><td>70 m/s</td></tr>
+	<tr><td>2.1 mm</td><td>50 m/s</td></tr>
+	<tr><td>4.2 mm</td><td>25 m/s</td></tr>
+</table>
+
+## Step 3: Cut the leather
+
+<img src="{{ content_url("project/lederschuhe/0004.jpg") }}" alt="First step" title="First step" class="project-img centered" />
+
+To be honest, we did not cut the leather immediately - we tried it with
+Polypropylen first (a plastic which is good to laser). So I produced two little
+plastic shoes. Later, we tried to cut leather, but we forgot to re-focus the
+laser cutter, so instead it produced brand design in the leather (right side of
+the picture).
+
+But then we lasered with the correct settings and produced two little leather
+shoe forms including all the punch holes. This saves a lot of time in the last
+step!
+
+Leather is a nice material to cut. However, it really smells burned (well, it
+is burned). So make sure that your exhaust system works properly.
+
+The leather will smell, too. I used a cream colored leather and the cutting
+edges all were pitch black. But then I washed the leather and let it dry; the
+edges changed to a light brown, and after 3-4 days, the burned smell went away,
+too.
+
+If you do not have a laser cutter, you need sharp scissors and a hole punch.
+You can print out the pattern and transfer it with a hard pencil on the
+leather.
+
+## Step 4: Final step: sew the shoes
+
+<img src="{{ content_url("project/lederschuhe/0006.jpg") }}" alt="Sewing plan" title="Sewing plan" class="project-img centered" />
+<img src="{{ content_url("project/lederschuhe/0007.jpg") }}" alt="Result (back)" title="Result (back)" class="project-img centered" />
+
+To sew the shoes, you only need a thick needle and the draw string you want to
+use. I used a silk band, but you can use other materials, too.
+
+Sewing the front is easy (just a look, make sure that you enter each of the
+lobs from the same side).
+
+Sewing the back is a little bit more tricky. In the following scheme, "R1-A"
+means "enter hole R1 from the outside", and R2-I means "enter hole R2 from the
+inside" (outside means "aussen" in German, thus the 'A'):
+
+R1-A R2-I N1-I M2-A L3-A L4-I M3-I R5-A R6-I L6-A L5-I N3-A R4-A R3-I N2-I M1-A L2-A L1-I
+
+With this scheme, you get a nice cross stich on the back of the shoe. The two
+ends of the string can be drawn inside, to make a knot there, which will be
+partly hidden by the two sides (L1-L6/R1-R6).
+
+## Step 5: Done!
+
+<img src="{{ content_url("project/lederschuhe/0008.jpg") }}" alt="Baby with shoes" title="Baby with shoes" class="project-img centered" />
+
+That's it!
+
+To close the shoes, you could either attach a button on one side and make a
+backstrap on the other; or you just do two strings with can be tied together.
+And here you see little Ronja wearing a shoe for the first time in her life!
+
+{%- endfilter %}
