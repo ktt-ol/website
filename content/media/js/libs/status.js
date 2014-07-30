@@ -2,24 +2,32 @@
 
 var statusmsg = {
 	"open": {
+		"logo": "media/img/mainframe-open.svg",
+		"class": "panel-success",
 		"de": "Hochgefahren",
 		"en": "Open"
 	},
 	"closed": {
+		"logo": "media/img/mainframe-closed.svg",
+		"class": "panel-danger",
 		"de": "Runtergefahren",
 		"en": "Closed"
 	}
 }
 
+function spaceStatusSet(status) {
+	img = statusmsg[status]["logo"];
+	cls = statusmsg[status]["class"];
+	msg = statusmsg[status][language];
+
+	$('#status').html("<img src=\""+img+"\" alt=\""+msg+"!\" title=\""+msg+"!\" style='width: 100%' />");
+	$('#status').parent().parent().removeClass("panel-danger panel-success panel-warning");
+	$('#status').parent().parent().addClass(cls)
+}
+
 function spaceStatusPoll() {
 	$.getJSON("//status.kreativitaet-trifft-technik.de/api/spaceInfo", function( data ) {
-		if(data["state"]["open"]) {
-			$('#status').html("<b>"+statusmsg["open"][language]+"!</b>");
-			$('#status').parent().parent().addClass("panel-success")
-		} else {
-			$('#status').html("<b>"+statusmsg["closed"][language]+"!</b>");
-			$('#status').parent().parent().addClass("panel-danger")
-		}
+		spaceStatusSet(data["state"]["open"] ? "open" : "closed");
 	});
 }
 
@@ -43,20 +51,15 @@ function spaceStatusPush() {
 		switch (data.state) {
 		case 'off':
 			console.log('EventSource: Space is off');
-			$('#status').html("<b>"+statusmsg["closed"][language]+"!</b>");
-			$('#status').parent().parent().removeClass("panel-success panel-warning")
-			$('#status').parent().parent().addClass("panel-danger")
+			spaceStatusSet("closed");
 			break;
 		case 'on':
 			console.log('EventSource: Space is on');
-			$('#status').html("<b>"+statusmsg["open"][language]+"!</b>");
-			$('#status').parent().parent().removeClass("panel-danger panel-warning")
-			$('#status').parent().parent().addClass("panel-success")
+			spaceStatusSet("open");
 			break;
 		case 'closing':
 			console.log('EventSource: Space is closing');
-			$('#status').parent().parent().removeClass("panel-danger panel-success")
-			$('#status').parent().parent().addClass("panel-warning")
+			spaceStatusSet("closing");
 			break;
 		}
 	}, false);
