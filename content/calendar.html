@@ -7,7 +7,7 @@ title: Kalender
 {% block container %}
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h3 class="panel-title">Events</h3>
+        <h3 class="panel-title">Kalender</h3>
     </div>
     <div class="panel-body">
         <div id='calendar'></div>
@@ -43,8 +43,10 @@ title: Kalender
 {% endblock %}
 
 {% block scripts %}
-<script type="text/javascript" src="{{ media_url('js/libs/fullcalendar.js') }}"></script>
-<script type="text/javascript" src="{{ media_url('js/libs/gcal.js') }}"></script>
+<script type="text/javascript" src="{{ media_url('js/libs/fullcalendar/moment.min.js') }}"></script>
+<script type="text/javascript" src="{{ media_url('js/libs/fullcalendar/fullcalendar.js') }}"></script>
+<script type="text/javascript" src="{{ media_url('js/libs/fullcalendar/gcal.js') }}"></script>
+<script type="text/javascript" src="{{ media_url('js/libs/fullcalendar/lang/de.js') }}"></script>
 <script type="text/javascript">
     $(document).ready(function() {
         $('#calendar').fullCalendar({
@@ -53,14 +55,10 @@ title: Kalender
                 center: 'title',
                 right: 'month,agendaWeek,agendaDay'
             },
-            timeFormat: {
-                agenda: 'HH:mm{ - HH:mm}',
-                '': 'HH:mm'
-            },
             weekMode: 'variable', /* variable numbers of weeks instead of always using 6 */
-            firstDay: 1, /* start on monday */
             events: {
-                url: '//www.kreativitaet-trifft-technik.de/calendar/feeds/markusframer%40gmail.com/public/basic'
+                url: '//www.kreativitaet-trifft-technik.de/calendar/feeds/markusframer%40gmail.com/public/basic',
+                dataType: 'gcal'
             },
 			eventAfterRender: function (event, element, view) {
 				if (event.title.indexOf("Plenum") > -1) {
