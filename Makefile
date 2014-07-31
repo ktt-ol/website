@@ -11,7 +11,8 @@ forcegenfiles = content/index.html \
 				content/project_groups.html \
 				content/talks.html \
 				content/press_release.html \
-				content/events.html
+				content/events.html \
+				content/media/calendar-links.json
 
 build: $(forcegenfiles)
 	hyde gen
@@ -34,6 +35,8 @@ content/talks.html: $(talks)
 content/press_release.html: $(press)
 	touch $@
 content/events.html: $(events)
+	touch $@
+content/media/calendar-links.json: $(groups) $(talks) $(events)
 	touch $@
 
 upload:
