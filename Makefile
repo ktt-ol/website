@@ -37,7 +37,6 @@ content/events.html: $(events)
 	touch $@
 
 upload:
-	cd deploy && rsync -rluRP -e "ssh -p 2205" * root@v4.kreativitaet-trifft-technik.de:/var/www/
-	ssh -p 2205 root@v4.kreativitaet-trifft-technik.de "chmod -R a+r /var/www/"
+	./sync.sh
 
 .PHONY: build upload
