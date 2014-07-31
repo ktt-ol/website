@@ -1,5 +1,6 @@
 ---
 title: Images from Space
+no_translation_needed: True
 ---
 
 {% extends "default.j2" %}
@@ -13,7 +14,7 @@ title: Images from Space
 
 {% block mainbox %}
 <div class="panel panel-default" ng-app="mfGalleryApp">
-    <div class="panel-heading"><h3 class="panel-title">Album</h3></div>
+    <div class="panel-heading"><h3 class="panel-title">{{ resource.meta.title }}</h3></div>
     <div class="panel-body">
         <!--[if lt IE 7]>
         <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a>
