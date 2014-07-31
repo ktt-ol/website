@@ -64,8 +64,6 @@ context:
                   url: history.html
                 - title: {de: Mitgliedschaft, en: Membership}
                   url: membership.html
-                - title: {de: Satzung und Beitragsordnung, en: Club Rules}
-                  url: club_rules.html
                 - title: {de: Unterstützen, en: Support}
                   url: support.html
                 - title: {de: Pressespiegel, en: Press Review}

@@ -1,0 +1,44 @@
+---
+title: Membership
+---
+
+{% extends "default.j2" %}
+
+{% block mainbox %}
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h3 class="panel-title">Membership</h3>
+	</div>
+	<div class="panel-body">
+		<p>The regular membership is only possible for natural persons.
+		The monthly fee is 25€ or 10€ reduced (e.g. for students). In
+		addtion it's possible to support the registered association
+		with a monthly donation. Apart from that legal persons and
+		natural persons can become a supporting member (without voting
+		rights) for a monthly fee of at least 5€.</p>
+
+		<p>The association can provide an accumulative donation receipt
+		for the total amount of money transfered in a year.</p>
+
+		<p>Every member can choose his or her member ID, as long as
+		it's still available when he/her joins the association. A list
+		of member IDs is available in our 
+		<a href="//wiki.kreativitaet-trifft-technik.de/display/pub/Mitgliedschaft">Wiki</a>.</p>
+
+		<a href="{{ content_url("data/club/membership_form.pdf") }}">Download Membership Form</a>
+	</div>
+</div>
+
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h3 class="panel-title">Articles of Association and Membership Fee Regulations</h3>
+	</div>
+	<div class="panel-body">
+		<p>You can find a combined PDF containing our articles of association
+		and the membership fee regulations of the non-profit registered association
+		»Kreativität trifft Technik« (creativity meets technology).</p>
+
+		<a href="{{ content_url("data/club/club_rules.pdf") }}">Download Articles of Association and Membership Fee Regulations</a>
+	</div>
+</div>
+{% endblock mainbox %}
