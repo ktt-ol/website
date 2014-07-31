@@ -75,10 +75,22 @@ title: {de: Kalender, en: Calendar}
 
 <script type="text/javascript">
 	var calendar_links = {}
-
-	$.getJSON("media/calendar-links.json", function(json) {
+	$.getJSON("media/calendar-links.json").done(function(json) {
 		calendar_links = json
+	}).fail(function( jqxhr, textStatus, error ) {
+		var err = textStatus + ", " + error;
+		console.log("Request Failed: " + err);
 	});
+
+{% if resource.language =="en" %}
+	var calendar_translations = {}
+	$.getJSON("media/calendar-translation-en.json").done( function(data) {
+		calendar_translations = data
+	}).fail(function( jqxhr, textStatus, error ) {
+		var err = textStatus + ", " + error;
+		console.log("Request Failed: " + err);
+	});
+{% endif %}
 
     $(document).ready(function() {
         $('#calendar').fullCalendar({
@@ -97,13 +109,14 @@ title: {de: Kalender, en: Calendar}
 
 				event.url = (id in calendar_links) ? calendar_links[id]["{{ resource.language }}"] : 'null'
 
+{% if resource.language =="en" %}
+				if (event.title in calendar_translations)
+					event.title = calendar_translations[event.title]
+				element.find(".fc-event-title").html(event.title);
+{% endif %}
+
 				element.attr('href', 'javascript:void(0);');
 				element.attr("onclick", "openEventInfo('"+event.title+"','"+event.url+"','"+event.description+"',"+event.start+","+event.end+")")
-			},
-			eventAfterRender: function (event, element, view) {
-				if (event.title.indexOf("Plenum") > -1) {
-					element.addClass("event-red");
-				}
 			}
         })
     });
