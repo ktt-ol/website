@@ -1,5 +1,5 @@
 ---
-title: Unterstützen!
+title: Support!
 ---
 
 {% extends "default.j2" %}
@@ -10,19 +10,17 @@ title: Unterstützen!
 		<h3 class="panel-title">{{ resource.meta.title }}</h3>
 	</div>
 	<div class="panel-body">
-		<h3>Mitgliedschaft</h3>
-		<p>Natürlich freuen wir uns immer über neue Mitglieder, die den Verein
-		durch ihren Mitgliedsbeitrag auch finanziell unterstützen. Alles
-		weitere darüber können Sie unter <a href="{{ content_url("membership.html") }}">Mitgliedschaft</a> finden.</p>
+		<h3>Membership</h3>
+		<p>Of course we are always searching for new members supporting the
+		association financially. More information about that can be found on
+		our <a href="{{ content_url("membership.html") }}">Membership</a> page.</p>
 
-		<h3>Geld- und Sachspenden</h3>
-		<p>Wir nehmen zur Verwirklichung unserer Ziele gerne auch Unterstützung
-		in Form von Geld- oder Sachspenden entgegen. Da wir ein als
-		gemeinnützig anerkannter eingetragener Verein sind, können bei Bedarf
-		natürlich Spendenbescheinigungen hierüber ausgestellt werden; sprechen
-		Sie uns einfach darauf an (in der Regel reicht dem Finanzamt bei
-		kleineren Beträgen aber ein Kontoauszug oder dergleichen als
-		Beleg).</p>
+		<h3>Money and Item Donations</h3>
+		<p>To reach our aims we are also accepting support in terms of
+		money or item donations. Since we have been accepted as a non-profit
+		registered association, we are able to make out receipts for charitable
+		donations; just speak with us (usually the finance authority is fine
+		with bank account statements for small amounts of money).</p>
 
 		<div class="panel panel-default">
 			<div class="panel-body">
@@ -36,24 +34,22 @@ title: Unterstützen!
 						<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
 							<input type="hidden" name="cmd" value="_s-xclick" />
 							<input type="hidden" name="hosted_button_id" value="74LC3HDX97ZBL" />
-							<input type="image" name="submit" src="{{ content_url('media/img/donate.png') }}" alt="Spende via PayPal" />
+							<input type="image" name="submit" src="{{ content_url('media/img/donate.png') }}" alt="Donation via PayPal" />
 						</form>
 					</div>
 					<div class="col-xs-6 col-md-4">
 						<a href="http://flattr.com/thing/365466/Kreativitat-trifft-Technik-e-V-">
-							<img src="{{ content_url('media/img/flattr.png') }}" alt="Spende via Flattr" />
+							<img src="{{ content_url('media/img/flattr.png') }}" alt="Donation via Flattr" />
 						</a>
 					</div>
 				</div>
 			</div>
 		</div>
 
-		<h3>Unterstützung des Vereins via Partnerprogramm-Links</h3>
-		<p>Sollten Sie eh einen Online-Einkauf planen, können Sie den Verein
-		unterstützen indem Sie den jeweiligen Shop über unsere
-		Partnerprogramm-Links von hier aus besuchen. Das kostet Sie nichts,
-		aber der Verein erhält eine Provision für jeden so getätigten
-		Einkauf.</p>
+		<h3>Association Support via Partner Program Links</h3>
+		<p>If you plan to do an online-purchase, you can support the association
+		by visiting the shop using our partner program links. This is free of
+		charge for your, but the association gets a commission for each purchase.</p>
 
 		<a href="http://www.amazon.de/?tag=kreattrifftec-21"><img src="{{ content_url('media/img/affiliate/amazon.gif') }}" alt="amazon.de" height="40px" /></a>
 		<a href="http://www.getdigital.de/?her=KTT"><img src="{{ content_url('media/img/affiliate/get_digital.png') }}" alt="getDigital.de" height="40px" /></a>
