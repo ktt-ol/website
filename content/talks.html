@@ -1,5 +1,6 @@
 ---
-title: Mainframe Vorträge
+title: {de: Mainframe Vorträge, en: Mainframe Talks}
+no_translation_needed: True
 ---
 
 {% extends "default.j2" %}
@@ -7,7 +8,11 @@ title: Mainframe Vorträge
 {% block mainbox %}
 <div class="panel panel-default">
 	<div class="panel-heading">
+{% if resource.language == "de" %}
 		<h3 class="panel-title">Demnächst stattfindende Vorträge</h3>
+{% else %}
+		<h3 class="panel-title">Scheduled Talks</h3>
+{% endif %}
 	</div>
 	<div class="panel-body">
 		<div class="row">
@@ -16,7 +21,11 @@ title: Mainframe Vorträge
 			{{ render_thumbnail(res, "img/talk.svg") }}
 			{% else %}
 				<div class="panel-body">
+{% if resource.language == "de" %}
 					Zur Zeit sind keine weiteren Vorträge geplant!
+{% else %}
+					Currently no future talks are planned!
+{% endif %}
 				</div>
 			{% endfor %}
 		</div>
@@ -25,7 +34,11 @@ title: Mainframe Vorträge
 
 <div class="panel panel-default">
 	<div class="panel-heading">
+{% if resource.language == "de" %}
 		<h3 class="panel-title">Bereits stattgefundene Vorträge</h3>
+{% else %}
+		<h3 class="panel-title">Previous Talks</h3>
+{% endif %}
 	</div>
 	<div class="panel-body">
 		<div class="row">
@@ -34,7 +47,11 @@ title: Mainframe Vorträge
 			{{ render_thumbnail(res, "img/talk.svg") }}
 			{% else %}
 				<div class="panel-body">
+{% if resource.language == "de" %}
 					Bisher haben keine Vorträge stattgefunden!
+{% else %}
+					No talk has happened so far!
+{% endif %}
 				</div>
 			{% endfor %}
 		</div>
