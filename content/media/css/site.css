@@ -87,3 +87,7 @@ body {
 .olControlPanZoomBar {
 	z-index: 750 !important;
 }
+
+.no-list-margin {
+	margin-left: 0px;
+}

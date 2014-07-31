@@ -1,5 +1,6 @@
 ---
-title: Aktionen
+title: {de: Aktionen, en: Events}
+no_translation_needed: True
 ---
 
 {% extends "default.j2" %}
@@ -10,7 +11,7 @@ title: Aktionen
 <ul class="list-group article-list">
     {% for res in site.content.node_from_relative_path("events").walk_resources_sorted_by_time() %}
 	{% if res.language != resource.language %} {% continue %} {% endif %}
-    {{ render_event_excerpt(res) }}
+    {{ render_event_excerpt(res, "no-list-margin") }}
     {% endfor %}
 </ul>
 

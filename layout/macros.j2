@@ -109,7 +109,11 @@
 		</a>
 	</div>
 	<div class="col-xs-6 col-md-9">
+		{% if resource.language == "de" %}
 		<small class="date">{{res.meta.created.strftime("am %d.%m.%Y um %H:%M Uhr")}}</small>
+		{% else %}
+		<small class="date">{{res.meta.created.strftime("%d.%m.%Y, %H:%M")}}</small>
+		{% endif %}
 		<h3><a href="{{ content_url(res.url) }}"> {{ res.meta.title }}</a></h3>
 		<p>{{ res.meta.teaser }}</p>
 	</div>
