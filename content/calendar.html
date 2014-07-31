@@ -124,12 +124,12 @@ title: {de: Kalender, en: Calendar}
 {% endif %}
 
 				element.attr('href', 'javascript:void(0);');
-				element.attr("onclick", "openEventInfo('"+event.title+"','"+event.url+"','"+event.description+"','"+event.location+"',"+event.start+","+event.end+","+event.allDay+")")
+				element.attr("onclick", "openEventInfo('"+id+"', '"+event.title+"','"+event.url+"','"+event.description+"','"+event.location+"',"+event.start+","+event.end+","+event.allDay+")")
 			}
         })
     });
 
-	function openEventInfo(title, url, description, pos, start, end, allDay) {
+	function openEventInfo(eventid, title, url, description, pos, start, end, allDay) {
 		timeformat = (allDay) ? "Do MMMM YYYY" : "Do MMMM YYYY, HH:mm:ss";
 
 		if (start && start != 'null') {
@@ -160,7 +160,7 @@ title: {de: Kalender, en: Calendar}
 			$("#eventLocation").html("");
 		}
 
-		$("#eventTitle").attr("title", "Event ID: " + id.replace("@google.com", ""));
+		$("#eventTitle").attr("title", "Event ID: " + eventid);
 		$("#eventDescription").html(description);
 		$("#eventTitle").html(title);
 
