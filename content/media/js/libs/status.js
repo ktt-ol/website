@@ -2,13 +2,13 @@
 
 var statusmsg = {
 	"open": {
-		"logo": "media/img/mainframe-open.svg",
+		"logo": "/media/img/mainframe-open.svg",
 		"class": "panel-success",
 		"de": "Hochgefahren",
 		"en": "Open"
 	},
 	"closed": {
-		"logo": "media/img/mainframe-closed.svg",
+		"logo": "/media/img/mainframe-closed.svg",
 		"class": "panel-danger",
 		"de": "Runtergefahren",
 		"en": "Closed"
