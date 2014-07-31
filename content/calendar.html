@@ -1,5 +1,5 @@
 ---
-title: Kalender
+title: {de: Kalender, en: Calendar}
 ---
 
 {% extends "topbar.j2" %}
@@ -7,10 +7,28 @@ title: Kalender
 {% block container %}
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h3 class="panel-title">Kalender</h3>
+        <h3 class="panel-title">{% if resource.language =="de" %}Kalender{% else %}Calendar{% endif %}</h3>
     </div>
     <div class="panel-body">
-        <div id='calendar'></div>
+        <div id='calendar'>
+			<div class="modal fade" id="eventDialog" tabindex="-1" role="dialog" aria-labelledby="eventDialog" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+							<h4 class="modal-title" id="eventTitle">Modal title</h4>
+						</div>
+						<div class="modal-body">
+							<span id="eventId" style="color: gray;"></span>
+							<span id="eventStartTime"></span>
+							<span id="eventEndTime"></span>
+							<div id="eventDescription"></div>
+							<p id="eventURL" style="margin-top: 10px;"></p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
     </div>
 </div>
 
@@ -19,8 +37,13 @@ title: Kalender
         <h3 class="panel-title">Abonnieren</h3>
     </div>
     <div class="panel-body">
-        <span class="label label-primary">Tipp:</span> Du kannst diesen Kalender auch direkt benutzen. Die iCal URl dazu ist
+		{% if resource.language =="de" %}
+        <span class="label label-primary">Tipp:</span> Du kannst diesen Kalender auch direkt benutzen. Die iCal URL dazu ist
         <blockquote><code>https://www.google.com/calendar/ical/markusframer%40gmail.com/public/basic.ics</code></blockquote>
+		{% else %}
+        <span class="label label-primary">Hint:</span> You can subscribe to this calendar using the following iCal URL:
+        <blockquote><code>https://www.google.com/calendar/ical/markusframer%40gmail.com/public/basic.ics</code></blockquote>
+		{% endif %}
     </div>
 </div>
 
@@ -46,8 +69,17 @@ title: Kalender
 <script type="text/javascript" src="{{ media_url('js/libs/fullcalendar/moment.min.js') }}"></script>
 <script type="text/javascript" src="{{ media_url('js/libs/fullcalendar/fullcalendar.js') }}"></script>
 <script type="text/javascript" src="{{ media_url('js/libs/fullcalendar/gcal.js') }}"></script>
+{% if resource.language =="de" %}
 <script type="text/javascript" src="{{ media_url('js/libs/fullcalendar/lang/de.js') }}"></script>
+{% endif %}
+
 <script type="text/javascript">
+	var calendar_links = {}
+
+	$.getJSON("media/calendar-links.json", function(json) {
+		calendar_links = json
+	});
+
     $(document).ready(function() {
         $('#calendar').fullCalendar({
             header: {
@@ -60,6 +92,14 @@ title: Kalender
                 url: '//www.kreativitaet-trifft-technik.de/calendar/feeds/markusframer%40gmail.com/public/basic',
                 dataType: 'gcal'
             },
+			eventRender: function(event, element) {
+				id = event.id.replace("@google.com", "")
+
+				event.url = (id in calendar_links) ? calendar_links[id]["{{ resource.language }}"] : 'null'
+
+				element.attr('href', 'javascript:void(0);');
+				element.attr("onclick", "openEventInfo('"+event.title+"','"+event.url+"','"+event.description+"',"+event.start+","+event.end+")")
+			},
 			eventAfterRender: function (event, element, view) {
 				if (event.title.indexOf("Plenum") > -1) {
 					element.addClass("event-red");
@@ -67,6 +107,42 @@ title: Kalender
 			}
         })
     });
+
+	function openEventInfo(title, url, description, start, end) {
+		if (start && start != 'null') {
+			$("#eventStartTime").html("Start: " + moment(start).format('Do MMMM YYYY, HH:mm:ss') + "<br />")
+		} else {
+			/* Error: clear information from previous modal dialog */
+			$("#eventStartTime").html("");
+		}
+
+		if (end && end != 'null') {
+			$("#eventEndTime").html("Stop: " + moment(end).format('Do MMMM YYYY, HH:mm:ss') + "<br />")
+		} else {
+			/* Error: clear information from previous modal dialog */
+			$("#eventEndTime").html("");
+		}
+
+		$("#eventTitle").attr("title", "Event ID: " + id.replace("@google.com", ""));
+		$("#eventDescription").html(description);
+		$("#eventTitle").html(title);
+
+		if (url && url != 'null') {
+			{% if resource.language =="de" %}
+			$("#eventURL").html('<a href="'+url+'">Mehr Informationen...</a>');
+			{% else %}
+			$("#eventURL").html('<a href="'+url+'">More Information...</a>');
+			{% endif %}
+		} else {
+			{% if resource.language =="de" %}
+			$("#eventURL").html('<span class="label label-primary">Hinweis:</span> Diesem Event ist keine Seite zugeordnet.');
+			{% else %}
+			$("#eventURL").html('<span class="label label-primary">Note:</span> No page is assigned to this event.');
+			{% endif %}
+		}
+
+		$("#eventDialog").modal({keyboard: true});
+	}
 </script>
 {{ super() }}
 {% endblock scripts %}
