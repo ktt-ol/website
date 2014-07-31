@@ -22,6 +22,12 @@ title: {de: Kalender, en: Calendar}
 							<span id="eventId" style="color: gray;"></span>
 							<span id="eventStartTime"></span>
 							<span id="eventEndTime"></span>
+							<span id="eventLocation"></span>
+{% if resource.language =="de" %}
+							<h4>Beschreibung</h4>
+{% else %}
+							<h4>Description</h4>
+{% endif %}
 							<div id="eventDescription"></div>
 							<p id="eventURL" style="margin-top: 10px;"></p>
 						</div>
@@ -107,6 +113,8 @@ title: {de: Kalender, en: Calendar}
 			eventRender: function(event, element) {
 				id = event.id.replace("@google.com", "")
 
+				console.log(event)
+
 				event.url = (id in calendar_links) ? calendar_links[id]["{{ resource.language }}"] : 'null'
 
 {% if resource.language =="en" %}
@@ -116,24 +124,40 @@ title: {de: Kalender, en: Calendar}
 {% endif %}
 
 				element.attr('href', 'javascript:void(0);');
-				element.attr("onclick", "openEventInfo('"+event.title+"','"+event.url+"','"+event.description+"',"+event.start+","+event.end+")")
+				element.attr("onclick", "openEventInfo('"+event.title+"','"+event.url+"','"+event.description+"','"+event.location+"',"+event.start+","+event.end+","+event.allDay+")")
 			}
         })
     });
 
-	function openEventInfo(title, url, description, start, end) {
+	function openEventInfo(title, url, description, pos, start, end, allDay) {
+		timeformat = (allDay) ? "Do MMMM YYYY" : "Do MMMM YYYY, HH:mm:ss";
+
 		if (start && start != 'null') {
-			$("#eventStartTime").html("Start: " + moment(start).format('Do MMMM YYYY, HH:mm:ss') + "<br />")
+			$("#eventStartTime").html("<b>Start:</b> " + moment(start).format(timeformat) + "<br />")
 		} else {
 			/* Error: clear information from previous modal dialog */
 			$("#eventStartTime").html("");
 		}
 
 		if (end && end != 'null') {
-			$("#eventEndTime").html("Stop: " + moment(end).format('Do MMMM YYYY, HH:mm:ss') + "<br />")
+			if (allDay)
+				$("#eventEndTime").html("<b>Stop:</b> " + moment(end).subtract(1, "day").format(timeformat) + "<br />")
+			else
+				$("#eventEndTime").html("<b>Stop:</b> " + moment(end).format(timeformat) + "<br />")
 		} else {
 			/* Error: clear information from previous modal dialog */
 			$("#eventEndTime").html("");
+		}
+
+		if (pos && pos != 'null') {
+{% if resource.language =="de" %}
+			$("#eventLocation").html("<b>Ort:</b> " + pos + "<br />")
+{% else %}
+			$("#eventLocation").html("<b>Location:</b> " + pos + "<br />")
+{% endif %}
+		} else {
+			/* Error: clear information from previous modal dialog */
+			$("#eventLocation").html("");
 		}
 
 		$("#eventTitle").attr("title", "Event ID: " + id.replace("@google.com", ""));
