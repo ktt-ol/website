@@ -11,7 +11,9 @@
 		<div class="row">
 			{% for res in site.content.node_from_relative_path(resource.meta.type).walk_resources_sorted_by_time() if resource.meta.title is not defined or resource.meta.subtype == res.meta.type %}
 			{% if res.language != resource.language %} {% continue %} {% endif %}
-			{% if resource.meta.type == "group" %}
+			{% if resource.meta.type == "series-of-events" %}
+			{{ render_thumbnail(res, "img/series-of-events.svg") }}
+			{% elif resource.meta.type == "group" %}
 			{{ render_thumbnail(res, "img/group.svg") }}
 			{% elif resource.meta.type == "project" %}
 			{{ render_thumbnail(res, "img/project.svg") }}
@@ -19,7 +21,9 @@
 			{% else %}
 			<div class="col-xs-12 col-md-12">
 				<div class="alert alert-info">
-					{% if resource.meta.type == "group" %}
+					{% if resource.meta.type == "series-of-events" %}
+					Hier sind bisher keine Veranstaltungsreihen einsortiert.
+					{% elif resource.meta.type == "group" %}
 					Hier sind bisher keine Gruppen einsortiert.
 					{% elif resource.meta.type == "project" %}
 					Hier sind bisher keine Projekte einsortiert.

@@ -3,6 +3,7 @@ groups = content/group/*.html
 talks = content/talk/*.html
 press = content/press_release/*.html
 events = content/events/*.html
+series_of_events = content/series-of-events/*.html
 forcegenfiles = content/index.html \
                 content/projects.atom.xml \
 				content/project_hardware.html \
@@ -12,6 +13,7 @@ forcegenfiles = content/index.html \
 				content/talks.html \
 				content/press_release.html \
 				content/events.html \
+				content/series_of_events.html \
 				content/media/calendar-links.json
 
 build: $(forcegenfiles)
@@ -35,6 +37,8 @@ content/talks.html: $(talks)
 content/press_release.html: $(press)
 	touch $@
 content/events.html: $(events)
+	touch $@
+content/series_of_events.html: $(series_of_events)
 	touch $@
 content/media/calendar-links.json: $(groups) $(talks) $(events)
 	touch $@
