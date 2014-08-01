@@ -99,6 +99,19 @@ no_translation_needed: True
 	});
 {% endif %}
 
+	var __entityMap = {
+		"&": "&amp;",
+		"<": "&lt;",
+		">": "&gt;",
+		'"': '&quot;',
+	};
+
+	String.prototype.escapeHTML = function() {
+		return String(this).replace(/[&<>"]/g, function (s) {
+			return __entityMap[s];
+		});
+	}
+
     $(document).ready(function() {
         $('#calendar').fullCalendar({
             header: {
@@ -114,8 +127,6 @@ no_translation_needed: True
 			eventRender: function(event, element) {
 				id = event.id.replace("@google.com", "")
 
-				console.log(event)
-
 				event.url = (id in calendar_links) ? calendar_links[id]["{{ resource.language }}"] : 'null'
 
 {% if resource.language =="en" %}
@@ -125,12 +136,44 @@ no_translation_needed: True
 {% endif %}
 
 				element.attr('href', 'javascript:void(0);');
-				element.attr("onclick", "openEventInfo('"+id+"', '"+event.title+"','"+event.url+"','"+event.description+"','"+event.location+"',"+event.start+","+event.end+","+event.allDay+")")
+				element.click(function() { openEventInfo(id, event); });
 			}
         })
     });
 
-	function openEventInfo(eventid, title, url, description, pos, start, end, allDay) {
+	function listMarkup(text) {
+		step0 = text
+
+		step1 = step0.replace(/(^|\n)(([ ]{1,}\* .+?(\n|$))+)/gm, "\n<ul>\n$2</ul>\n");
+		step2 = step1.replace(/(^|\n)(([ ]{3,}\* .+?(\n|$))+)/gm, "\n<ul>\n$2</ul>\n");
+		step3 = step2.replace(/(^|\n)(([ ]{5,}\* .+?(\n|$))+)/gm, "\n<ul>\n$2</ul>\n");
+		step4 = step3.replace(/(^|\n)(([ ]{7,}\* .+?(\n|$))+)/gm, "\n<ul>\n$2</ul>\n");
+		step5 = step4.replace(/^[ ]+\* (.+)$/gm, "<li>$1</li>");
+
+		return step5;
+	}
+
+	function paragraphMarkup(text) {
+		prevstep = text.replace(/\n{3,}/g, "\n\n");
+		step = prevstep.replace(/^([\s\S]*?)(\n{2}|$)/, "<p>$1</p>$2");
+
+		while (step != prevstep) {
+			prevstep = step
+			step = prevstep.replace(/\n{2}([\s\S]*?)(\n{2}|$)/, "<p>$1</p>$2");
+		}
+
+		return step
+	}
+
+	function openEventInfo(eventid, event) {
+		title = event.title
+		url = event.url
+		description = event.description
+		pos = event.location
+		start = event.start
+		end = event.end
+		allDay = event.allDay
+
 		timeformat = (allDay) ? "Do MMMM YYYY" : "Do MMMM YYYY, HH:mm:ss";
 
 		if (start && start != 'null') {
@@ -152,18 +195,30 @@ no_translation_needed: True
 
 		if (pos && pos != 'null') {
 {% if resource.language =="de" %}
-			$("#eventLocation").html("<b>Ort:</b> " + pos + "<br />")
+			$("#eventLocation").html("<b>Ort:</b> " + pos.escapeHTML() + "<br />")
 {% else %}
-			$("#eventLocation").html("<b>Location:</b> " + pos + "<br />")
+			$("#eventLocation").html("<b>Location:</b> " + pos.escapeHTML() + "<br />")
 {% endif %}
 		} else {
 			/* Error: clear information from previous modal dialog */
 			$("#eventLocation").html("");
 		}
 
+		/* provide simple markup support */
+		tmp = description.escapeHTML()+"\n" // escape incoming string
+		tmp = tmp.replace(/(https?:\/\/\S*)/g, '<a href="$1">$1<\/a>'); // links
+		tmp = listMarkup(tmp) // bullet point list
+		tmp = paragraphMarkup(tmp) // generate <p> elements
+		tmp = tmp.replace(/(\[br\])/g, '<br />'); // newlines
+		tmp = tmp.replace(/ -&gt; /g, '&#8594;'); // right arrow
+		tmp = tmp.replace(/ &lt;- /g, '&#8592;'); // left arrow
+		processedDescription = tmp
+
+		console.log(processedDescription)
+
 		$("#eventTitle").attr("title", "Event ID: " + eventid);
-		$("#eventDescription").html(description);
-		$("#eventTitle").html(title);
+		$("#eventDescription").html(processedDescription);
+		$("#eventTitle").text(title).html;
 
 		if (url && url != 'null') {
 			{% if resource.language =="de" %}
