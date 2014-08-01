@@ -69,6 +69,16 @@ no_translation_needed: True
 .event-red :hover {
 	color: rgb(200,0,0);
 }
+
+.event-disabled {
+	background-color: rgb(150,150,150);
+	border-color: rgb(128,128,128);
+	color: rgb(230,230,230);
+}
+
+.event-disabled :hover {
+	color: rgb(100,100,100);
+}
 </style>
 {% endblock %}
 
@@ -112,6 +122,27 @@ no_translation_needed: True
 		});
 	}
 
+	function getURLParameter(sParam) {
+		var sPageURL = window.location.search.substring(1);
+		var sURLVariables = sPageURL.split('&');
+		for (var i = 0; i < sURLVariables.length; i++) {
+			var sParameterName = sURLVariables[i].split('=');
+			if (sParameterName[0] == sParam) {
+				return sParameterName[1];
+			}
+		}
+		return "";
+	}
+
+	function splitCSV(data) {
+		if(data && data != 'null')
+			return data.split(",")
+		else
+			return 'null'
+	}
+
+	var selected_ids = splitCSV(getURLParameter("ids"))
+
     $(document).ready(function() {
         $('#calendar').fullCalendar({
             header: {
@@ -136,7 +167,13 @@ no_translation_needed: True
 {% endif %}
 
 				element.attr('href', 'javascript:void(0);');
-				element.click(function() { openEventInfo(id, event); });
+				element.click(function() { openEventInfo(event); });
+
+				if (selected_ids && selected_ids != 'null' && selected_ids.indexOf(id) === -1) {
+					element.addClass("event-disabled");
+				} else {
+					/* TODO: colorize */
+				}
 			}
         })
     });
@@ -165,7 +202,8 @@ no_translation_needed: True
 		return step
 	}
 
-	function openEventInfo(eventid, event) {
+	function openEventInfo(event) {
+		eventid = event.id.replace("@google.com", "")
 		title = event.title
 		url = event.url
 		description = event.description
@@ -213,8 +251,6 @@ no_translation_needed: True
 		tmp = tmp.replace(/ -&gt; /g, '&#8594;'); // right arrow
 		tmp = tmp.replace(/ &lt;- /g, '&#8592;'); // left arrow
 		processedDescription = tmp
-
-		console.log(processedDescription)
 
 		$("#eventTitle").attr("title", "Event ID: " + eventid);
 		$("#eventDescription").html(processedDescription);

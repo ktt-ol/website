@@ -2,6 +2,7 @@
 
 from hyde.plugin import Plugin
 from lang import default_language
+from lang import i18n
 from jinja2 import contextfilter
 import json
 
@@ -11,6 +12,10 @@ calendar_links = {}
 def calendar_links_json():
     return json.dumps(calendar_links)
 
+@contextfilter
+def gen_cal_link(ids, language):
+    return i18n(None,"/calendar.html",language)+'?ids='+",".join(ids)
+
 class CalendarPlugin(Plugin):
     def __init__(self, site):
         super(CalendarPlugin, self).__init__(site)
@@ -18,6 +23,7 @@ class CalendarPlugin(Plugin):
     def template_loaded(self,template):
         super(CalendarPlugin, self).template_loaded(template)
         self.template.env.globals["calendar_links"] = calendar_links_json
+        self.template.env.globals["gen_cal_link"] = gen_cal_link
 
     def begin_site(self):
         global calendar_links
