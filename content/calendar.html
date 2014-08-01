@@ -143,39 +143,47 @@ no_translation_needed: True
 
 	var selected_ids = splitCSV(getURLParameter("ids"))
 
-    $(document).ready(function() {
-        $('#calendar').fullCalendar({
-            header: {
-                left: 'prev,next today',
-                center: 'title',
-                right: 'month,agendaWeek,agendaDay'
-            },
-            weekMode: 'variable', /* variable numbers of weeks instead of always using 6 */
-            events: {
-                url: '//www.kreativitaet-trifft-technik.de/calendar/feeds/markusframer%40gmail.com/public/basic',
-                dataType: 'gcal'
-            },
-			eventRender: function(event, element) {
-				id = event.id.replace("@google.com", "")
+	var calendar_config = {
+		header: {
+			left: 'prev,next today',
+			center: 'title',
+			right: 'month,agendaWeek,agendaDay'
+		},
+		weekMode: 'variable', /* variable numbers of weeks instead of always using 6 */
+		events: {
+			url: '//www.kreativitaet-trifft-technik.de/calendar/feeds/markusframer%40gmail.com/public/basic',
+			dataType: 'gcal'
+		},
+		eventRender: function(event, element) {
+			id = event.id.replace("@google.com", "")
 
-				event.url = (id in calendar_links) ? calendar_links[id]["{{ resource.language }}"] : 'null'
+			event.url = (id in calendar_links) ? calendar_links[id]["{{ resource.language }}"] : 'null'
 
 {% if resource.language =="en" %}
-				if (event.title in calendar_translations)
-					event.title = calendar_translations[event.title]
-				element.find(".fc-event-title").html(event.title);
+			if (event.title in calendar_translations)
+				event.title = calendar_translations[event.title]
+			element.find(".fc-event-title").html(event.title);
 {% endif %}
 
-				element.attr('href', 'javascript:void(0);');
-				element.click(function() { openEventInfo(event); });
+			element.attr('href', 'javascript:void(0);');
+			element.click(function() { openEventInfo(event); });
 
-				if (selected_ids && selected_ids != 'null' && selected_ids.indexOf(id) === -1) {
-					element.addClass("event-disabled");
-				} else {
-					/* TODO: colorize */
-				}
+			if (selected_ids && selected_ids != 'null' && selected_ids.indexOf(id) === -1) {
+				element.addClass("event-disabled");
+			} else {
+				/* TODO: colorize */
 			}
-        })
+		}
+	};
+
+	display_date = getURLParameter("date")
+	if (display_date && display_date != 'null') {
+		console.log("default date");
+		calendar_config.defaultDate = display_date
+	}
+
+    $(document).ready(function() {
+        $('#calendar').fullCalendar(calendar_config)
     });
 
 	function listMarkup(text) {
