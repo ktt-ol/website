@@ -20,7 +20,7 @@ function spaceStatusSet(status) {
 	cls = statusmsg[status]["class"];
 	msg = statusmsg[status][language];
 
-	$('#status').html("<img src=\""+img+"\" alt=\""+msg+"!\" title=\""+msg+"!\" style='width: 100%' />");
+	$('#status').html("<a href=\"//status.kreativitaet-trifft-technik.de/\"><img src=\""+img+"\" alt=\""+msg+"!\" title=\""+msg+"!\" style='width: 100%' /></a>");
 	$('#status').parent().parent().removeClass("panel-danger panel-success panel-warning");
 	$('#status').parent().parent().addClass(cls)
 }
