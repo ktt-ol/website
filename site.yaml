@@ -44,6 +44,8 @@ context:
                   url: talks.html
                 - title: {de: Aktionen, en: Events}
                   url: events.html
+                - title: {de: Veranstaltungsreihen, en: Series of Events}
+                  url: series_of_events.html
             - title: {de: Bilder, en: Images}
               type: menu
               basename: images
