@@ -42,6 +42,10 @@ content/series_of_events.html: $(series_of_events)
 	touch $@
 content/media/calendar-links.json: $(groups) $(talks) $(events)
 	touch $@
+content/series-of-events/%.html: $(events)
+	touch $@
+content/group/%.html: $(projects)
+	touch $@
 
 upload:
 	./sync.sh
