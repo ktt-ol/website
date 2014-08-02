@@ -1,0 +1,97 @@
+---
+title: Lauflicht
+#thumbnail: project/lederschuhe/thumbnail.jpg
+created: !!timestamp '2012-07-03 12:15:00'
+type: hardware
+author: olt
+status: finished
+---
+
+{% filter markdown|typogrify -%}
+Manchmal fällt uns ein Projekt auch einfach in den Schoß. So wie dieses
+Lauflicht aus 192×14 LEDs. Das Gerät gehört einem Freund des Vereins, der aber
+gerade wenig Zeit und Muße hat, sich der Herausforderung zu stellen, das gute
+Stück zu programmieren und somit wieder nutzbar zu machen. Denn dummer Weise
+fehlt die zur Programmierung notwendige proprietäre Tastatur zu diesem über 30
+Jahre alten Schätzchen. Also hat er es uns in der Hoffnung vorbeigebracht, dass
+sich bei uns jemand finden würde, der Lust auf diese Herausforderung hat.
+
+<img src="{{ content_url("project/lauflicht/img1.jpg") }}" alt="Lauflicht" title="Lauflicht" class="project-img centered" />
+
+Hardware die nicht funktioniert oder von der niemand weiß wie sie funktioniert
+und dann auch noch mit blinkenden LEDs.
+
+#### CHALLENGE ACCEPTED!
+
+Diesmal wurden unsere Spezialexperten für alte Hardware schwer gefordert. Es
+gab keine Handbücher und auch das vorhandene Typenschild verriet uns nur, dass
+die Hardware das letzte mal 1985 gewartet wurde. Es musste also alles selbst
+herausgefunden werden. Gesagt getan. Das Gehäuse wurde aufgeschraubt, der
+Controler teilweise ausgebaut mit einem Logic Analyser verbunden und die
+zuletzt einprogrammierte Animation durchlaufen gelasssen. Der Logic Analyser
+hat dabei die Signale aufgezeichnet, die an den Controler geschickt wurden.
+Dadurch war es möglich, die einzelnen Kommandos nachträglich genau auszuwerten.
+Leider ist es natürlich nicht so, dass einem die Geräte sagen, was warum wann
+gerade getan wird. Also starrt man manchmal mehrere Stunden auf solche Kurven
+wie in dem Bild.
+
+<img src="{{ content_url("project/lauflicht/img2.jpg") }}" alt="Logic Analyzer" title="Logic Analyzer" class="project-img centered" />
+
+Man überlegt, warum gerade an dieser Stelle jetzt gerade Strom an oder aus
+gestellt wird, verrennt sich von einer in die nächste Theorie, weiß irgendwann
+nicht mehr, warum man die letzte wieder verworfen hat. Schließlich kommt man
+auf die selbe Idee zwei oder drei mal und ist am Ende soweit für den Tag
+Schluss zu machen, um es am nächsten Tag erneut zu probieren.
+
+Und an dieser Stelle hat sich das Konzept Hackerspace voll ausgezahlt; es
+passierte, was passieren soll: Jemand, der bisher völlig unbeteiligt war, lief
+vorbei warf einen kurzen Blick auf den Bildschirm sagt etwas wie “Sieht für
+mich aus wie eine Binäreadressierung”. “HEUREKA!” genau das war’s. Jede LED der
+ersten Spalte wird mit einer Zahl zwischen 0 und 13 in Binärdarstellung
+angesprochen, dann wird sie entweder auf an oder aus gestellt und, wenn man
+damit fertig ist, werden alle Spalten eins weiter geschoben. Danach wird die
+neue letzte Spalte bearbeitet. Dies geschieht so schnell, dass es am Ende wie
+eine flüssige Animation aussieht. Mittlerweile können wir also unsere eigenen
+Animationen abspielen. Und wie üblich, wenn wir sich bewegende LEDs haben,
+wollen wir auch damit spielen: Der nächste Schritt ist also die Implementierung
+eines Jump-and-Runs à la Super Mario auf 192×14 LEDs. Mal gucken wie schnell
+das fertig ist. Und wenn wir spielen können, freuen wir uns natürlich über neue
+Gegner, die versuchen, unsere High-Scores zu knacken.
+
+<div id="video" style="text-align: center">
+	<a href="#video" onClick="playVideo('Ilu1I9LmIsU','640','360');">
+		<canvas id="canvas" width="640" height="360"></canvas>
+	</a>
+</div>
+
+<script type="text/javascript">
+function playVideo(vcode, width, height) {
+  "use strict";
+  $("#video").html('<iframe width="'+width+'" height="'+height+'" src="//www.youtube.com/embed/'+vcode+'?autoplay=1&loop=1&rel=0&wmode=transparent" frameborder="0" allowfullscreen></iframe>');
+}
+
+var canvas = document.getElementById('canvas');
+var context = canvas.getContext('2d');
+var coverImage = new Image();
+var playImage = new Image();
+var whiteImage = new Image();
+
+coverImage.onload = function() {
+	context.drawImage(coverImage, 0, 0);
+	whiteImage.src = "{{ content_url('data/white.svg') }}";
+};
+
+whiteImage.onload = function() {
+	context.drawImage(whiteImage, 0, 0);
+	playImage.src = "{{ content_url('data/play.svg') }}";
+};
+
+playImage.onload = function() {
+	context.drawImage(playImage, 245, 100);
+};
+
+coverImage.src = "{{ content_url("project/lauflicht/video.jpg") }}";
+</script>
+
+
+{%- endfilter %}
