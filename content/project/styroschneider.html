@@ -1,0 +1,102 @@
+---
+title: Styroschneider
+#thumbnail: project/styroschneider/thumbnail.jpg
+created: !!timestamp '2012-02-12 12:00:00'
+type: hardware
+author: 0xFF, SebSetz
+status: works
+---
+
+{% filter markdown|typogrify -%}
+
+Als erstes Projekt, an dem wir im Space arbeiten, soll heute der Styroschneider
+vorgestellt werden.
+
+### Die Motivation
+
+Die Idee einen Stryoschneider zu entwickeln hat sich aus einem anderen Projekt
+ergeben, dem Return-to-Launch-Wetterballon. Um für den Wetterballon ein
+Gehäuse, Steuerruder und ähnliches zu bauen wurde ein leichter,
+druckänderungsunempfindlicher und falls möglich auch kostengünstiger Werkstoff
+benötigt. Nach einiger Überlegung und der Entdeckung dieses Projekts fiel die
+Wahl auf Styropor und den Nachbau des CNC-Hotwires.
+
+### Die Idee
+
+Die Idee hinter dem Styroschneider ist relativ simpel. Man verwendet durch
+Schrittmotoren gesteuerte Aufhängungen, auf zwei Seiten eines Styropor-Blocks,
+die einen heißen Draht führen, der wiederum das Styropor schneidet. Die
+Ansteuerung geschieht dabei wie bei einer CNC-Fräse über G-Code Anweisungen.
+
+Das ist zwar nicht unser Styroschneider, unser soll aber am Ende auch so
+funktionieren. Um leichter transportabel zu sein, wir werden mit dem Beta-Space
+ja noch mindestens einmal umziehen müssen, soll unserer Variante allerdings
+unter einen Tisch montiert werden.
+
+### Stand vom 12.02.2012
+
+Mittlerweile sind die ersten Arbeiten an unserem Styroschneider abgeschlossen.
+Die Grundplatte auf der die Elektronik und die benötigten Motoren angebracht
+sind ist zugeschnitten und mit bisher zwei Schrittmotoren und einer Aufhängung
+für die Steuerung des Drahts versehen worden. Gestern konnte dann auch die
+Kalibirierung der beiden Motoren abgeschlossen werden und damit wir auch ein
+bisschen was zu präsentieren haben wurde der Styroschneider kurzerhand zum
+Behelfsplotter umgewandelt. Dank G-Code Steuerung und angeschlossener
+Verarbeitung von SVG-Dateien konnten dann gestern Pacmans, Nikolaushäuser und
+KtT-Logos geplottet werden. Und so sieht das ganze aus.
+
+<img src="{{ content_url("project/styroschneider/0000.jpg") }}" alt="Styroschneider Test" title="Styroschneider Test" class="project-img centered" />
+
+<div id="video1" style="text-align: center">
+	<a href="#video" onClick="playVideo('video1', 'r4XIohDZIYs','568','360');">
+		<canvas id="canvas1" width="568" height="360"></canvas>
+	</a>
+</div>
+
+<div id="video2" style="text-align: center">
+	<a href="#video" onClick="playVideo('video2', 'vNpmt4UVJ5w','568','360');">
+		<canvas id="canvas2" width="568" height="360"></canvas>
+	</a>
+</div>
+
+Viel Spass mit den Videos und hoffentlich bis bald im Beta-Space
+
+<script type="text/javascript">
+function playVideo(velement, vcode, width, height) {
+  "use strict";
+  $("#"+velement).html('<iframe width="'+width+'" height="'+height+'" src="//www.youtube.com/embed/'+vcode+'?autoplay=1&loop=1&rel=0&wmode=transparent" frameborder="0" allowfullscreen></iframe>');
+}
+
+function initVideo(canvaselement, img) {
+	var canvas = document.getElementById(canvaselement);
+	var context = canvas.getContext('2d');
+	var coverImage = new Image();
+	var playImage = new Image();
+	var whiteImage = new Image();
+
+	coverImage.onload = function() {
+		context.drawImage(coverImage, 0, 0);
+		whiteImage.src = "{{ content_url('data/white.svg') }}";
+	};
+
+	whiteImage.onload = function() {
+		context.drawImage(whiteImage, 0, 0);
+		playImage.src = "{{ content_url('data/play.svg') }}";
+	};
+
+	playImage.onload = function() {
+		context.drawImage(playImage, 204, 90);
+	};
+
+	coverImage.src = img;
+}
+
+initVideo("canvas1", "styroschneider/pacman.jpg")
+initVideo("canvas2", "styroschneider/haus_vom_nikolaus.jpg")
+</script>
+
+### Stand vom 2014
+
+To be continued...
+
+{%- endfilter %}
