@@ -1,0 +1,111 @@
+---
+title: Sommer im Quartier
+thumbnail: sommer-im-quartier/thumbnail.jpg
+created: !!timestamp '2012-06-03 12:00:00'
+teaser: Abscheidsfeier von unseren ersten vier Wänden, dem quARTier.
+---
+
+{% block content %}
+{% filter markdown|typogrify -%}
+
+Am 2. und 3. Juni fand rund um das quARTier die erste von zwei Abscheidsfeiern
+statt, der “Sommer im Quartier”. Leider wird das Gebäude, das bislang auch den
+Beta-Space beherbergte, bald abgerissen. Somit war dies die letzte Chance, alle
+Projekte die im und um das quARTier herum entstanden sind, noch einmal der
+Öffentlichkeit zu präsentieren. Auch wir waren natürlich dabei.
+
+Nach einigen Wochen der Vorbereitung konnten wir in unserer Werkstatt eine
+museumsreife Ausstellung mit Beschreibungstexten und allem, was dazu gehört,
+präsentieren. Alle Projekte, die in der letzten Zeit im Space entstanden sind,
+konnten einer breiten Öffenlichkeit präsentiert werden. Dabei galt: Anfassen
+erlaubt. Einer unserer 3D-Drucker hat live gedruckt, am Styropor-Schneider
+konnten sich Wunschfiguren ausgeschnitten werden und an über 30 Jahren alten
+Terminals konnte Snake gespielt werden. Daneben war auch unser grüner Daumen zu
+bewundern: Unsere Windowfarm stieß auf breites Interesse. Gleiches gilt für die
+inzwischen diversen LED-Spielereien, die in den letzten Wochen zusammengelötet
+worden sind. Und natürlich auch unser größtes “Spielzeug”, unsere selbstgebaute
+CNC-Fräse fand nicht selten bewundernde Blicke.
+
+<img src="{{ content_url("events/sommer-im-quartier/img1.jpg") }}" alt="Kinder an unseren Terminals" title="Kinder an unseren Terminals" class="project-img centered" />
+
+Trotz Regen fanden an den vier Tagen gut 500 Interessierte über eine steile
+Treppe den Weg in den Beta-Space. Viele dieser Besucher waren eher künstlerisch
+als technisch interessiert, waren aber dennoch schnell von unseren Exponaten
+und von userer Arbeit begeistert. Denn Styroporschneider, CNC-Fräse und
+3D-Drucker sowie vor allem die auf diesen Maschinen live entstandenen “Ponies”,
+“Hello Kitty”-Figuren und die dazu passenden Prinzessinnenschlösser konnten
+schließlich auch künstlerisch überzeugen.
+
+<img src="{{ content_url("events/sommer-im-quartier/img2.jpg") }}" alt="Kinder beim Klackerlaken bauen" title="Kinder beim Klackerlaken bauen" class="project-img centered" />
+
+Der größte Publikumsmagnet war aber sicher die Klackerlacken-Aktion am Samstag.
+Wir hatten gemeinsam mit der Kulturetage Kinder eingeladen, mit uns kleine
+Plagegeister aus Club-Mate-Deckeln, Knopfzellen und Vibrationsmotoren zu bauen
+und diese in einem Rennen gegeneinander antreten zu lassen. Dass wir dabei mit
+einem solch großen Andrang von Kindern und Eltern konfrontiert werden würden,
+hätten wir uns nie träumen lassen. Sogar die Großeltern wollten Klackerlacke
+bauen… Nach vier Stunden waren fast alle Vibrationsmotoren, die wir
+freundlicher Weise von ENDRICH geschenkt bekommen haben, und alle Batterien
+verbaut, unser Betreuerteam völlig geschafft und viele sehr interessante
+Klackerlaken entstanden.
+
+<img src="{{ content_url("events/sommer-im-quartier/img3.jpg") }}" alt="einige fertige Klackerlaken" title="einige fertige Klackerlaken" class="project-img centered" />
+
+Bei allem positiven Zuspruch müssen wir uns jetzt trotzdem damit arrangieren,
+dass der Beta-Space nicht mehr lange Bestand haben wird. Wir werden zeitnah
+eine neue Bleibe finden müssen. Denn der Abrisstermin für das quARTier rückt
+Tag für Tag näher. Aber die Klackerlaken-Aktion und der große Erfolg der
+Ausstellung haben uns für diese Herausforderung neue Kraft gegeben. Vor allem,
+da es bereits während der Veranstaltung die ersten Gespräche über Optionen für
+einen neuen Hackspace gab.
+
+Last but not least möchten wir uns natürlich bei der Kulturetage und vor allem
+bei Susann Mertineit für die tolle Veranstaltung trotz Regens bedanken. Wie
+gewohnt konnten wir uns während der ganzen vier Tage stets ihrer
+unbürokratischen und freundlichen Unterstüzung sicher sein. Genau mit dieser
+Haltung hat sie uns die gesamte Zeit, in der wir im quARTier unterkommen
+durften, stets begleitet. Wir sagen an dieser Stelle auch dafür laut “Danke!”.
+Wir hoffen unser nächster “Vermieter” wird genauso entspannt und
+begeisterungsfähig sein.
+
+<div id="video" style="text-align: center">
+	<a href="#video" onClick="playVideo('video', 'CtIyikYPLdU','568','360');">
+		<canvas id="canvas" width="568" height="360"></canvas>
+	</a>
+</div>
+
+<script type="text/javascript">
+function playVideo(velement, vcode, width, height) {
+  "use strict";
+  $("#"+velement).html('<iframe width="'+width+'" height="'+height+'" src="//www.youtube.com/embed/'+vcode+'?autoplay=1&loop=1&rel=0&wmode=transparent" frameborder="0" allowfullscreen></iframe>');
+}
+
+function initVideo(canvaselement, img) {
+	var canvas = document.getElementById(canvaselement);
+	var context = canvas.getContext('2d');
+	var coverImage = new Image();
+	var playImage = new Image();
+	var whiteImage = new Image();
+
+	coverImage.onload = function() {
+		context.drawImage(coverImage, 0, 0);
+		whiteImage.src = "{{ content_url('data/white.svg') }}";
+	};
+
+	whiteImage.onload = function() {
+		context.drawImage(whiteImage, 0, 0);
+		playImage.src = "{{ content_url('data/play.svg') }}";
+	};
+
+	playImage.onload = function() {
+		context.drawImage(playImage, 204, 90);
+	};
+
+	coverImage.src = img;
+}
+
+initVideo("canvas", "sommer-im-quartier/video.jpg")
+</script>
+
+{%- endfilter %}
+{% endblock content %}
