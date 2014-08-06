@@ -10,7 +10,7 @@ calendar_links = {}
 
 @contextfilter
 def calendar_links_json():
-    return json.dumps(calendar_links)
+    return json.dumps(calendar_links, sort_keys=True)
 
 @contextfilter
 def gen_cal_link(ids, language):
