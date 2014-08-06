@@ -1,0 +1,92 @@
+---
+title: Flying Games Logo
+thumbnail: project/flying-games-logo/thumbnail.jpg
+created: !!timestamp '2012-11-06 23:42:00'
+type: hardware
+author: fermate
+status: finished
+---
+{% filter markdown|typogrify -%}
+
+Seit dem 1.11.12 bin ich Mitglied, und am 3.11. war ich das erste Mal "so
+richtig" im Hackspace, der jetzt den schönen Namen "Mainframe" trägt. Ich kam
+gerade rechtzeitig zu einem Vortrag der Mainframe-Reihe, über Fourier-Analysen:
+war spannend und gut erklärt, und ich konnte meine Mathe-Kenntnisse an einem
+praktischen Beispiel - mit Elektronik-Demo! - auffrischen.
+
+Danach fing ich mit meinem ersten kleinen Projekt an. Ich wollte das Logo des
+Spiele-Kleinverlags Flying Games aus Styropor ausschneiden, um es dann bei
+Spielevorstellungen an einer langen, dünnen Stange über dem Spieltisch
+"fliegen" lassen zu können. Das Logo hatte ich von Markus, dem Verleger, als
+PDF im Vektorformat bekommen. Im Original sah das so aus:
+
+<img src="{{ content_url("project/flying-games-logo/0000.jpg") }}" alt="Original Flying Games Logo" title="Original Flying Games Logo" class="project-img centered" />
+
+Das musste ich jetzt in eine SVG-Datei umwandeln, die nur noch einen langen
+Pfad enthält. Zunächst verband ich also die Umrisse des Logos (die beiden
+Flügel mit der Spieleschachtel in der Mitte) und erhielt das hier:
+
+<img src="{{ content_url("project/flying-games-logo/0001.jpg") }}" alt="Vektorisierte Umrisse des Logos" title="Vektorisierte Umrisse des Logos" class="project-img centered" />
+
+Die Buchstaben "F" und "G" machten mir etwas Kopfzerbrechen, ich beschloss
+schließlich, sie von unten her anzuschneiden und durch die gleiche Öffnung
+wieder zurückzukehren zum Umriss. Damit würde das Logo dann zwei schmale Löcher
+bekommen, aber die könnte ich hinterher vielleicht wieder kleben. Die Vorlage
+sah dann so aus:
+
+<img src="{{ content_url("project/flying-games-logo/0002.jpg") }}" alt="Vektorlogo mit Buchstaben" title="Vektorlogo mit Buchstaben" class="project-img centered" />
+
+Damit ging es dann zum PC, der den Styroschneider steuert. Die SVG-Datei wurde
+dort mit Inkscape geöffnet, und das Plugin sollte sie in GCode umwandeln. Damit
+wird der Schneider angesteuert - ist auch Thema im nächsten Mainframe-Vortrag.
+
+Zunächst war die generierte Datei aber leer. Ich hatte vergessen, den Pfad auch
+an einer Stelle zu öffnen, damit der Styroschneider einen Anfang hat. Außerdem
+mag das Plugin wohl keine gruppierten Objekte. Auch mit der Skalierung passte
+es noch nicht ganz (das Modell war viel zu klein), aber das konnte in Inkscape
+leicht angepasst werden.
+
+Dann hatten wir gültigen GCode und mussten nur noch den Styroschneider an die
+richtige Position fahren und ihm sagen, wo im Koordinatensystem des Objekts er
+anfangen sollte. Und los gings! Schließlich war das Logo fertig und sah so aus:
+
+<img src="{{ content_url("project/flying-games-logo/0003.jpg") }}" alt="Ergebnis" title="Ergebnis" class="project-img centered" />
+
+Und mit dem Video vom Schnitt habe ich ein weiteres erstes Mal gewagt: mein erstes Youtube-Video.
+
+<div id="video" style="text-align: center">
+	<a href="#video" onClick="playVideo('huOZjmjd00w','640','360');">
+		<canvas id="canvas" width="640" height="360"></canvas>
+	</a>
+</div>
+
+<script type="text/javascript">
+function playVideo(vcode, width, height) {
+  "use strict";
+  $("#video").html('<iframe width="'+width+'" height="'+height+'" src="//www.youtube.com/embed/'+vcode+'?autoplay=1&loop=1&rel=0&wmode=transparent" frameborder="0" allowfullscreen></iframe>');
+}
+
+var canvas = document.getElementById('canvas');
+var context = canvas.getContext('2d');
+var coverImage = new Image();
+var playImage = new Image();
+var whiteImage = new Image();
+
+coverImage.onload = function() {
+	context.drawImage(coverImage, 0, 0);
+	whiteImage.src = "{{ content_url('data/white.svg') }}";
+};
+
+whiteImage.onload = function() {
+	context.drawImage(whiteImage, 0, 0);
+	playImage.src = "{{ content_url('data/play.svg') }}";
+};
+
+playImage.onload = function() {
+	context.drawImage(playImage, 245, 100);
+};
+
+coverImage.src = "{{ content_url("project/flying-games-logo/video.jpg") }}";
+</script>
+
+{%- endfilter %}
