@@ -5,7 +5,7 @@
         {% block title %}{{ resource.meta.title|default(feed_title) }}{% endblock %}
     </title>
     {% block self_url %}
-    <link href="{{ resource.url }}" rel="self" />
+    <link href="{{ content_url(resource.url) }}" rel="self" />
     {% endblock %}
 
     {% block site_url %}
@@ -15,7 +15,8 @@
     {% block feed_extra %}
     {% endblock %}
 
-    <updated>{{ time_now|xmldatetime }}</updated>
+    {% set firstelement = site.content.node_from_relative_path(resource.meta.crawl_directory).walk_resources_sorted_by_time()|first %}
+    <updated>{{ firstelement.meta.created|xmldatetime }}</updated>
 
     <id>{{ content_url(resource.url) }}/</id>
 
