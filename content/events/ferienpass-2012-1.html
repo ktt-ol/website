@@ -1,0 +1,30 @@
+---
+title: Ferienpass 2012 - Klackerlaken-Bauen I
+series: Ferienpass
+thumbnail: ferienpass-2012-1/thumbnail.jpg
+created: !!timestamp '2012-07-28 21:00:00'
+teaser: Heute hatten wir den Space voll mit Kids - 12 Energiebündel waren gekommen, um mit uns Klackerlaken zu bauen.
+---
+{% block content %}
+{% filter markdown|typogrify -%}
+{{resource.meta.teaser}}
+
+<img src="{{ content_url("events/ferienpass-2012-1/0000.jpg") }}" alt="Klackerlaken-Schlachtfeld ;)" title="Klackerlaken-Schlachtfeld ;)" class="project-img centered" />
+
+Nach einer Menge Spaß beim Herumprobieren und Dekorieren gab es noch kleine
+Wettbewerbe: wer fährt schneller durch die selbstgebaute Rennstrecke, wer dreht
+schneller oder besonders laut oder leise. Außerdem wurden Räume und Maschinen
+besichtigt, Fahrstuhl gefahren und Verstecken gespielt ;)
+
+<img src="{{ content_url("events/ferienpass-2012-1/0001.jpg") }}" alt="Warten auf die Kronen aus dem 3D-Drucker" title="Warten auf die Kronen aus dem 3D-Drucker" class="project-img centered" />
+
+Schließlich wurde noch der 3D-Drucker integriert und nach kurzer Konstruktion
+wurden die dringend benötigten Kronen vor großen Augen ausgedruckt.
+
+Last not least auch ein Dankeschön an <a href="http://meyleankronemann.de/">Mey Lean Kronemann</a>,
+die die Idee für die <a href="http://meyleankronemann.de/klackerlaken/">Klackerlaken</a> hatte und
+unter einer freien CC-Lizenz der Allgemeinheit zur Verfügung gestellt hat!
+
+<!-- TODO: gallery -->
+{%- endfilter %}
+{% endblock content %}
