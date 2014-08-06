@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import os
+import unittest
 from hyde.plugin import Plugin
 from hyde.site import Resource
 from jinja2 import contextfilter
@@ -19,32 +20,34 @@ def get_lang(resource):
             return None
         return language
 
+def make_real_path(filepath):
+    if filepath[0] == '/':
+        filepath = filepath[1:]
+    return os.path.join("content", filepath)
+
 def get_i18n_path(path, lang):
-    reslang = path.split(".")[-2]
+    path_split = path.split(".")
+    reslang = path_split[-2]
     if reslang not in available_languages:
         reslang = None
 
-    if reslang == lang or reslang == None and lang == default_language:
+    if reslang == lang or reslang is None and lang == default_language:
         return None
 
-    tmp = path.split(".")
-
-    if tmp[-1] not in translatable_extensions:
+    ext = path_split[-1]
+    if ext not in translatable_extensions:
         return None
 
-    elif reslang == None:
-        newpath = ".".join(tmp[0:-1]) + "." + lang + "." + tmp[-1]
+    elif reslang is None:
+        newpath = "%s.%s.%s" % (".".join(path_split[0:-1]), lang, ext)
 
         return newpath
     else:
-        newpath = ".".join(tmp[0:-2]) + "." + lang + "." + tmp[-1]
+        newpath = "%s.%s.%s" % (".".join(path_split[0:-2]), lang, ext)
 
-        if newpath[0] == '/':
-            newpath = newpath[1:]
-
-        realpath = os.path.join("content", newpath)
+        realpath = make_real_path(newpath)
         if not os.path.exists(realpath) and lang == default_language:
-            newpath = ".".join(tmp[0:-2]) + "." + tmp[-1]
+            newpath = ".".join(path_split[0:-2]) + "." + ext
 
         return newpath
 
@@ -102,3 +105,27 @@ class LangPlugin(Plugin):
                     if res.language is None:
                         res.language = default_language
             node.resources += added_resources
+
+
+class TestSequenceFunctions(unittest.TestCase):
+
+    def test_get_i18n_path(self):
+
+        test_data = [
+            # path, lang, expected result
+            ("contact.de.html", "de", None),
+            ("contact.de.html", "en", "contact.en.html"),
+            ("contact.en.html", "de", "contact.html"),
+            ("contact.en.html", "en", None),
+            ("/contact.de.html", "de", None),
+            ("/contact.de.html", "en", "/contact.en.html"),
+            ("events.html", "de", None),
+            ("events.html", "en", "events.en.html"),
+            ("/events.html", "de", None),
+            ("/events.html", "en", "/events.en.html")
+        ]
+
+        for test_this in test_data:
+            print("testing: " + str(test_this) )
+            result = get_i18n_path(test_this[0], test_this[1])
+            self.assertEqual(test_this[2], result)
