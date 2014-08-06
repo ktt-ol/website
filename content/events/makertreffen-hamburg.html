@@ -1,0 +1,41 @@
+---
+title: Makertreffen Hamburg
+thumbnail: makertreffen-hamburg/thumbnail.jpg
+created: !!timestamp '2012-10-20 20:00:00'
+teaser: Wir sind mit einer kleinen Delegeation zum Hamburger Makertreffen im Attraktor gefahren.
+---
+
+{% block content %}
+{% filter markdown|typogrify -%}
+Wir sind mit einer kleinen Delegeation zum
+<a href="http://www.hamburger-makertreffen.de/">Hamburger Makertreffen</a> im
+<a href="http://blog.attraktor.org/">Attraktor</a> gefahren.
+Da von den Fahrenden keiner momentan an sehenswerten Projekten
+arbeitet, sind wir nicht als Aussteller, sondern als Gäste
+dorthin gefahren.
+
+Pünktlich um 11:00 angekommen, wurden wir direkt mit Gäste-Ausweisen aus dem
+3D-Drucker empfangen, und konnten uns direkt umschauen. Es war auf anhieb viel
+interessantes, alt bekanntes und auch neues zu entdecken. So zierten zum
+Beispiel selbstgebaute Steampunk-Artefakte oder Sortierboxen, ein
+hochauflösender 3D-Drucker, eine Floppy-Orgel, ein ferngesteuerter Quadrokopter
+sowie ein elektronisches "Siedler von Catan"-Spiel die Ausstellungsfläche des
+Attraktors.
+
+Zusätzlich zu den Exponaten waren auch gefühlt sämtliche Maschinen, also die
+(twitternde und singende!) CNC-Fräse, der Lasercutter und der Styroschneider im
+Betrieb. Im Untergeschoss fanden währenddessen diverse Workshops statt, wie zum
+Beispiel eine Einführung in Arduino und Fritzing, sowie ein kleiner Einblick in
+die vorhandene Schlüssel-Werkstatt inklusive Nachfertigung von Schlüsseln mit
+Erklärung. Zur Erfrischung gab es frisch gepressten Birnen- oder Quittensaft.
+
+Alles in allem war es ein lohnenswerter Tagesausflug mit inspirierenden
+Ausstellern, interessanten Workshops und Gesprächspartnern und einem
+besuchenswerten Makerspace :-)
+
+***Update:*** <a href="http://blog.attraktor.org/2012/10/nachbetrachtung-zum-hamburger-makertreffen/">Nachbereitender Blogartikel des Attraktors</a>
+
+{% from "macros.j2" import render_gallery with context %}
+{{ render_gallery("mygalley", "events/makertreffen-hamburg/gallery") }}
+{%- endfilter %}
+{% endblock content %}
