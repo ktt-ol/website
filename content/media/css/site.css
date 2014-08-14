@@ -92,6 +92,30 @@ body {
 	margin-left: 0px;
 }
 
+
 .sponsor-ovh img {
   max-height: 100px;
+}
+.page-sponsors .sponsor-detail {
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 15px;
+  margin-bottom: 15px;
+}
+.page-sponsors .sponsor-detail:last-child {
+  border-bottom: none;
+}
+.page-sponsors .sponsor-ovh-news {
+  padding-top: 10px;
+}
+.page-sponsors .sponsor-ovh-news h1 {
+  font-size: 16px;
+  margin: 0;
+  padding: 10px 0;
+}
+.page-sponsors .sponsor-ovh-news h2,
+.page-sponsors .sponsor-ovh-news br {
+  display: none;
+}
+.page-sponsors .sponsor-ovh-news table {
+  font-size: 14px;
 }

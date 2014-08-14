@@ -1,0 +1,31 @@
+---
+title: Sponsoren
+extends: default.j2
+---
+
+{% block mainbox %}
+
+<div class="panel panel-default page-sponsors">
+    <div class="panel-heading">
+        <h3 class="panel-title">Sponsoren</h3>
+    </div>
+    <div class="panel-body">
+        Ohne unsere Sponsoren wäre die Ziele von unserem Verein viel schwieriger umzusetzen. Wir bedanken uns daher bei den folgenden Unternehmen.
+
+        <div class="sponsor-detail">
+            <h3>Württembergische Versicherung AG</h3>
+            <a href="http://www.wuerttembergische.de/oliver.majer">Oliver Majer von der Württembergische Versicherung AG</a>
+        </div>
+
+        <div class="sponsor-detail">
+            <h3>OVH</h3>
+            Wir bekommen von unserem Sponsor <a href="www.ovh.de">OVH</a> einen Root-Server zur Verfügung gestellt, auf dem unsere komplette Webseite
+            gehostet wird. OVH ist der europäischer Marktführer und einer der weltweit führenden Anbieter von IT-Infrastrukturen.
+
+            <div class="sponsor-ovh-news">
+                {% include 'sponsors/sponsor-ovh-news.inc.html' %}
+            </div>
+        </div>
+    </div>
+
+    {% endblock mainbox %}
