@@ -91,3 +91,7 @@ body {
 .no-list-margin {
 	margin-left: 0px;
 }
+
+.sponsor-ovh img {
+  max-height: 100px;
+}
