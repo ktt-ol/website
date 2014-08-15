@@ -3,3 +3,4 @@
 /cache/**
 *.swp
 .hyde_deps
+sponsor-ovh-news.inc.*

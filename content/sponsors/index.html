@@ -22,10 +22,34 @@ extends: default.j2
             Wir bekommen von unserem Sponsor <a href="www.ovh.de">OVH</a> einen Root-Server zur Verfügung gestellt, auf dem unsere komplette Webseite
             gehostet wird. OVH ist der europäischer Marktführer und einer der weltweit führenden Anbieter von IT-Infrastrukturen.
 
-            <div class="sponsor-ovh-news">
-                {% include 'sponsors/sponsor-ovh-news.inc.html' %}
+            <div class="sponsor-ovh-news" id="sponsor-ovh-iframe">
+                Lade OVH News...
             </div>
         </div>
     </div>
+</div>
+{% endblock mainbox %}
 
-    {% endblock mainbox %}
+{% block scripts %}
+<script type="text/javascript">
+    $(document).ready(function () {
+        var iframe = $('<iframe style="opacity: 0"></iframe>');
+        iframe.one('load', function () {
+            var head = iframe.contents().find('head');
+            // remove any page styling
+            head.find('style').empty();
+            var url = '{{ media_url("css/ovh-news-iframe.css") }}';
+            head.append($('<link rel="stylesheet" type="text/css" href="' + url + '">'));
+
+            // wait 0,5 sec and then fade in the iframe
+            // with this trick the iframe hopefully get enough time to load it's new css file
+            window.setTimeout(function () {
+                iframe.animate({'opacity': '1'});
+            }, 500);
+        });
+        iframe.attr('src', 'sponsor-ovh-news.inc.html');
+        $('#sponsor-ovh-iframe').empty().append(iframe);
+    });
+</script>
+{{ super() }}
+{% endblock scripts %}
