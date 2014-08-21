@@ -5,6 +5,10 @@ body {
 	padding-top: 10px;
 	padding-bottom: 40px;
 }
+body.album {
+  /* we need the scroll bar at the beginning for a correct width calculation */
+  overflow-y: scroll;
+}
 
 /* center logo on medium devices */
 @media (min-width: 769px) and  (max-width: 991px) {
