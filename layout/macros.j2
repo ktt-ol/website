@@ -126,7 +126,7 @@
     I check that the parent directory is NOT 'thumbs' #}
     {%set imgpath = site.content.node_from_relative_path(directory) %}
     {% for image in imgpath.walk_resources()|sort(attribute="name")
-        if image.source_file.kind in ("jpg","png") and
+        if image.source_file.kind in ("jpg","png","JPG","PNG") and
         image.source_file.parent.name != "thumbs" %}
     <li>
         <a href="{{ content_url(directory + '/' + image.name) }}" class="thumbnail" data-toggle="lightbox" data-gallery="multiimages"
