@@ -3,7 +3,12 @@
 {% from "macros.j2" import render_thumbnail with context %}
 {% extends "two-column.j2" %}
 
+
 {% block css %}
+    {% if addGalleryBlock %}
+    <link rel="stylesheet" type="text/css" href="{{ media_url('css/lightbox/ekko-lightbox.min.css') }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ media_url('css/lightbox/dark.css') }}"/>
+    {% endif %}
 	<link href="{{ media_url('js/libs/gcalflow/jquery.gcal_flow.css') }}" rel="stylesheet">
 	{{ super() }}
 {% endblock css %}
@@ -84,6 +89,23 @@
 {% endblock sidebox %}
 
 {% block scripts %}
+
+    {% if addGalleryBlock %}
+    <script type="text/javascript" src="{{ media_url('js/lightbox/ekko-lightbox.min.js') }}"></script>
+    <script type="text/javascript">
+        $(document).ready(function ($) {
+            // delegate calls to data-toggle="lightbox"
+            $(document).delegate('*[data-toggle="lightbox"]', 'click', function (event) {
+                event.preventDefault();
+                return $(this).ekkoLightbox({
+                    always_show_close: true
+                });
+            });
+        });
+    </script>
+    {% endif %}
+
+
 	<script src="{{ media_url('js/libs/gcalflow/jquery.gcal_flow.min.js') }}"></script>
 
 	<script src="{{ media_url('js/libs/status.js') }}"></script>

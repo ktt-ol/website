@@ -5,29 +5,7 @@ series: Ferienpass
 created: !!timestamp '2014-08-26 20:36:00'
 teaser: Bau von Binäruhren mit Kindern im Rahmen des Ferienpasses 2014.
 ---
-
-{% block css %}
-{{ super() }}
-<link rel="stylesheet" type="text/css" href="{{ media_url('css/lightbox/ekko-lightbox.min.css') }}"/>
-<link rel="stylesheet" type="text/css" href="{{ media_url('css/lightbox/dark.css') }}"/>
-{% endblock %}
-
-{% block scripts %}
-{{ super() }}
-<script type="text/javascript" src="{{ media_url('js/lightbox/ekko-lightbox.min.js') }}"></script>
-<script type="text/javascript">
-    $(document).ready(function ($) {
-
-        // delegate calls to data-toggle="lightbox"
-        $(document).delegate('*[data-toggle="lightbox"]', 'click', function (event) {
-            event.preventDefault();
-            return $(this).ekkoLightbox({
-                always_show_close: true
-            });
-        });
-    });
-</script>
-{% endblock scripts %}
+{% set addGalleryBlock = True %}
 
 {% block content %}
 
@@ -38,6 +16,7 @@ entwickelt wurde, ausgehändigt. Danach haben die Jugendlichen unter Anleitung b
 Startschwierigkeiten mit den Widerständen konnten am Sonntag alle 7 Teilnehmer mit einer Funktionierenden Binäruhr nach Hause gehen.
 
 {%- endfilter %}
+
 
 {% from "macros.j2" import render_gallery with context %}
 {{ render_gallery("mygalley", "events/ferienpass-2014-1") }}

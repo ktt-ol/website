@@ -121,6 +121,7 @@
 {% endmacro %}
 
 {% macro render_gallery(id, directory) %}
+{% set addGalleryBlock = True %}
 <ul id="{{id}}" class="list-inline">
     {# I just want to walk non recursive, but this seems imposable, therefore,
     I check that the parent directory is NOT 'thumbs' #}
