@@ -1,0 +1,5 @@
+thumbnails:
+  - width: 180
+    prefix: thumbs_
+    include:
+    - '*.jpg'
