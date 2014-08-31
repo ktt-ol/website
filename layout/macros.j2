@@ -120,19 +120,18 @@
 </li>
 {% endmacro %}
 
-{% macro render_gallery(id, directory) %}
+{% macro render_gallery(id, directory, prefix="thumbs_") %}
 {% set addGalleryBlock = True %}
 <ul id="{{id}}" class="list-inline">
     {# I just want to walk non recursive, but this seems imposable, therefore,
     I check that the parent directory is NOT 'thumbs' #}
     {%set imgpath = site.content.node_from_relative_path(directory) %}
     {% for image in imgpath.walk_resources()|sort(attribute="name")
-        if image.source_file.kind in ("jpg","png","JPG","PNG") and
-        image.source_file.parent.name != "thumbs" %}
+    if image.source_file.kind in ("jpg","png","JPG","PNG") %}
     <li>
         <a href="{{ content_url(directory + '/' + image.name) }}" class="thumbnail" data-toggle="lightbox" data-gallery="multiimages"
-            data-parent="#{{id}}" data-title="{{image.name}}" title="{{image.name}}">
-            <img src="{{ content_url(directory + '/thumbs/' + image.name) }}" alt="{{image.name}}">
+           data-parent="#{{id}}" data-title="{{image.name}}" title="{{image.name}}">
+            <img src="{{ content_url(directory + '/' + prefix + image.name) }}" alt="{{image.name}}">
         </a>
     </li>
     {% endfor %}

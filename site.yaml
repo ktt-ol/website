@@ -7,6 +7,7 @@ plugins:
     - hyde.ext.plugins.syntext.SyntextPlugin
     - hyde.ext.plugins.textlinks.TextlinksPlugin
     - hyde.ext.plugins.sorter.SorterPlugin
+    - hyde.ext.plugins.images.ImageThumbnailsPlugin
     - plugins.split.SplitPlugin
     - plugins.lang.LangPlugin
     - plugins.calendar.CalendarPlugin

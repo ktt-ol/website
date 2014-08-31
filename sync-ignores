@@ -4,3 +4,5 @@
 *.swp
 .hyde_deps
 sponsor-ovh-news.inc.*
+.thumbnails/
+.DS_Store

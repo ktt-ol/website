@@ -7,10 +7,12 @@ This is the Website of Oldenburg's Hackspace AKA Mainframe.
 
 ## Setup
 
-You need ```hyde``` to generate the html files. You may install it with ```pip```
-
-```
+You need ```hyde``` to generate the html files. We need also Python Pillow to create thumbnails.   
+ 
+You can install both with ```pip```
+```bash
 sudo pip install hyde
+sudo pip install Pillow
 ```
 
 ## Building
@@ -54,3 +56,4 @@ To deliver the OVH newsfeed we have to download it periodically. For this task y
 
  * http://jinja.pocoo.org/docs/templates/#filters
  * http://jinja.pocoo.org/docs/templates/#builtin-filters
+ * http://jinja.pocoo.org/docs/dev/

@@ -5,10 +5,10 @@
 
 
 {% block css %}
-    {% if addGalleryBlock %}
+    {%- if addGalleryBlock %}
     <link rel="stylesheet" type="text/css" href="{{ media_url('css/lightbox/ekko-lightbox.min.css') }}"/>
     <link rel="stylesheet" type="text/css" href="{{ media_url('css/lightbox/dark.css') }}"/>
-    {% endif %}
+    {% endif -%}
 	<link href="{{ media_url('js/libs/gcalflow/jquery.gcal_flow.css') }}" rel="stylesheet">
 	{{ super() }}
 {% endblock css %}
@@ -90,7 +90,7 @@
 
 {% block scripts %}
 
-    {% if addGalleryBlock %}
+    {%- if addGalleryBlock %}
     <script type="text/javascript" src="{{ media_url('js/lightbox/ekko-lightbox.min.js') }}"></script>
     <script type="text/javascript">
         $(document).ready(function ($) {
@@ -103,7 +103,7 @@
             });
         });
     </script>
-    {% endif %}
+    {% endif -%}
 
 
 	<script src="{{ media_url('js/libs/gcalflow/jquery.gcal_flow.min.js') }}"></script>
