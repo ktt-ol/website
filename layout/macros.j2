@@ -120,7 +120,7 @@
 </li>
 {% endmacro %}
 
-{% macro render_gallery(id, directory, prefix="thumbs_") %}
+{% macro render_gallery(id, directory, prefix="thumb_") %}
 {% set addGalleryBlock = True %}
 <ul id="{{id}}" class="list-inline">
     {# I just want to walk non recursive, but this seems imposable, therefore,
