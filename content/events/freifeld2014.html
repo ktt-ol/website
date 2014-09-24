@@ -1,0 +1,25 @@
+---
+title: Freifeld 2014
+thumbnail: freifeld2014/thumb_2014-08-24 13.12.18.jpg
+created: !!timestamp '2014-08-31 19:58:00'
+teaser: Der KtT beim FreiFeldFestival 2014
+---
+{% from "macros.j2" import render_gallery with context %}
+{% set addGalleryBlock = True %}
+
+{% block content %}
+{% filter markdown|typogrify -%}
+
+Auch dieses Jahr waren wir wieder beim <a href="http://www.freifeld-festival.de/">FREIFELD-FESTIVAL</a> vertreten.
+Die Idee war, einen Lötworkshop anzubieten. Und so löteten die Festivalbesucher an unserem Stand aus einem Bausatz einen elektronischen Würfel zusammen.
+Jeder Teilnehmer brachte ganz unterschiedliche Erfahrungen bezüglich Elektronik und Lötkolben mit und erhielt entsprechende Hilfestellungen.
+Der mit 8 Jahren jüngste Teilnehmer erklärte seiner Mutter wie es geht ;-) Viele Besucher zeigten großes Interesse am Hackspace und wollen "mal
+vorbeischauen" - Gerne!
+
+Wir freuen uns auf Euch und auf das FREIFELD-FESTIVAL nächstes Jahr!
+
+{%- endfilter %}
+
+{{ render_gallery("mygalley", "events/freifeld2014") }}
+
+{% endblock content %}

@@ -5,6 +5,10 @@ body {
 	padding-top: 10px;
 	padding-bottom: 40px;
 }
+body.album {
+  /* we need the scroll bar at the beginning for a correct width calculation */
+  overflow-y: scroll;
+}
 
 /* center logo on medium devices */
 @media (min-width: 769px) and  (max-width: 991px) {
@@ -90,4 +94,23 @@ body {
 
 .no-list-margin {
 	margin-left: 0px;
+}
+
+
+.sponsor-ovh img {
+  max-height: 100px;
+}
+.page-sponsors .sponsor-detail{
+  border-top: 1px solid #ddd;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  padding-bottom: 15px;
+}
+.page-sponsors .sponsor-ovh-news {
+  margin-top: 10px;
+}
+.page-sponsors .sponsor-ovh-news iframe {
+  width: 100%;
+  min-height: 400px;
+  border: none;
 }

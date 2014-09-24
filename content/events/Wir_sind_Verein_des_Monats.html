@@ -1,14 +1,16 @@
 ---
 title: Wir sind Verein des Monats!
-thumbnail: Wir_sind_Verein_des_Monats/1000_2013-11-23_16-19-16.jpg
+thumbnail: Wir_sind_Verein_des_Monats/thumb_2013-11-23_16-19-16.jpg
 created: !!timestamp '2013-12-09 20:37:00'
 teaser: Das famila Einkaufsland Wechloy hat uns für den November 2013 zum "Verein des Monats" gewählt.
 ---
+{% set addGalleryBlock = True %}
+{% from "macros.j2" import render_lightbox with context %}
 
 {% block content %}
 
 <div class="article__image-left">
-    <img src="{{ resource.meta.thumbnail }}" alt="" class="img-thumbnail"/>
+    {{ render_lightbox("mygalley", "events/Wir_sind_Verein_des_Monats", "2013-11-23_16-19-16.jpg") }}
 </div>
 
 <p>
@@ -30,10 +32,10 @@ teaser: Das famila Einkaufsland Wechloy hat uns für den November 2013 zum "Vere
 </p>
 
 <div class="article__image-left">
-    <img src="Wir_sind_Verein_des_Monats/1000_2013-11-23_15-48-09.jpg" alt="" class="img-thumbnail"/>
+    {{ render_lightbox("mygalley", "events/Wir_sind_Verein_des_Monats", "2013-11-23_15-48-09.jpg") }}
 </div>
 <div class="article__image-left">
-    <img src="Wir_sind_Verein_des_Monats/1000_2013-11-23_16-21-25.jpg" alt="" class="img-thumbnail"/>
+    {{ render_lightbox("mygalley", "events/Wir_sind_Verein_des_Monats", "2013-11-23_16-21-25.jpg") }}
 </div>
 
 <div class="clearfix"></div>
@@ -48,7 +50,7 @@ teaser: Das famila Einkaufsland Wechloy hat uns für den November 2013 zum "Vere
     <li>der große LED-Cube</li>
     <li>und viel Kleinkram</li>
 </ul>
-<p>Vieles davon könnt ihr im <a href="https://albums.kreativitaet-trifft-technik.de/?p=/(2013.11)%20Verein%20des%20Monats/">dazugehörigen
+<p>Vieles davon könnt ihr im <a href="//www.kreativitaet-trifft-technik.de/album.html#/a/(2013.11)_Verein_des_Monats">dazugehörigen
     Fotoalbum sehen</a>.</p>
 
 <p>Wir hatten im Vorfeld weniger damit gerechnet, dass wir viele Neumitglieder direkt erreichen. Viel mehr war das Ziel,

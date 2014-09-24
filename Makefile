@@ -50,4 +50,7 @@ content/group/%.html: $(projects)
 upload:
 	./sync.sh
 
+clean:
+	test -d && rm -rf deploy/
+
 .PHONY: build upload

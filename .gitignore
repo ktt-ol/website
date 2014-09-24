@@ -3,5 +3,7 @@ deploy
 *.swp
 *.pyc
 .idea
+.DS_Store
 content/media/ifs-images/
 content/media/album-images
+content/.thumbnails/

@@ -1,0 +1,24 @@
+---
+title: Ferienpass 2014 - Binäruhren
+thumbnail: ferienpass-2014-1/thumb_IMG_2955.JPG
+series: Ferienpass
+created: !!timestamp '2014-08-26 20:36:00'
+teaser: Bau von Binäruhren mit Kindern im Rahmen des Ferienpasses 2014.
+---
+{% set addGalleryBlock = True %}
+
+{% block content %}
+
+{% filter markdown|typogrify -%}
+Am Wochenende vom 9.8.2014 hatten wir wie im Vorjahr 7 Technik interessierte Jugendliche bei uns zu Gast, die bei uns eine Binäruhr bauen wollten.
+Den Teilnehmern dieser Aktion wurde nach einer kurzen Einweisung je ein Set für eine Binäruhr, die von unserem Mitglied Sebastian Setz
+entwickelt wurde, ausgehändigt. Danach haben die Jugendlichen unter Anleitung begonnen ihre Binäruhren zu bauen nach einigen kleinen
+Startschwierigkeiten mit den Widerständen konnten am Sonntag alle 7 Teilnehmer mit einer Funktionierenden Binäruhr nach Hause gehen.
+
+{%- endfilter %}
+
+
+{% from "macros.j2" import render_gallery with context %}
+{{ render_gallery("mygalley", "events/ferienpass-2014-1") }}
+
+{% endblock content %}

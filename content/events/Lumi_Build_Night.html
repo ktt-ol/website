@@ -1,33 +1,10 @@
 ---
 title: Lumi Build Night
-thumbnail: Lumi_Build_Night/space-3.jpg
+thumbnail: Lumi_Build_Night/thumb_space-3.jpg
 created: !!timestamp '2013-09-08 12:57:00'
 teaser: Gestern fand bei uns eine Lumi Build Night statt. Dabei wurden mit Hilfe von UV-sensibler Farbe und auf Folie ausgedruckten Negativ-Bildern Textilien bedruckt.
 ---
-
-{% block css %}
-{{ super() }}
-<link rel="stylesheet" type="text/css" href="{{ media_url('css/lightbox/ekko-lightbox.min.css') }}"/>
-<link rel="stylesheet" type="text/css" href="{{ media_url('css/lightbox/dark.css') }}"/>
-{% endblock %}
-
-{% block scripts %}
-{{ super() }}
-<script type="text/javascript" src="{{ media_url('js/lightbox/ekko-lightbox.min.js') }}"></script>
-<script type="text/javascript">
-    $(document).ready(function ($) {
-
-        // delegate calls to data-toggle="lightbox"
-        $(document).delegate('*[data-toggle="lightbox"]', 'click', function (event) {
-            event.preventDefault();
-            return $(this).ekkoLightbox({
-                always_show_close: true
-            });
-        });
-    });
-</script>
-{% endblock scripts %}
-
+{% set addGalleryBlock = True %}
 
 {% block content %}
 

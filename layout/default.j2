@@ -3,7 +3,12 @@
 {% from "macros.j2" import render_thumbnail with context %}
 {% extends "two-column.j2" %}
 
+
 {% block css %}
+    {%- if addGalleryBlock %}
+    <link rel="stylesheet" type="text/css" href="{{ media_url('css/lightbox/ekko-lightbox.min.css') }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ media_url('css/lightbox/dark.css') }}"/>
+    {% endif -%}
 	<link href="{{ media_url('js/libs/gcalflow/jquery.gcal_flow.css') }}" rel="stylesheet">
 	{{ super() }}
 {% endblock css %}
@@ -36,21 +41,22 @@
 
 <div class="panel panel-default panel-sponsors">
 	<div class="panel-heading">
+        <a href="{{ content_url('sponsors/index.html') }}">
 		{% if resource.language == "de" -%}
 			Sponsoren
 		{% else -%}
 			Sponsors
 		{% endif -%}
+        </a>
 	</div>
 	<div class="panel-body" style="text-align: center;">
 		<a href="http://www.wuerttembergische.de/oliver.majer">
 			<img src="{{ media_url('img/sponsor1.jpg') }}" alt="Württembergische" />
 		</a>
 		<br><br>
-		<!--<a href="https://www.ovh.com/cgi-bin/partners/clickCounter.cgi?affiliation=de">-->
-        <a href="https://www.ovh.de/events/get-details.xml?id=RS03714">
-			<!--<img src="{{ media_url('img/sponsor2.png') }}" alt="OVH" />-->
-            <img src="{{ media_url('img/ovh-world-tour-2.jpg') }}" alt="OVH" />
+
+        <a href="http://www.ovh.de/?pk_campaign=de_ktt&pk_kwd=banner" class="sponsor-ovh">
+            <img src="{{ media_url('img/ovh-de_209x209.jpg') }}" alt="OVH" />
 		</a>
 	</div>
 </div>
@@ -83,6 +89,23 @@
 {% endblock sidebox %}
 
 {% block scripts %}
+
+    {%- if addGalleryBlock %}
+    <script type="text/javascript" src="{{ media_url('js/lightbox/ekko-lightbox.min.js') }}"></script>
+    <script type="text/javascript">
+        $(document).ready(function ($) {
+            // delegate calls to data-toggle="lightbox"
+            $(document).delegate('*[data-toggle="lightbox"]', 'click', function (event) {
+                event.preventDefault();
+                return $(this).ekkoLightbox({
+                    always_show_close: true
+                });
+            });
+        });
+    </script>
+    {% endif -%}
+
+
 	<script src="{{ media_url('js/libs/gcalflow/jquery.gcal_flow.min.js') }}"></script>
 
 	<script src="{{ media_url('js/libs/status.js') }}"></script>
