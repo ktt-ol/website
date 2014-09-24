@@ -2,4 +2,4 @@ thumbnails:
   - width: 200
     prefix: thumb_
     include:
-    - 'DSC_9030.JPG'
+    - '*DSC_9030.JPG'
