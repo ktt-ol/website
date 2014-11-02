@@ -1,0 +1,5 @@
+thumbnails:
+  - width: 200
+    prefix: thumb_
+    include:
+    - '*IMG_20141018_142810.jpg'
