@@ -150,12 +150,12 @@ no_translation_needed: True
 			right: 'month,agendaWeek,agendaDay'
 		},
 		weekMode: 'variable', /* variable numbers of weeks instead of always using 6 */
+		googleCalendarApiKey: 'AIzaSyB9pTX1ewZeRPc-rmq-Xp32wuuTW1P4U1U',
 		events: {
-			url: '//www.kreativitaet-trifft-technik.de/calendar/feeds/markusframer%40gmail.com/public/basic',
-			dataType: 'gcal'
+			googleCalendarId: 'markusframer@gmail.com',
 		},
 		eventRender: function(event, element) {
-			id = event.id.replace("@google.com", "")
+			id = event.id.substring(0, 26)
 
 			event.url = (id in calendar_links) ? calendar_links[id]["{{ resource.language }}"] : 'null'
 
@@ -211,7 +211,8 @@ no_translation_needed: True
 	}
 
 	function openEventInfo(event) {
-		eventid = event.id.replace("@google.com", "")
+		console.log(event)
+		eventid = event.id.substring(0,26)
 		title = event.title
 		url = event.url
 		description = event.description
@@ -219,6 +220,9 @@ no_translation_needed: True
 		start = event.start
 		end = event.end
 		allDay = event.allDay
+
+		if (description == null)
+			description = "";
 
 		timeformat = (allDay) ? "Do MMMM YYYY" : "Do MMMM YYYY, HH:mm:ss";
 
