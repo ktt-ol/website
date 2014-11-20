@@ -106,7 +106,7 @@
     {% endif -%}
 
 
-	<script src="{{ media_url('js/libs/gcalflow/jquery.gcal_flow.min.js') }}"></script>
+	<script src="{{ media_url('js/libs/gcalflow/jquery.gcal_flow.js') }}"></script>
 
 	<script src="{{ media_url('js/libs/status.js') }}"></script>
 
@@ -121,7 +121,8 @@
 
 		$(document).ready(function() {
 			$(function() { $('#gcf-simple').gCalFlow({
-				calid: 'markusframer@gmail.com',
+				apikey: '{{ calendar.google_api_key }}',
+				calid: '{{ calendar.google_cal_id }}',
 				maxitem: 5,
 				daterange_formatter: function(ds, de, allday_p) {
 					var dayoftheweek = [ "So", "Mo", "Di", "Mi", "Do", "Fr", "Sa" ];

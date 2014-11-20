@@ -38,6 +38,7 @@
     gCalFlow.prototype.opts = {
       maxitem: 15,
       calid: null,
+      apikey: null,
       mode: 'upcoming',
       feed_url: null,
       auto_scroll: true,
@@ -45,6 +46,7 @@
       link_title: true,
       link_item_title: true,
       link_item_description: false,
+      link_item_location: false,
       link_target: '_blank',
       item_description_as_html: false,
       callback: null,
@@ -117,6 +119,7 @@
     };
 
     gCalFlow.prototype.gcal_url = function() {
+      var now;
       if (!this.opts.calid && !this.opts.feed_url) {
         log.error("Option calid and feed_url are missing. Abort URL generation");
         this.target.text("Error: You need to set 'calid' or 'feed_url' option.");
@@ -125,9 +128,11 @@
       if (this.opts.feed_url) {
         return this.opts.feed_url;
       } else if (this.opts.mode === 'updates') {
-        return "//www.kreativitaet-trifft-technik.de/calendar/feeds/" + this.opts.calid + "/public/full?alt=json-in-script&max-results=" + this.opts.maxitem + "&orderby=lastmodified&sortorder=descending";
+        now = new Date().toJSON();
+        return "//www.kreativitaet-trifft-technik.de/calendar/v3/calendars/" + this.opts.calid + "/events?key=" + this.opts.apikey + "&maxResults=" + this.opts.maxitem + "&orderBy=updated&timeMin=" + now + "&singleEvents=true";
       } else {
-        return "//www.kreativitaet-trifft-technik.de/calendar/feeds/" + this.opts.calid + "/public/full?alt=json-in-script&max-results=" + this.opts.maxitem + "&orderby=starttime&futureevents=true&sortorder=ascending&singleevents=true";
+        now = new Date().toJSON();
+        return "//www.kreativitaet-trifft-technik.de/calendar/v3/calendars/" + this.opts.calid + "/events?key=" + this.opts.apikey + "&maxResults=" + this.opts.maxitem + "&orderBy=startTime&timeMin=" + now + "&singleEvents=true";
       }
     };
 
@@ -140,6 +145,7 @@
         return _this.render_data(data, _this);
       };
       return $.ajax({
+        type: 'GET',
         success: success_handler,
         dataType: "jsonp",
         url: this.gcal_url()
@@ -161,6 +167,7 @@
         hour = parseInt(m[4], 10);
         min = parseInt(m[5], 10);
         sec = parseInt(m[6], 10);
+        offset = (new Date(year, mon - 1, day, hour, min, sec)).getTimezoneOffset() * 60 * 1000;
         if (m[7] !== "Z") {
           offset += (m[8] === "+" ? 1 : -1) * (parseInt(m[9], 10) * 60 + parseInt(m[10], 10)) * 1000 * 60;
         }
@@ -175,77 +182,91 @@
     };
 
     gCalFlow.prototype.render_data = function(data) {
-      var ci, desc_body_method, ed, ent, et, etf, feed, ic, it, items, link, sd, st, stf, t, titlelink, _i, _len, _ref1, _ref2;
+      var ci, desc_body_method, ed, ent, et, etf, gmapslink, ic, it, items, link, sd, st, stf, t, titlelink, _i, _len, _ref1, _ref2;
       log.debug("start rendering for data:", data);
-      feed = data.feed;
       t = this.template.clone();
       titlelink = (_ref1 = this.opts.titlelink) != null ? _ref1 : "http://www.google.com/calendar/embed?src=" + this.opts.calid;
       if (this.opts.link_title) {
         t.find('.gcf-title').html($("<a />").attr({
           target: this.opts.link_target,
           href: titlelink
-        }).text(feed.title.$t));
+        }).text(data.summary));
       } else {
-        t.find('.gcf-title').text(feed.title.$t);
+        t.find('.gcf-title').text(data.summary);
       }
       t.find('.gcf-link').attr({
         target: this.opts.link_target,
         href: titlelink
       });
-      t.find('.gcf-last-update').html(this.opts.date_formatter(this.parse_date(feed.updated.$t)));
+      t.find('.gcf-last-update').html(this.opts.date_formatter(this.parse_date(data.updated)));
       it = t.find('.gcf-item-block');
       it.detach();
       it = $(it[0]);
       log.debug("item block template:", it);
       items = $();
-      log.debug("render entries:", feed.entry);
+      log.debug("render entries:", data.items);
       if (this.opts.item_description_as_html) {
         desc_body_method = 'html';
       } else {
         desc_body_method = 'text';
       }
-      if ((feed.entry != null) && feed.entry.length > 0) {
-        _ref2 = feed.entry.slice(0, +this.opts.maxitem + 1 || 9e9);
+      if ((data.items != null) && data.items.length > 0) {
+        _ref2 = data.items.slice(0, +this.opts.maxitem + 1 || 9e9);
         for (_i = 0, _len = _ref2.length; _i < _len; _i++) {
           ent = _ref2[_i];
           log.debug("formatting entry:", ent);
           ci = it.clone();
-          if (ent.gd$when) {
-            st = ent.gd$when[0].startTime;
+          if (ent.start) {
+            if (ent.start.dateTime) {
+              st = ent.start.dateTime;
+            } else {
+              st = ent.start.date;
+            }
             sd = this.parse_date(st);
             stf = this.opts.date_formatter(sd, st.indexOf(':') < 0);
             ci.find('.gcf-item-date').html(stf);
             ci.find('.gcf-item-start-date').html(stf);
-            et = ent.gd$when[0].endTime;
+          }
+          if (ent.end) {
+            if (ent.end.dateTime) {
+              et = ent.end.dateTime;
+            } else {
+              et = ent.end.date;
+            }
             ed = this.parse_date(et);
             etf = this.opts.date_formatter(ed, et.indexOf(':') < 0);
             ci.find('.gcf-item-end-date').html(etf);
             ci.find('.gcf-item-daterange').html(this.opts.daterange_formatter(sd, ed, st.indexOf(':') < 0));
           }
-          ci.find('.gcf-item-update-date').html(this.opts.date_formatter(this.parse_date(ent.updated.$t), false));
+          ci.find('.gcf-item-update-date').html(this.opts.date_formatter(this.parse_date(ent.updated), false));
           link = $('<a />').attr({
             target: this.opts.link_target,
-            href: ent.link[0].href
+            href: ent.htmlLink
           });
           if (this.opts.link_item_title) {
-            ci.find('.gcf-item-title').html(link.clone().text(ent.title.$t));
+            ci.find('.gcf-item-title').html(link.clone().text(ent.summary));
           } else {
-            ci.find('.gcf-item-title').text(ent.title.$t);
+            ci.find('.gcf-item-title').text(ent.summary);
           }
           if (this.opts.link_item_description) {
-            ci.find('.gcf-item-description').html(link.clone()[desc_body_method](ent.content.$t));
+            ci.find('.gcf-item-description').html(link.clone()[desc_body_method](ent.description));
           } else {
-            ci.find('.gcf-item-description')[desc_body_method](ent.content.$t);
+            ci.find('.gcf-item-description')[desc_body_method](ent.description);
           }
-          ci.find('.gcf-item-location').text(ent.gd$where[0].valueString);
+          if (this.opts.link_item_location) {
+            gmapslink = "<a href='https://maps.google.de/maps?q=" + encodeURI(ent.location.replace(" ", "+")) + "' target='new'>" + ent.location + "</a>";
+            ci.find('.gcf-item-location').html(gmapslink);
+          } else {
+            ci.find('.gcf-item-location').text(ent.location);
+          }
           ci.find('.gcf-item-link').attr({
-            href: ent.link[0].href
+            href: ent.htmlLink
           });
           log.debug("formatted item entry:", ci[0]);
           items.push(ci[0]);
         }
       } else {
-        items = $('<div class=".gcf-no-items"></div>').html(this.opts.no_items_html);
+        items = $('<div class="gcf-no-items"></div>').html(this.opts.no_items_html);
       }
       log.debug("formatted item entry array:", items);
       ic = t.find('.gcf-item-container-block');
@@ -338,7 +359,7 @@
         return methods[method].apply($(this), Array.prototype.slice.call(orig_args, 1));
       });
     } else if (method === 'version') {
-      return "1.2.6";
+      return "1.2.7";
     } else {
       return $.error("Method " + method + " does not exist on jQuery.gCalFlow");
     }
