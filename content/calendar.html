@@ -150,9 +150,9 @@ no_translation_needed: True
 			right: 'month,agendaWeek,agendaDay'
 		},
 		weekMode: 'variable', /* variable numbers of weeks instead of always using 6 */
-		googleCalendarApiKey: 'AIzaSyB9pTX1ewZeRPc-rmq-Xp32wuuTW1P4U1U',
+		googleCalendarApiKey: '{{ calendar.google_api_key }}',
 		events: {
-			googleCalendarId: 'markusframer@gmail.com',
+			googleCalendarId: '{{ calendar.google_cal_id }}',
 		},
 		eventRender: function(event, element) {
 			id = event.id.substring(0, 26)

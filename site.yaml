@@ -18,6 +18,9 @@ context:
             name: Kreativität trifft Technik
             url: "http://www.kreativitaet-trifft-technik.de"
         home_url: index.html
+        calendar:
+            google_api_key: AIzaSyB9pTX1ewZeRPc-rmq-Xp32wuuTW1P4U1U
+            google_cal_id: markusframer@gmail.com
         menu:
             - title: Home
               basename: home
