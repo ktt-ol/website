@@ -1,6 +1,7 @@
 */album-images/*
 */ifs-images/*
 /cache/**
+/mv/**
 *.swp
 .hyde_deps
 sponsor-ovh-news.inc.*
