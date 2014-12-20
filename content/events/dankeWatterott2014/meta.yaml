@@ -1,0 +1,5 @@
+thumbnails:
+  - width: 200
+    prefix: thumb_
+    include:
+    - '*watterott_20141219_205236.jpg'
