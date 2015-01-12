@@ -1,0 +1,30 @@
+---
+title: 31C3
+thumbnail: 31C3/thumbnail.jpg
+created: !!timestamp '2014-12-31 12:00:00'
+teaser: Besuch des 31. Chaos Communication Congress durch den Mainframe.
+---
+{% set addGalleryBlock = True %}
+
+{% block content %}
+{% filter markdown|typogrify -%}
+Wie nach dem 30C3 schon angekündigt waren wir auch dieses Jahr wieder auf dem
+Chaos Communication Congress - diesesmal mit über zwanzig Personen. Im
+Gegensatz zum letzten Jahr waren wir dieses Jahr nicht im Hackcenter, sondern
+in der Quiet-Area (und damit etwas abgeschiedener) untergebracht. Dafür gab es
+ausreichend Platz für Banner, einen JoSeb (3D-Drucker), eine fette
+LED-Laufschrift, unser Mainframe Schild und einiges an Kleinkram.
+
+Ansonsten haben wir einfach die Zeit zusammen mit den anderen Hackern genossen,
+das Bällebad besucht, uns die Vorträge angehört und die Installationen anderer
+Spaces angeschaut.
+
+Resume: CCCamp wir kommen!
+
+<h2>Fotos</h2>
+
+{% from "macros.j2" import render_gallery with context %}
+{{ render_gallery("mygalley", "events/31C3") }}
+
+{%- endfilter %}
+{% endblock content %}
