@@ -82,6 +82,7 @@ body.album {
 
 .panel-sponsors img {
   max-width: 220px;
+  margin: 5px 0;
 }
 
 .album .container {

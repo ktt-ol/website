@@ -49,15 +49,22 @@
 		{% endif -%}
         </a>
 	</div>
-	<div class="panel-body" style="text-align: center;">
-		<a href="http://www.wuerttembergische.de/oliver.majer">
-			<img src="{{ media_url('img/sponsor1.jpg') }}" alt="Württembergische" />
+	<div class="panel-body text-center">
+		<a href="http://www.wuerttembergische.de/oliver.majer" class="link-sponsor">
+			<img src="{{ media_url('img/sponsors/wuert.jpg') }}" alt="Württembergische" />
 		</a>
-		<br><br>
 
-        <a href="http://www.ovh.de/?pk_campaign=de_ktt&pk_kwd=banner" class="sponsor-ovh">
-            <img src="{{ media_url('img/ovh-de_209x209.jpg') }}" alt="OVH" />
+        <a href="http://www.ovh.de/?pk_campaign=de_ktt&pk_kwd=banner" class="link-sponsor sponsor-ovh">
+            <img src="{{ media_url('img/sponsors/ovh-de_209x209.jpg') }}" alt="OVH" />
 		</a>
+
+        <a href="{{ content_url('sponsors/index.html') }}" class="link-sponsor sponsor-wirtol">
+            <img src="{{ media_url('img/sponsors/Wirtschaftsfoerderung_OL.png') }}" alt="Wirtschaftsförderung_OL" />
+        </a>
+
+        <a href="{{ content_url('sponsors/index.html') }}" class="link-sponsor sponsor-ikn2020">
+            <img src="{{ media_url('img/sponsors/Logo_ikn2020_final.png') }}" alt="IKN 2020" />
+        </a>
 	</div>
 </div>
 
