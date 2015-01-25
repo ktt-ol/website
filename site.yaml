@@ -22,10 +22,6 @@ context:
             google_api_key: AIzaSyB9pTX1ewZeRPc-rmq-Xp32wuuTW1P4U1U
             google_cal_id: markusframer@gmail.com
         menu:
-            - title: Home
-              basename: home
-              type: page
-              url: index.html
             - title: {de: Projekte, en: Projects}
               type: menu
               basename: projects
@@ -58,14 +54,20 @@ context:
                   url: images_from_space.html
                 - title: {de: Fotoalben, en: Photo Albums}
                   url: album.html
+            - title: {de: Spacewalk, en: Spacewalk}
+              type: menu
+              basename: spacewalk
+              menu:
+                - title: {de: Geräte, en: devices}
+                  url: machines.html
+                - title: {de: Räume, en: rooms}
+                  url: mainframe.html
             - title: {de: Der Verein, en: The Club}
               type: menu
               basename: club
               menu:
                 - title: {de: Über Uns, en: About}
                   url: about.html
-                - title: {de: Unsere Räume, en: Rooms}
-                  url: mainframe.html
                 - title: {de: Vereinsgeschichte, en: History}
                   url: history.html
                 - title: {de: Mitgliedschaft, en: Membership}

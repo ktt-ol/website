@@ -3,6 +3,7 @@ groups = content/group/*.html
 talks = content/talk/*.html
 press = content/press_release/*.html
 events = content/events/*.html
+machines = content/machines/*.html
 series_of_events = content/series-of-events/*.html
 forcegenfiles = content/index.html \
                 content/projects.atom.xml \
@@ -11,6 +12,7 @@ forcegenfiles = content/index.html \
 				content/project_infrastructure.html \
 				content/project_groups.html \
 				content/talks.html \
+				content/machines.html \
 				content/press_release.html \
 				content/events.html \
 				content/series_of_events.html \
@@ -33,6 +35,8 @@ content/project_infrastructure.html: $(projects)
 content/project_groups.html: $(groups)
 	touch $@
 content/talks.html: $(talks)
+	touch $@
+content/machines.html: $(machines)
 	touch $@
 content/press_release.html: $(press)
 	touch $@

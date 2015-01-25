@@ -120,6 +120,42 @@
 </li>
 {% endmacro %}
 
+{% macro render_state(state, language) %}
+{% if language == "de" %}
+	{% if state == "active" %}
+		<p>Status: <i>aktiv</i> </p>
+	{% elif state == "not-yet-in-use" %}
+		<p>Status: <i>noch nicht in Verwendung</i> </p>
+	{% elif state == "request-for-help" %}
+		<p>Status: <i>Unterstützung wird benötigt</i> </p>
+	{% elif state == "orphaned" %}
+		<p>Status: <i>Verwaist</i> </p>
+	{% else %}
+		<p>Status: <i>{{ state }}</i> </p>
+	{% endif %}
+{% else %}
+	<p>State: <i>{{ state }}</i> </p>
+{% endif %}
+{% endmacro %}
+
+{% macro render_machine_excerpt(res, class="") %}
+<li class="list-group-item row {{ class }}">
+	<div class="col-xs-6 col-md-3">
+		<a href="{{ content_url(res.url) }}">
+			{% if res.meta.thumbnail is defined %}
+			<img src="{{ content_url('machines/' + res.meta.thumbnail) }}" alt="" style="max-height: 150px; max-width: 150px;" class="img-thumbnail"/>
+			{% else %}
+			<img src="{{ media_url("img/machine.svg") }}" alt="" style="max-height: 150px; max-width: 150px;" class="img-thumbnail"/>
+			{% endif %}
+		</a>
+	</div>
+	<div class="col-xs-6 col-md-9">
+		<h3><a href="{{ content_url(res.url) }}"> {{ res.meta.title }}</a></h3>
+		<p> {{ render_state(res.meta.state, res.language) }} </p>
+	</div>
+</li>
+{% endmacro %}
+
 {% macro render_gallery(id, directory, prefix="thumb_") %}
 {% set addGalleryBlock = True %}
 <ul id="{{id}}" class="list-inline">
