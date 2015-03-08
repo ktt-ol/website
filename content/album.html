@@ -12,14 +12,11 @@ title: Album
 
 {% block container %}
 <div class="panel panel-default mf-gallery-app" ng-app="mfGalleryApp">
-    <div class="panel-heading"><h3 class="panel-title">Album</h3></div>
-    <div class="panel-body">
-        <!--[if lt IE 7]>
-        <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a>
-            to improve your experience.</p>
-        <![endif]-->
-        <div ng-view=""></div>
-    </div>
+    <!--[if lt IE 7]>
+    <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a>
+        to improve your experience.</p>
+    <![endif]-->
+    <div ng-view=""></div>
 </div>
 
 <!--[if lt IE 9]>
@@ -28,8 +25,8 @@ title: Album
 <script type="text/javascript">var mfGalleryConfig = {
     staticPath: "{{ media_url('mfGallery') }}/",
     folder: "{{ media_url('album-images') }}/",
-    pageSize: 30,
-    preferedImageHeight: 300,
+    pageSize: 50,
+    preferedImageHeight: 250,
     thumbSmall: 300,
     thumbLightbox: 1200
 };</script>
