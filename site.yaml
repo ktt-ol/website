@@ -80,11 +80,14 @@ context:
                   url: press_release.html
                 - title: {de: Sponsoren, en: Sponsors}
                   url: sponsors/index.html
-            - title: {en: Contact, de: Kontakt}
-              type: page
-              basename: contact
-              url: contact.de.html
-
+            - title: Kommunikation
+              type: menu
+              basename: comm
+              menu:
+                - title: {en: Contact, de: Kontakt}
+                  url: contact.de.html
+                - title: {de: Mailinglisten, en: Mailing lists}
+                  url: ml.html
 sorter:
     time:
         attr:
