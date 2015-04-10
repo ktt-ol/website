@@ -72,6 +72,8 @@ context:
                   url: history.html
                 - title: {de: Mitgliedschaft, en: Membership}
                   url: membership.html
+                - title: {de: Kommunikation, en: Communication}
+                  url: communication.html
                 - title: {de: Unterstützen, en: Support}
                   url: support.html
                 - title: {de: Pressespiegel, en: Press Review}
@@ -80,14 +82,11 @@ context:
                   url: press_release.html
                 - title: {de: Sponsoren, en: Sponsors}
                   url: sponsors/index.html
-            - title: Kommunikation
-              type: menu
-              basename: comm
-              menu:
-                - title: {en: Contact, de: Kontakt}
-                  url: contact.de.html
-                - title: {de: Mailinglisten, en: Mailing lists}
-                  url: ml.html
+            - title: {en: Contact, de: Kontakt}
+              type: page
+              basename: contact
+              url: contact.de.html
+
 sorter:
     time:
         attr:
