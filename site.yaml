@@ -72,6 +72,8 @@ context:
                   url: history.html
                 - title: {de: Mitgliedschaft, en: Membership}
                   url: membership.html
+                - title: {de: Kommunikation, en: Communication}
+                  url: communication.html
                 - title: {de: Unterstützen, en: Support}
                   url: support.html
                 - title: {de: Pressespiegel, en: Press Review}
