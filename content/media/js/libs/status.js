@@ -12,6 +12,12 @@ var statusmsg = {
 		"class": "panel-danger",
 		"de": "Runtergefahren",
 		"en": "Closed"
+	},
+	"closing": {
+		"logo": "/media/img/mainframe-closing.svg",
+		"class": "panel-warning",
+		"de": "Am Schließen",
+		"en": "Closing"
 	}
 }
 
