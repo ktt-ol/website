@@ -1,0 +1,75 @@
+---
+title: Chaos Communication Camp 2015
+thumbnail: CCCamp2015/misc/thumbnail.png
+created: !!timestamp '2015-08-21 12:00:00'
+teaser: Besuch des Chaos Communication Camp 2015 durch den Mainframe.
+---
+{% set addGalleryBlock = True %}
+
+{% block content %}
+{% filter markdown|typogrify -%}
+
+Auch auf dem 4 jährigen Camp des CCCs ist der Mainframe selbstverständlich
+anzutreffen. Für den Aufbau des Villages und um dem großen Ansturm nach Tickets
+zu entgehen, sind wir bereits einen Tag früher angereist. Vor Ort angekommen
+wurde festgestellt, dass die meisten Zeltplätze bereits belegt waren. Nachdem
+eine Stunde nach einem guten Platz gesucht wurde, sind wir schließlich fast
+genau in der Mitte des Camps, direkt neben ,,Hackcenter 1'' (<a
+href="CCCamp2015/misc/map.pdf">Karte</a>) untergekommen.
+
+Während am 12.08. mit vielen Wolken am Himmel in Oldenburg gestartet wurde, so
+war das Wetter im <a href="http://www.ziegeleipark.de/">Ziegeleipark
+Mildenberg</a> die ganze Woche sehr sonnig bei über 30° Celsius. Durch die
+warmen Temperaturen und den fehlenden Regen war es zwar relativ staubig und
+langes ausschlafen war dank der hohen Temperaturen im Zelt nicht möglich, doch
+ein kleiner Badesee auf dem Camp-Gelände in Verbindung mit einer Talk-Pause von
+12:00 bis 16:00 machte die Temperaturen tagsüber erträglich.
+
+Das Mainframe Village wurde von uns an ,,Tag 0'' als Kreis aus mehreren Iglu-
+und Tunnelzelten aufgebaut, in dessen Mitte Campingtische und Stühle
+aufgestellt wurden. Auf dem Camp stand eigentlich die gesamte vom Congress
+gewohnte Infrastruktur zur verfügung:
+
+ * Netzwerk: Auf dem Camp-Gelände wurden wieder die, für das CCCamp berühmten,
+ Datenklos aufgestellt, welche die aktive Netzwerktechnik des Camps beinhalten.
+ Das Ablegen eines Netzwerkkabels nach unserer Ankunft führte dazu, dass wir
+ 1-2h später mit GBit ans Internet angebunden waren. Als Alternative gab es
+ auch wieder mehrere WLAN Netzwerke im 2.4 und 5 GHz Band.
+
+ * Telefonie: Wie üblich gab es auch auf dem Congress wieder ein DECT-Funknetz,
+ welches von den Teilnehmern für Camp-interne Kommunikation benutzt werden
+ konnte. Wie auf den Congressen stand dieser Service auch wieder per SIP und
+ per GSM zur Verfügung. Neu jedoch waren die Feldtelefone, welche vom <a
+ href="https://metalab.at/">Metalab</a> samt Vermittlungsstelle aufgebaut
+ wurden.
+
+ * Seidenstraße: Auch die Seidenstraße ist wieder aufgebaut worden, da dass
+ Campgelände deutlich größer als das Congress Zentrum in Hamburg ist, war diese
+ jedoch deutlich weniger auffällig.
+
+ * DVB-T: Wie in den letzten Jahren gab es auch wieder ein DVB-T Sender,
+ welcher die Talks aus den größten Zelten gestreamt hat. Dies ermöglichte nicht
+ nur das Betrachten von Talks außerhalb der üblicherweise sehr warmen
+ Votragszelte, sondern führte auch dazu, dass einige DVB-T Receiver zum testen
+ der Badges mitgenommen wurden.
+
+ * Strom: Der CCC hat mehrere größere Stromgeneratoren aufgestellt, um auf dem
+ Gelände Strom zur Verfügung stellen zu können. Unser Village wurde direkt an
+ ,,Tag 0” mit einer Kabeltrommel an die Infrastuktur angeschlossen.
+
+Eine Besonderheit des Camps stellte aber auf jeden Fall das <a
+href="https://github.com/rad1o">rad1o Badge</a> dar, dass an die Teilnehmer
+verteilt wurde. Diese, vom <a href="http://muc.ccc.de/">µCCC</a> designte
+Platine, ist eine Weiterentwicklung des <a
+href="http://www.r0ket.de/">R0cket</a> vom 2011er Camp. Diese beinhalte ein zum
+<a href="https://greatscottgadgets.com/hackrf/">HackRF One</a> kompatibles
+Software Defined Radio. Zu diesem gab es passende Talks, die z.B.  das
+Versenden von DVB-T Signalen mit dem rad1o erklären.
+
+<h2>Fotos</h2>
+
+{% from "macros.j2" import render_gallery with context %}
+{{ render_gallery("mygalley", "events/CCCamp2015/gallery") }}
+
+{%- endfilter %}
+{% endblock content %}
