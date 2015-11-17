@@ -23,6 +23,7 @@ no_translation_needed: True
 							<span id="eventId" style="color: gray;"></span>
 							<span id="eventStartTime"></span>
 							<span id="eventEndTime"></span>
+							<span id="eventCreator"></span>
 							<span id="eventLocation"></span>
 {% if resource.language =="de" %}
 							<h4>Beschreibung</h4>
@@ -220,6 +221,7 @@ no_translation_needed: True
 		start = event.start
 		end = event.end
 		allDay = event.allDay
+		creator = event.creator
 
 		if (description == null)
 			description = "";
@@ -241,6 +243,14 @@ no_translation_needed: True
 		} else {
 			/* Error: clear information from previous modal dialog */
 			$("#eventEndTime").html("");
+		}
+
+		if (creator && creator != 'null') {
+			{% if resource.language =="de" %}
+			$("#eventCreator").html("<b>Ersteller:</b> <a href=\"mailto:"+creator.email+"\">" + creator.displayName + "</a><br />")
+			{% else %}
+			$("#eventCreator").html("<b>Creator:</b> <a href=\"mailto:"+creator.email+"\">" + creator.displayName + "</a><br />")
+			{% endif %}
 		}
 
 		if (pos && pos != 'null') {

@@ -135,7 +135,8 @@ function transformOptions(sourceOptions, start, end, timezone, calendar) {
 						end: entry.end.dateTime || entry.end.date, // same
 						url: entry.htmlLink,
 						location: entry.location,
-						description: entry.description
+						description: entry.description,
+						creator: entry.creator
 					});
 				});
 
