@@ -87,6 +87,8 @@ no_translation_needed: True
 <script type="text/javascript" src="{{ media_url('js/libs/fullcalendar/moment.min.js') }}"></script>
 <script type="text/javascript" src="{{ media_url('js/libs/fullcalendar/fullcalendar.js') }}"></script>
 <script type="text/javascript" src="{{ media_url('js/libs/fullcalendar/gcal.js') }}"></script>
+<script type="text/javascript" src="{{ media_url('js/libs/md5.js') }}"></script>
+<script type="text/javascript" src="{{ media_url('js/calusers.js') }}"></script>
 {% if resource.language =="de" %}
 <script type="text/javascript" src="{{ media_url('js/libs/fullcalendar/lang/de.js') }}"></script>
 {% endif %}
@@ -246,10 +248,17 @@ no_translation_needed: True
 		}
 
 		if (creator && creator != 'null') {
+			var creatorname = ""
+			if (md5(creator.email) in calusers) {
+				creatorname = calusers[md5(creator.email)]
+			} else {
+				creatorname = "<a href=\"mailto:"+creator.email+"\">" + creator.displayName + "</a>"
+			}
+
 			{% if resource.language =="de" %}
-			$("#eventCreator").html("<b>Ersteller:</b> <a href=\"mailto:"+creator.email+"\">" + creator.displayName + "</a><br />")
+			$("#eventCreator").html("<b>Ersteller:</b> "+creatorname+"<br />")
 			{% else %}
-			$("#eventCreator").html("<b>Creator:</b> <a href=\"mailto:"+creator.email+"\">" + creator.displayName + "</a><br />")
+			$("#eventCreator").html("<b>Creator:</b> "+creatorname+"<br />")
 			{% endif %}
 		}
 
