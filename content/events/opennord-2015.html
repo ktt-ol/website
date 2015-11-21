@@ -1,0 +1,45 @@
+---
+title: Gute Orte Stadtrundgang
+thumbnail: guteorte/thumbnail.jpg
+created: !!timestamp '2015-11-16 19:42:01'
+teaser: Auch bei der diesjährigen openNord (ehem. "Linux-Informationstage") in der BBS Haarentor war der KtT als Aussteller vertreten und steuerte auch einige Vorträge und Workshops bei.
+---
+{% set addGalleryBlock = True %}
+
+{% block content %}
+{% filter markdown|typogrify -%}
+
+### Der KtT bei der <a href="http://opennord.de/">openNord</a>
+
+Die "Linuxinformationstage" sind nun "openNord", und der KtT wurde gefragt, ob er dort nicht ein paar Vorträge beisteuern und einen Stand zum Ausstellen haben möchte. Natürlich sagen wir da nicht nein!
+
+Hinter der Umbenennung der Linuxinformationstage zu openNord steckt eine inhaltliche Neuausrichtung. Es geht nicht mehr nur explizit um Linux als Alternative für immer unsichere Windows-Rechner, sondern auch um OpenSource im Allgemeinen, wozu auch OpenHardware gehört, Netzpolitik, Heimautomation und weitere Themen. Die Örtlichkeit wurde ebenfalls gewechselt. Als neuer Austragungsort diente der Neubau der <a href="http://www.bbs-haarentor.de/">BBS Haarentor</a>, der mit seiner großen, offenen Fläche in der Mitte wie ein Forum anmutet und bestens für Aussteller geeignet ist. Klassenräume mit Lehrer- und Schüler-PCs sind ebenfalls gut für Vorträge und Workshops geeignet.
+
+Nach Betreten des Gebäudes befindet man sich direkt auf der oben beschriebenen, zentralen Freifläche, inmitten von Ausstellern zu jeder Seite. Mit der LED-Wand, die uns als Dauerleihgabe zur Verfügung steht, sowie weiterem blinkenden Leuchtwerk war der KtT-Stand ein großer Blickfang. Ein weiterer Besuchermagnet war der Printmate 3D-Drucker, den wir vor Ort hatten, um ein paar Beispieldrucke zu erzeugen um somit 3D-Druck zu erklären. Besonders interessiert waren die Besucher dabei an dem Thema Hausautomation, sowie den Samples, die wir mit unserem Laserschneider gefertigt haben.
+
+Weitere Aussteller waren unter anderem <a href="http://www.holarse-linuxgaming.de/">Holarse</a>, eine Linux-Spiele-Community, der <a href="https://blog.nordwest.freifunk.net/">Freifunk Oldenburg e.V.</a>, <a href="https://www.bytemine.net/">Bytemine</a>, die <a href="http://www.sectornord.de/">Sector Nord AG</a> und <a href="http://skolelinux.de/">Skolelinux</a>. Ein weiteres KtT-Mitglied hatte einen separaten Stand zu Arduino-Basteleien, und die <a href="http://www.kreativitaet-trifft-technik.de/group/multicopter.html">Multicopter-Gruppe</a> aus unserem Space hat ebenfalls ausgestellt und Flugvorführungen gemacht.
+
+Das Vortragsprogramm war interessant und ziemlich weit gefächert. Ob [langweilige Auflistung von Vorträgen hier einfügen], da war für jeden etwas dabei. Von Mitgliedern des KtT (auch unter Beteiligung des Chaostreffs) wurden u.a. folgende Workshops und Vorträge beigetragen:
+
+<ul>
+<li>Selfmade-Hausautomation: Messen, Steuern, Regeln für kleines Geld</li>
+<li>Sicheres surfen im Internet. Mit Tor!</li>
+<li>Was man alles im Fablab machen kann</li>
+<li>Sichere E-Mails mit PGP</li>
+<li>Lazarus - Die Plattform- und Betriebsystemunabhängige IDE für Object Pascal</li>
+<li>3D Scan & Virtualisierungstechniken</li>
+<li>ESP8266 statt Arduino: Mikrocontroller für 3€ incl. WLAN</li>
+<li>Erste Schritte mit Arduino</li>
+</ul>
+
+Trotz des umfassenden Vortrags- und Workshop-Programms und der interessanten Aussteller hätte die Messe dennoch besser besucht sein können. Dies schieben wir an dieser Stelle einfach dem regnerischen Wetter in die Schuhe, das erfahrungsgemäß vielen Oldenburgern die Ausgehlaune vermiest. Wir sind uns sicher, dass die openNord nächstes Jahr weiter wachsen wird und ich würde fast wetten, dass der KtT wieder mit von der Partie sein wird ;)
+
+#### Fotos
+
+{% from "macros.j2" import render_gallery with context %}
+{{ render_gallery("mygalley", "events/opennord-2015/gallery") }}
+
+Weitere Fotos folgen.
+
+{%- endfilter %}
+{% endblock content %}
