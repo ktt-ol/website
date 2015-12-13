@@ -9,14 +9,12 @@ This is the Website of Oldenburg's Hackspace AKA Mainframe.
 
 You need ```hyde``` to generate the html files. We need also Python Pillow to create thumbnails.   
  
-You can install both with ```pip```
+You can install both with ```pip2```
 ```bash
-sudo pip install hyde
-sudo pip install Pillow
-sudo pip install Image
+sudo pip2 install hyde
+sudo pip2 install Pillow
+sudo pip2 install Image
 ```
-
-On systems, where Python 3 is the default Python environment (like Arch Linux for example), you have to use ```pip2``` instead.
 
 ## Building
 
