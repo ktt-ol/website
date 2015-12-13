@@ -16,6 +16,8 @@ sudo pip install Pillow
 sudo pip install Image
 ```
 
+On systems, where Python 3 is the default Python environment (like Arch Linux for example), you have to use ```pip2``` instead.
+
 ## Building
 
 ```
