@@ -13,6 +13,7 @@ You can install both with ```pip```
 ```bash
 sudo pip install hyde
 sudo pip install Pillow
+sudo pip install Image
 ```
 
 ## Building
