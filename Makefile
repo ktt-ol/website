@@ -6,6 +6,7 @@ events = content/events/*.html
 machines = content/machines/*.html
 series_of_events = content/series-of-events/*.html
 forcegenfiles = content/index.html \
+                content/index.en.html \
                 content/projects.atom.xml \
 				content/project_hardware.html \
 				content/project_software.html \
