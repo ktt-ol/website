@@ -43,16 +43,6 @@ hyde serve
 
 to open a local web server for a preview ( http://localhost:8080 ).
 
-
-# Server setup
-
-To deliver the OVH newsfeed we have to download it periodically. For this task you could use the following cron entry in the ```/etc/crontab```
-
-```
-23 5    * * *   www-data    /usr/bin/wget -q -O /var/www/sponsors/sponsor-ovh-news.inc.html feedUrl
-```
-
-
 ## Jinja Documentation
 
  * http://jinja.pocoo.org/docs/templates/#filters
