@@ -9,10 +9,11 @@ This is the Website of Oldenburg's Hackspace AKA Mainframe.
 
 You need ```hyde``` to generate the html files. We need also Python Pillow to create thumbnails.   
  
-You can install both with ```pip```
+You can install both with ```pip2```
 ```bash
-sudo pip install hyde
-sudo pip install Pillow
+sudo pip2 install hyde
+sudo pip2 install Pillow
+sudo pip2 install Image
 ```
 
 ## Building
@@ -41,16 +42,6 @@ hyde serve
 ```
 
 to open a local web server for a preview ( http://localhost:8080 ).
-
-
-# Server setup
-
-To deliver the OVH newsfeed we have to download it periodically. For this task you could use the following cron entry in the ```/etc/crontab```
-
-```
-23 5    * * *   www-data    /usr/bin/wget -q -O /var/www/sponsors/sponsor-ovh-news.inc.html feedUrl
-```
-
 
 ## Jinja Documentation
 
