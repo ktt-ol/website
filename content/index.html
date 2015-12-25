@@ -40,7 +40,7 @@ title: Mainframe
 	</div>
 	<div class="panel-body">
 		<ul class="list-group article-list">
-			{% for res in site.content.node_from_relative_path("events").walk_resources_sorted_by_time() if res.language == resource.meta.language %}
+			{% for res in site.content.node_from_relative_path("events").walk_resources_sorted_by_time() if res.meta.language == resource.meta.language %}
 			{% if loop.index > 3 %} {% break %} {% endif %}
 			{{ render_event_excerpt(res, "borderless") }}
 			{% endfor %}
@@ -55,7 +55,7 @@ title: Mainframe
 	</div>
 	<div class="panel-body">
 		<div class="row">
-			{% for res in site.content.node_from_relative_path("project").walk_resources_sorted_by_time() if res.language == resource.meta.language %}
+			{% for res in site.content.node_from_relative_path("project").walk_resources_sorted_by_time() if res.meta.language == resource.meta.language %}
 			{% if loop.index > 3 %} {% break %} {% endif %}
 			{{ render_thumbnail(res, "img/project.svg") }}
 			{% endfor %}
@@ -69,7 +69,7 @@ title: Mainframe
 	</div>
 	<div class="panel-body">
 		<div class="row">
-			{% for res in site.content.node_from_relative_path("talk").walk_resources_sorted_by_time() if not res.meta.status == "scheduled" and res.language == resource.meta.language %}
+			{% for res in site.content.node_from_relative_path("talk").walk_resources_sorted_by_time() if not res.meta.status == "scheduled" and res.meta.language == resource.meta.language %}
 			{% if loop.index > 3 %} {% break %} {% endif %}
 			{{ render_thumbnail(res, "img/talk.svg") }}
 			{% endfor %}

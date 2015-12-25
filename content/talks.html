@@ -17,7 +17,7 @@ no_translation_needed: True
 	<div class="panel-body">
 		<div class="row">
 			{% for res in site.content.node_from_relative_path("talk").walk_resources_sorted_by_time()|reverse if res.meta.status == "scheduled" %}
-			{% if res.language != resource.meta.language %} {% continue %} {% endif %}
+			{% if res.meta.language != resource.meta.language %} {% continue %} {% endif %}
 			{{ render_thumbnail(res, "img/talk.svg") }}
 			{% else %}
 				<div class="panel-body">
@@ -43,7 +43,7 @@ no_translation_needed: True
 	<div class="panel-body">
 		<div class="row">
 			{% for res in site.content.node_from_relative_path("talk").walk_resources_sorted_by_time() if res.meta.status != "scheduled" %}
-			{% if res.language != resource.meta.language %} {% continue %} {% endif %}
+			{% if res.meta.language != resource.meta.language %} {% continue %} {% endif %}
 			{{ render_thumbnail(res, "img/talk.svg") }}
 			{% else %}
 				<div class="panel-body">
