@@ -10,7 +10,7 @@ extends: default.j2
 {% block mainbox %}
 
 <ul class="list-group article-list">
-{% for res in site.content.node_from_relative_path("machines").walk_resources()|selectattr("meta.title")|sort(attribute="meta.title") if res.language == resource.language %}
+{% for res in site.content.node_from_relative_path("machines").walk_resources()|selectattr("meta.title")|sort(attribute="meta.title") if res.language == resource.meta.language %}
 	{{ render_machine_excerpt(res, "no-list-margin") }}
 {% endfor %}
 </ul>

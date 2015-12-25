@@ -8,12 +8,12 @@ no_translation_needed: True
 {% block mainbox %}
 <div class="panel panel-default">
 	<div class="panel-heading">
-		<h3 class="panel-title">{{ resource.meta.title[resource.language] }}</h3>
+		<h3 class="panel-title">{{ resource.meta.title[resource.meta.language] }}</h3>
 	</div>
 	<div class="panel-body">
 		<div class="row">
             <ul>
-                {% for res in site.content.node_from_relative_path("press_release").walk_resources_sorted_by_time() if res.language == resource.language %}
+                {% for res in site.content.node_from_relative_path("press_release").walk_resources_sorted_by_time() if res.language == resource.meta.language %}
                 <li>
                     <strong>{{ res.meta.created.strftime("%Y-%m-%d")}}</strong>
                 <a href="{{ content_url(res.url) }}"> {{ res.meta.title }}</a></li>
