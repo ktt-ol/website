@@ -9,7 +9,7 @@
 				active
 		{% else -%}
 		{% for subitem in item.menu -%}
-			{% if site.content.resource_from_relative_path(subitem.url).url|i18n(resource.language) == resource.url|i18n(resource.language) -%}
+			{% if site.content.resource_from_relative_path(subitem.url).url|i18n(resource.meta.language) == resource.url|i18n(resource.meta.language) -%}
 				active
 			{%- endif %}
 		{%- endfor %}
@@ -19,7 +19,7 @@
 				{% if item.title is string -%}
 					{{ item.title }}
 				{% else -%}
-					{{ item.title[resource.language] }}
+					{{ item.title[resource.meta.language] }}
 				{% endif -%}
 				<b class="caret"></b>
 			</a>
@@ -30,11 +30,11 @@
 					{% else %}
 						{% set url = content_url(subitem.url) %}
 					{% endif %}
-					<li><a href="{{ url|i18n(resource.language) }}">
+					<li><a href="{{ url|i18n(resource.meta.language) }}">
 						{% if subitem.title is string -%}
 							{{ subitem.title }}
 						{% else -%}
-							{{ subitem.title[resource.language] }}
+							{{ subitem.title[resource.meta.language] }}
 						{% endif -%}
 					</a></li>
 				{%- endfor %}
@@ -42,18 +42,18 @@
 		</li>
 	{% else -%}
 		{% if item.type == 'page' -%}
-			{% set active = (resource.url|i18n(resource.language) ==
-				site.content.resource_from_relative_path(item.url).url|i18n(resource.language)) -%}
+			{% set active = (resource.url|i18n(resource.meta.language) ==
+				site.content.resource_from_relative_path(item.url).url|i18n(resource.meta.language)) -%}
 		{% else -%}
 			{% set active = (node ==
 				site.content.node_from_relative_path(item.url)) -%}
 		{%- endif %}
 		<li {% if active %}class="active"{% endif %}>
-			<a href="{{ content_url(item.url)|i18n(resource.language) }}">
+			<a href="{{ content_url(item.url)|i18n(resource.meta.language) }}">
 				{% if item.title is string -%}
 					{{ item.title }}
 				{% else -%}
-					{{ item.title[resource.language] }}
+					{{ item.title[resource.meta.language] }}
 				{% endif -%}
 			</a>
 		</li>
@@ -109,7 +109,7 @@
 		</a>
 	</div>
 	<div class="col-xs-6 col-md-9">
-		{% if resource.language == "de" %}
+		{% if resource.meta.language == "de" %}
 		<small class="date">{{res.meta.created.strftime("am %d.%m.%Y um %H:%M Uhr")}}</small>
 		{% else %}
 		<small class="date">{{res.meta.created.strftime("%d.%m.%Y, %H:%M")}}</small>
@@ -151,7 +151,7 @@
 	</div>
 	<div class="col-xs-6 col-md-9">
 		<h3><a href="{{ content_url(res.url) }}"> {{ res.meta.title }}</a></h3>
-		<p> {{ render_state(res.meta.state, res.language) }} </p>
+		<p> {{ render_state(res.meta.state, res.meta.language) }} </p>
 	</div>
 </li>
 {% endmacro %}

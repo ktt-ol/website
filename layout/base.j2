@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="{{ resource.language }}">
+<html lang="{{ resource.meta.language }}">
   <head>
     {% block starthead %}{% endblock starthead %}
     <meta charset="utf-8">
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <title>{% block title %}{% if resource.meta.title is string %}{{ resource.meta.title }}{% else %}{{ resource.meta.title[resource.language] }}{% endif %}{% endblock %} | {{ site_title }}</title>
+    <title>{% block title %}{% if resource.meta.title is string %}{{ resource.meta.title }}{% else %}{{ resource.meta.title[resource.meta.language] }}{% endif %}{% endblock %} | {{ site_title }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="{{ resource.meta.description }}">
     <meta name="author" content="{{ resource.meta.author }}">
@@ -35,7 +35,7 @@
     {% endblock favicons %}
 
 	<script type="text/javascript">
-		var language = "{{ resource.language }}";
+		var language = "{{ resource.meta.language }}";
 	</script>
     {% block headjs %}
     {% endblock headjs %}

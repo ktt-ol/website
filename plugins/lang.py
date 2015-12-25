@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-
+import copy
 import os
 import unittest
 from hyde.plugin import Plugin
@@ -57,10 +57,10 @@ def new_i18n_resource(node, base_resource, language):
     res.set_relative_deploy_path(path)
 
     # set some hints for further processing in later steps
-    res.meta = base_resource.meta
-    res.auto_generated_language = True
-    res.content_language = get_lang(base_resource) or default_language
-    res.language = language
+    res.meta = copy.deepcopy(base_resource.meta)
+    res.meta.auto_generated_language = True
+    res.meta.content_language = get_lang(base_resource) or default_language
+    res.meta.language = language
 
     return res
 
@@ -100,10 +100,10 @@ class LangPlugin(Plugin):
                     if newres is not None:
                         added_resources.append(newres)
                         self.logger.warn("auto-generated missing translation: %s [%s]" % (res.relative_path, lang))
-                if not hasattr(res, 'language'):
-                    res.language = get_lang(res)
-                    if res.language is None:
-                        res.language = default_language
+                if not hasattr(res.meta, 'language'):
+                    res.meta.language = get_lang(res)
+                    if res.meta.language is None:
+                        res.meta.language = default_language
             node.resources += added_resources
 
 

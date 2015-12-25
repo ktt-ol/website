@@ -14,11 +14,11 @@
 {% endblock css %}
 
 {% block infobox %}
-	{% if resource.auto_generated_language == True and resource.meta.no_translation_needed is not defined -%}
+	{% if resource.meta.auto_generated_language == True and resource.meta.no_translation_needed is not defined -%}
 				<p class="alert alert-info">
-				{% if resource.language == "de" -%}
+				{% if resource.meta.language == "de" -%}
 					Sorry, diese Seite wurde noch nicht auf Deutsch übersetzt.
-				{% elif resource.language == "en" -%}
+				{% elif resource.meta.language == "en" -%}
 					Sorry, but this page has not yet been translated to English.
 				{% endif -%}
 				</p>
@@ -31,7 +31,7 @@
 <div class="panel panel-default">
 	<div class="panel-heading"><a href="//status.kreativitaet-trifft-technik.de">Status</a></div>
 	<div class="panel-body">
-		{% if resource.language == "de" -%}
+		{% if resource.meta.language == "de" -%}
 		<div id="status">Space Status Unbekannt.</div>
 		{% else -%}
 		<div id="status">Space Status Unknown.</div>
@@ -42,7 +42,7 @@
 <div class="panel panel-default panel-sponsors">
 	<div class="panel-heading">
         <a href="{{ content_url('sponsors/index.html') }}">
-		{% if resource.language == "de" -%}
+		{% if resource.meta.language == "de" -%}
 			Sponsoren
 		{% else -%}
 			Sponsors
@@ -65,8 +65,8 @@
 </div>
 
 <div class="panel panel-default hidden-xs hidden-sm">
-	<div class="panel-heading"><a href="{{ content_url('calendar.html')|i18n(resource.language) }}">
-		{% if resource.language == "de" -%}
+	<div class="panel-heading"><a href="{{ content_url('calendar.html')|i18n(resource.meta.language) }}">
+		{% if resource.meta.language == "de" -%}
 			Termine
 		{% else -%}
 			Dates
