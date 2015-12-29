@@ -1,0 +1,41 @@
+---
+title: 32C3
+series: CCC
+thumbnail: 32C3/thumbnail.JPG
+created: !!timestamp '2015-12-31 23:42:00'
+teaser: Besuch des 32. Chaos Communication Congress durch den Mainframe.
+---
+{% set addGalleryBlock = True %}
+
+{% block content %}
+{% filter markdown|typogrify -%}
+
+Nach etwas Stress bei der Frage, wie unser Equipment zum nach Hamburg kommt
+haben sich am Ende zwei Mitglieder gefunden, die per Auto zum Congress gefahren
+sind und unsere LED-Wand, ein Rollup, ein Banner, 3D-Drucker, sowie Switches,
+Steckdosenleisten, sowie Kleinkram wie Werkzeug und Lötkolben mitgenommen haben.
+
+Vor Ort stellte es sich heraus, dass die Anmeldung der Assembly nicht so gut
+wie im letzeten Jahr funktioniert hat, und wir uns zunächst darum kümmern mussten
+einen passenden Platz zu finden. Das Ergebnis war eine Ecke direkt in Halle 3,
+welche wir mit der LED-Wand gut füllten.
+
+Die von uns rund 20 angreisten Mitglieder, einige nach München und Hamburg
+verzogene Ex-Mitglieder, sowie Bekanntschaften von den letzten CCC Events
+füllten den Tisch regelmäßig, so dass ein reger Austausch stattfand und wohl
+nur spät in der Nacht niemand vorzufinden war, der etwas zum Mainframe und
+unseren Projekten sagen kann.
+
+Ansonsten haben wir einfach die Zeit zusammen mit den anderen Hackern genossen,
+das Bällebad besucht, uns die Vorträge angehört und die Installationen anderer
+Spaces angeschaut.
+
+Das Fazit: Auch beim 33C3 werden wir wieder dabei sein.
+
+<h2>Fotos</h2>
+
+{% from "macros.j2" import render_gallery with context %}
+{{ render_gallery("mygalley", "events/32C3") }}
+
+{%- endfilter %}
+{% endblock content %}
