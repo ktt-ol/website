@@ -11,8 +11,18 @@ available_languages = ["de", "en"]
 default_language = "de"
 
 @contextfilter
-def i18n(ctx, link, language):
-    return get_i18n_path(link, language) or link
+def i18n(ctx, link, resource):
+    if type(resource) is str:
+        lang = resource
+    else:
+        lang = getattr(resource.meta, 'language', None)
+    return get_i18n_path(link, lang) or link
+
+
+def match_lang(res1, res2):
+    # Util function (in the globals) to quick check for matching language
+    return res1.meta.language == res2.meta.language
+
 
 def get_lang(resource):
         language = resource.relative_path.split(".")[-2]
@@ -81,6 +91,9 @@ def gen_i18n_resource(node, resource, language):
 filters = {
     'i18n' : i18n
 }
+globals = {
+    'match_lang': match_lang
+}
 
 class LangPlugin(Plugin):
 
@@ -90,6 +103,7 @@ class LangPlugin(Plugin):
     def template_loaded(self,template):
         super(LangPlugin, self).template_loaded(template)
         self.template.env.filters.update(filters)
+        self.template.env.globals.update(globals)
 
     def begin_site(self):
         for node in self.site.content.walk():

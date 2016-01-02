@@ -2,7 +2,7 @@
 
 from hyde.plugin import Plugin
 from lang import default_language
-from lang import i18n
+from lang import get_i18n_path
 from jinja2 import contextfilter
 import json
 
@@ -14,7 +14,9 @@ def calendar_links_json():
 
 @contextfilter
 def gen_cal_link(ids, language):
-    return i18n(None,"/calendar.html",language)+'?ids='+",".join(ids)
+    link = "/calendar.html"
+    translated_link = get_i18n_path(link,language) or link
+    return translated_link +'?ids='+",".join(ids)
 
 class CalendarPlugin(Plugin):
     def __init__(self, site):

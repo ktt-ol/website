@@ -9,8 +9,7 @@ no_translation_needed: True
 {% block mainbox %}
 
 <ul class="list-group article-list">
-    {% for res in site.content.node_from_relative_path("events").walk_resources_sorted_by_time() %}
-	{% if res.meta.language != resource.meta.language %} {% continue %} {% endif %}
+    {% for res in site.content.node_from_relative_path("events").walk_resources_sorted_by_time() if match_lang(res, resource) and match_dark(res, resource) %}
     {{ render_event_excerpt(res, "no-list-margin") }}
     {% endfor %}
 </ul>

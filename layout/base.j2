@@ -15,11 +15,17 @@
     <![endif]-->
 
     {% block basecss %}
+    {% if resource.meta.dark %}
+    <link href="{{ media_url('css/dark/darkly_bootstrap.css') }}" rel="stylesheet">
+    {% else %}
     <link href="{{ media_url('css/bootstrap.css') }}" rel="stylesheet">
+    {% endif %}
     <link href="{{ media_url('css/offcanvas.css') }}" rel="stylesheet">
     <link href="{{ media_url('css/site.css') }}" rel="stylesheet">
-    <link href="{{ media_url('css/default.css') }}" rel="stylesheet" title="Default">
-    <link href="{{ media_url('css/dark.css') }}" rel="alternate stylesheet" title="Dark">
+    <link href="{{ media_url('css/default.css') }}" rel="stylesheet">
+    {% if resource.meta.dark %}
+    <link href="{{ media_url('css/dark/dark.css') }}" rel="stylesheet">
+    {% endif %}
 
     {% endblock basecss %}
     {% block css %}{% endblock %}

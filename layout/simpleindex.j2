@@ -10,7 +10,7 @@
 	<div class="panel-body">
 		<div class="row">
 			{% for res in site.content.node_from_relative_path(resource.meta.type).walk_resources_sorted_by_time()
-			   if ((resource.meta.title is not defined) or (resource.meta.subtype == res.meta.type)) and res.meta.language == resource.meta.language %}
+			   if ((resource.meta.title is not defined) or (resource.meta.subtype == res.meta.type)) and match_lang(res, resource) and match_dark(res, resource) %}
 			{% if resource.meta.type == "series-of-events" %}
 			{{ render_thumbnail(res, "img/series-of-events.svg") }}
 			{% elif resource.meta.type == "group" %}

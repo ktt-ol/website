@@ -9,7 +9,7 @@
 				active
 		{% else -%}
 		{% for subitem in item.menu -%}
-			{% if site.content.resource_from_relative_path(subitem.url).url|i18n(resource.meta.language) == resource.url|i18n(resource.meta.language) -%}
+			{% if site.content.resource_from_relative_path(subitem.url).url|i18n(resource)|dark(resource) == resource.url|i18n(resource)|dark(resource) -%}
 				active
 			{%- endif %}
 		{%- endfor %}
@@ -30,7 +30,7 @@
 					{% else %}
 						{% set url = content_url(subitem.url) %}
 					{% endif %}
-					<li><a href="{{ url|i18n(resource.meta.language) }}">
+					<li><a href="{{ url|i18n(resource)|dark(resource) }}">
 						{% if subitem.title is string -%}
 							{{ subitem.title }}
 						{% else -%}
@@ -42,14 +42,14 @@
 		</li>
 	{% else -%}
 		{% if item.type == 'page' -%}
-			{% set active = (resource.url|i18n(resource.meta.language) ==
-				site.content.resource_from_relative_path(item.url).url|i18n(resource.meta.language)) -%}
+			{% set active = (resource.url|i18n(resource)|dark(resource) ==
+				site.content.resource_from_relative_path(item.url).url|i18n(resource)|dark(resource)) -%}
 		{% else -%}
 			{% set active = (node ==
 				site.content.node_from_relative_path(item.url)) -%}
 		{%- endif %}
 		<li {% if active %}class="active"{% endif %}>
-			<a href="{{ content_url(item.url)|i18n(resource.meta.language) }}">
+			<a href="{{ content_url(item.url)|i18n(resource)|dark(resource) }}">
 				{% if item.title is string -%}
 					{{ item.title }}
 				{% else -%}
