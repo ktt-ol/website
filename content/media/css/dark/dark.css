@@ -1,0 +1,5 @@
+.thumbnail img,
+img.img-thumbnail,
+#status img {
+  background: #ffffff;
+}
