@@ -4,12 +4,12 @@
 
 {% block container %}
 <div class="row">
-	<div class="col-md-3 col-md-push-9">
-		{% block sidebox %}{% endblock sidebox %}
-	</div>
-	<div class="col-md-9 col-md-pull-3">
+	<div class="col-md-9">
 		{% block infobox %}{% endblock infobox %}
 		{% block mainbox %}{% endblock mainbox %}
+	</div>
+	<div class="col-md-3">
+		{% block sidebox %}{% endblock sidebox %}
 	</div>
 </div>
 {% endblock container %}
