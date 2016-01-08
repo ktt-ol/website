@@ -10,8 +10,7 @@ translatable_extensions = ["html"]
 available_languages = ["de", "en"]
 default_language = "de"
 
-@contextfilter
-def i18n(ctx, link, resource):
+def i18n_filter(link, resource):
     if type(resource) is str:
         lang = resource
     else:
@@ -76,7 +75,6 @@ def new_i18n_resource(node, base_resource, language):
 
 def gen_i18n_resource(node, resource, language):
     newpath = get_i18n_path(resource.relative_path, language)
-
     # already correct lang or untranslatable
     if newpath == None:
         return None
@@ -89,7 +87,7 @@ def gen_i18n_resource(node, resource, language):
     return new_i18n_resource(node, resource, language)
 
 filters = {
-    'i18n' : i18n
+    'i18n' : i18n_filter
 }
 globals = {
     'match_lang': match_lang

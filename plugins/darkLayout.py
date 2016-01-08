@@ -8,11 +8,16 @@ from hyde.plugin import Plugin
 from hyde.site import Resource
 
 
-def dark(link, resource):
+def dark_filter(link, resource, clean_before=False):
     if getattr(resource.meta, 'dark', False) is False:
         return link
-    return patch_filename(link) or link
+    return patch_filename(link, clean_before) or link
 
+
+def clean_dark_filter(link):
+    link_split = link.split('.')
+    new_link = filter(lambda element: element != 'dark', link_split)
+    return '.'.join(new_link)
 
 def match_dark(res1, res2):
     # Util function (in the globals) to quick check for matching dark theme
@@ -21,7 +26,7 @@ def match_dark(res1, res2):
     return dark1 == dark2
 
 
-def patch_filename(path):
+def patch_filename(path, clean_before=False):
     # by this, we also support complete urls with parameter (e.g. for calendar)
     result = urlparse.urlparse(path)
 
@@ -30,6 +35,15 @@ def patch_filename(path):
 
     if ext != "html":
         return None
+
+    if clean_before:
+        # remove any 'dark' occurrences in the path
+        new_split = []
+        for split in path_split:
+            if split != 'dark':
+                new_split.append(split)
+        path_split = new_split
+
 
     path_split.insert(-1, 'dark')
     new_path = ".".join(path_split)
@@ -57,7 +71,8 @@ def new_dark_resource(node, base_resource):
 
 
 filters = {
-    'dark': dark
+    'dark': dark_filter,
+    'clean_dark': clean_dark_filter
 }
 globals = {
     'match_dark': match_dark
@@ -97,10 +112,11 @@ class TestSequenceFunctions(unittest.TestCase):
             ("/contact.de.html", "/contact.de.dark.html"),
             ("contact.jpg", None),
             ("/calendar.html?ids=sdklfsldfjsdl", "/calendar.dark.html?ids=sdklfsldfjsdl"),
-            ("http://blah.blub/calendar.html?ids=sdklfsldfjsdl", "http://blah.blub/calendar.dark.html?ids=sdklfsldfjsdl")
+            ("http://blah.blub/calendar.html?ids=sdklfsldfjsdl", "http://blah.blub/calendar.dark.html?ids=sdklfsldfjsdl"),
+            ("contact.en.dark.html", "contact.en.dark.html"),
         ]
 
         for test_this in test_data:
             print("testing: " + str(test_this) )
-            result = patch_filename(test_this[0])
+            result = patch_filename(test_this[0], True)
             self.assertEqual(test_this[1], result)

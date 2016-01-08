@@ -31,8 +31,8 @@
 				<div class="visible-xs">Language <b class="caret"></b></div>
 			  </a>
 				<ul class="dropdown-menu">
-				  <li><a href="{{ content_url(resource.url)|i18n("de")|dark(resource) }}"><img src="{{ media_url('img/lang/de.png') }}" /> German</a></li>
-				  <li><a href="{{ content_url(resource.url)|i18n("en")|dark(resource) }}"><img src="{{ media_url('img/lang/en.png') }}" /> English</a></li>
+				  <li><a href="{{ content_url(resource.url)|clean_dark|i18n("de")|dark(resource) }}"><img src="{{ media_url('img/lang/de.png') }}" /> German</a></li>
+				  <li><a href="{{ content_url(resource.url)|clean_dark|i18n("en")|dark(resource) }}"><img src="{{ media_url('img/lang/en.png') }}" /> English</a></li>
 				</ul>
 			</li>
 		  </ul>
