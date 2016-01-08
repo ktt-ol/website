@@ -8,7 +8,7 @@ no_translation_needed: True
 {% block container %}
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h3 class="panel-title">{{ resource.meta.title[resource.language] }}</h3>
+        <h3 class="panel-title">{{ resource.meta.title[resource.meta.language] }}</h3>
     </div>
     <div class="panel-body">
         <div id='calendar'>
@@ -25,7 +25,7 @@ no_translation_needed: True
 							<span id="eventEndTime"></span>
 							<span id="eventCreator"></span>
 							<span id="eventLocation"></span>
-{% if resource.language =="de" %}
+{% if resource.meta.language =="de" %}
 							<h4>Beschreibung</h4>
 {% else %}
 							<h4>Description</h4>
@@ -45,7 +45,7 @@ no_translation_needed: True
         <h3 class="panel-title">Abonnieren</h3>
     </div>
     <div class="panel-body">
-		{% if resource.language =="de" %}
+		{% if resource.meta.language =="de" %}
         <span class="label label-primary">Tipp:</span> Du kannst diesen Kalender auch direkt benutzen. Die iCal URL dazu ist
         <blockquote><code>https://www.google.com/calendar/ical/markusframer%40gmail.com/public/basic.ics</code></blockquote>
 		{% else %}
@@ -89,7 +89,7 @@ no_translation_needed: True
 <script type="text/javascript" src="{{ media_url('js/libs/fullcalendar/gcal.js') }}"></script>
 <script type="text/javascript" src="{{ media_url('js/libs/md5.js') }}"></script>
 <script type="text/javascript" src="{{ media_url('js/calusers.js') }}"></script>
-{% if resource.language =="de" %}
+{% if resource.meta.language =="de" %}
 <script type="text/javascript" src="{{ media_url('js/libs/fullcalendar/lang/de.js') }}"></script>
 {% endif %}
 
@@ -102,7 +102,7 @@ no_translation_needed: True
 		console.log("Request Failed: " + err);
 	});
 
-{% if resource.language =="en" %}
+{% if resource.meta.language =="en" %}
 	var calendar_translations = {}
 	$.getJSON("media/calendar-translation-en.json").done( function(data) {
 		calendar_translations = data
@@ -160,9 +160,9 @@ no_translation_needed: True
 		eventRender: function(event, element) {
 			id = event.id.substring(0, 26)
 
-			event.url = (id in calendar_links) ? calendar_links[id]["{{ resource.language }}"] : 'null'
+			event.url = (id in calendar_links) ? calendar_links[id]["{{ resource.meta.language }}"] : 'null'
 
-{% if resource.language =="en" %}
+{% if resource.meta.language =="en" %}
 			if (event.title in calendar_translations)
 				event.title = calendar_translations[event.title]
 			element.find(".fc-event-title").html(event.title);
@@ -255,7 +255,7 @@ no_translation_needed: True
 				creatorname = "<a href=\"mailto:"+creator.email+"\">" + creator.displayName + "</a>"
 			}
 
-			{% if resource.language =="de" %}
+			{% if resource.meta.language =="de" %}
 			$("#eventCreator").html("<b>Ersteller:</b> "+creatorname+"<br />")
 			{% else %}
 			$("#eventCreator").html("<b>Creator:</b> "+creatorname+"<br />")
@@ -263,7 +263,7 @@ no_translation_needed: True
 		}
 
 		if (pos && pos != 'null') {
-{% if resource.language =="de" %}
+{% if resource.meta.language =="de" %}
 			$("#eventLocation").html("<b>Ort:</b> " + pos.escapeHTML() + "<br />")
 {% else %}
 			$("#eventLocation").html("<b>Location:</b> " + pos.escapeHTML() + "<br />")
@@ -288,13 +288,13 @@ no_translation_needed: True
 		$("#eventTitle").text(title).html;
 
 		if (url && url != 'null') {
-			{% if resource.language =="de" %}
+			{% if resource.meta.language =="de" %}
 			$("#eventURL").html('<a href="'+url+'">Mehr Informationen...</a>');
 			{% else %}
 			$("#eventURL").html('<a href="'+url+'">More Information...</a>');
 			{% endif %}
 		} else {
-			{% if resource.language =="de" %}
+			{% if resource.meta.language =="de" %}
 			$("#eventURL").html('<span class="label label-primary">Hinweis:</span> Diesem Event ist keine Seite zugeordnet.');
 			{% else %}
 			$("#eventURL").html('<span class="label label-primary">Note:</span> No page is assigned to this event.');

@@ -9,8 +9,9 @@ plugins:
     - hyde.ext.plugins.sorter.SorterPlugin
     - hyde.ext.plugins.images.ImageThumbnailsPlugin
     - plugins.split.SplitPlugin
-    - plugins.lang.LangPlugin
     - plugins.calendar.CalendarPlugin
+    - plugins.lang.LangPlugin
+    - plugins.darkLayout.DarkPlugin
 context:
     data:
         site_title: Mainframe

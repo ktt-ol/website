@@ -8,7 +8,7 @@ no_translation_needed: True
 {% block mainbox %}
 <div class="panel panel-default">
 	<div class="panel-heading">
-{% if resource.language == "de" %}
+{% if resource.meta.language == "de" %}
 		<h3 class="panel-title">Demnächst stattfindende Vorträge</h3>
 {% else %}
 		<h3 class="panel-title">Scheduled Talks</h3>
@@ -17,11 +17,11 @@ no_translation_needed: True
 	<div class="panel-body">
 		<div class="row">
 			{% for res in site.content.node_from_relative_path("talk").walk_resources_sorted_by_time()|reverse if res.meta.status == "scheduled" %}
-			{% if res.language != resource.language %} {% continue %} {% endif %}
+            {% if not match_lang(res, resource) or not match_dark(res, resource) %} {% continue %} {% endif %}
 			{{ render_thumbnail(res, "img/talk.svg") }}
 			{% else %}
 				<div class="panel-body">
-{% if resource.language == "de" %}
+{% if resource.meta.language == "de" %}
 					Zur Zeit sind keine weiteren Vorträge geplant!
 {% else %}
 					Currently no future talks are planned!
@@ -34,7 +34,7 @@ no_translation_needed: True
 
 <div class="panel panel-default">
 	<div class="panel-heading">
-{% if resource.language == "de" %}
+{% if resource.meta.language == "de" %}
 		<h3 class="panel-title">Bereits stattgefundene Vorträge</h3>
 {% else %}
 		<h3 class="panel-title">Previous Talks</h3>
@@ -43,11 +43,11 @@ no_translation_needed: True
 	<div class="panel-body">
 		<div class="row">
 			{% for res in site.content.node_from_relative_path("talk").walk_resources_sorted_by_time() if res.meta.status != "scheduled" %}
-			{% if res.language != resource.language %} {% continue %} {% endif %}
+            {% if not match_lang(res, resource) or not match_dark(res, resource) %} {% continue %} {% endif %}
 			{{ render_thumbnail(res, "img/talk.svg") }}
 			{% else %}
 				<div class="panel-body">
-{% if resource.language == "de" %}
+{% if resource.meta.language == "de" %}
 					Bisher haben keine Vorträge stattgefunden!
 {% else %}
 					No talk has happened so far!
