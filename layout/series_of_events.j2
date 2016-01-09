@@ -14,9 +14,8 @@
 
 		<h3>Zugeordnete Events</h3>
 		<div class="row">
-			{% for res in site.content.node_from_relative_path("events").walk_resources_sorted_by_time() if res.meta.series == resource.meta.id %}
-			{% if res.language != resource.language %} {% continue %} {% endif %}
-			<!-- foo -->
+			{% for res in site.content.node_from_relative_path("events").walk_resources_sorted_by_time() if res.meta.series == resource.meta.id  %}
+			{% if not match_lang(res, resource) or not match_dark(res, resource) %} {% continue %} {% endif %}
 			{{ render_event_excerpt(res, "borderless no-list-margin") }}
 			{% else %}
 				<div class="col-xs-12 col-md-12">

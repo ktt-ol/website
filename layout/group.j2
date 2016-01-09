@@ -14,7 +14,7 @@
 		<h3>Durchgeführte Projekte</h3>
 		<div class="row">
 			{% for res in site.content.node_from_relative_path("project").walk_resources_sorted_by_time() if res.meta.group == resource.meta.id %}
-			{% if res.language != resource.language %} {% continue %} {% endif %}
+			{% if res.meta.language != resource.meta.language %} {% continue %} {% endif %}
 			{{ render_thumbnail(res, "img/project.svg") }}
 			{% else %}
 				<div class="col-xs-12 col-md-12">

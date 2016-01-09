@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-
+import copy
 import os
 import unittest
 from hyde.plugin import Plugin
@@ -10,9 +10,18 @@ translatable_extensions = ["html"]
 available_languages = ["de", "en"]
 default_language = "de"
 
-@contextfilter
-def i18n(ctx, link, language):
-    return get_i18n_path(link, language) or link
+def i18n_filter(link, resource):
+    if type(resource) is str:
+        lang = resource
+    else:
+        lang = getattr(resource.meta, 'language', None)
+    return get_i18n_path(link, lang) or link
+
+
+def match_lang(res1, res2):
+    # Util function (in the globals) to quick check for matching language
+    return res1.meta.language == res2.meta.language
+
 
 def get_lang(resource):
         language = resource.relative_path.split(".")[-2]
@@ -57,16 +66,15 @@ def new_i18n_resource(node, base_resource, language):
     res.set_relative_deploy_path(path)
 
     # set some hints for further processing in later steps
-    res.meta = base_resource.meta
-    res.auto_generated_language = True
-    res.content_language = get_lang(base_resource) or default_language
-    res.language = language
+    res.meta = copy.deepcopy(base_resource.meta)
+    res.meta.auto_generated_language = True
+    res.meta.content_language = get_lang(base_resource) or default_language
+    res.meta.language = language
 
     return res
 
 def gen_i18n_resource(node, resource, language):
     newpath = get_i18n_path(resource.relative_path, language)
-
     # already correct lang or untranslatable
     if newpath == None:
         return None
@@ -79,7 +87,10 @@ def gen_i18n_resource(node, resource, language):
     return new_i18n_resource(node, resource, language)
 
 filters = {
-    'i18n' : i18n
+    'i18n' : i18n_filter
+}
+globals = {
+    'match_lang': match_lang
 }
 
 class LangPlugin(Plugin):
@@ -90,6 +101,7 @@ class LangPlugin(Plugin):
     def template_loaded(self,template):
         super(LangPlugin, self).template_loaded(template)
         self.template.env.filters.update(filters)
+        self.template.env.globals.update(globals)
 
     def begin_site(self):
         for node in self.site.content.walk():
@@ -100,10 +112,10 @@ class LangPlugin(Plugin):
                     if newres is not None:
                         added_resources.append(newres)
                         self.logger.warn("auto-generated missing translation: %s [%s]" % (res.relative_path, lang))
-                if not hasattr(res, 'language'):
-                    res.language = get_lang(res)
-                    if res.language is None:
-                        res.language = default_language
+                if not hasattr(res.meta, 'language'):
+                    res.meta.language = get_lang(res)
+                    if res.meta.language is None:
+                        res.meta.language = default_language
             node.resources += added_resources
 
 

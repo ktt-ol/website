@@ -5,12 +5,12 @@
 {% block mainbox %}
 <div class="panel panel-default">
 	<div class="panel-heading">
-		<h3 class="panel-title">{{ resource.meta.title[resource.language] }}</h3>
+		<h3 class="panel-title">{{ resource.meta.title[resource.meta.language] }}</h3>
 	</div>
 	<div class="panel-body">
 		<div class="row">
 			{% for res in site.content.node_from_relative_path(resource.meta.type).walk_resources_sorted_by_time()
-			   if ((resource.meta.title is not defined) or (resource.meta.subtype == res.meta.type)) and res.language == resource.language %}
+			   if ((resource.meta.title is not defined) or (resource.meta.subtype == res.meta.type)) and match_lang(res, resource) and match_dark(res, resource) %}
 			{% if resource.meta.type == "series-of-events" %}
 			{{ render_thumbnail(res, "img/series-of-events.svg") }}
 			{% elif resource.meta.type == "group" %}
