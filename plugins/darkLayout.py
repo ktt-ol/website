@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 import copy
 import sys
+import unittest
 import urlparse
 
-from django.utils import unittest
 from hyde.plugin import Plugin
 from hyde.site import Resource
 
