@@ -49,7 +49,7 @@
     {% block endhead %}{% endblock endhead %}
   </head>
 
-  <body class="{{ resource.meta.id if resource.meta.id else resource.slug }}">
+  <body class="{{ resource.meta.id if resource.meta.id else resource.slug }} {{'dark' if resource.meta.dark}}">
 
     {% block body %}
     {% block jumbotron %}{% endblock jumbotron %}
