@@ -41,7 +41,7 @@
 
 <div class="panel panel-default panel-sponsors">
 	<div class="panel-heading">
-        <a href="{{ content_url('sponsors/index.html') }}">
+        <a href="{{ content_url('sponsors/index.html')|i18n(resource)|dark(resource)}}">
 		{% if resource.meta.language == "de" -%}
 			Sponsoren
 		{% else -%}

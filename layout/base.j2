@@ -61,7 +61,7 @@
       <hr>
       <footer>
         {% block footer %}
-        <p style="text-align: center;">&copy; 2014 <a href="{{ author.url }}">{{ author.name }}</a> | License: <a href="http://creativecommons.org/licenses/by-sa/3.0/de/">CC-BY-SA 3.0</a>  | <a href="{{ content_url('impressum.html') }}">Impressum</a></p>
+        <p style="text-align: center;">&copy; 2014 <a href="{{ author.url }}">{{ author.name }}</a> | License: <a href="http://creativecommons.org/licenses/by-sa/3.0/de/">CC-BY-SA 3.0</a>  | <a href="{{ content_url('impressum.html')|i18n(resource)|dark(resource) }}">Impressum</a></p>
         {% endblock footer %}
       </footer>
     </div> <!-- /container -->
