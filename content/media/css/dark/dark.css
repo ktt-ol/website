@@ -4,6 +4,10 @@ img.img-thumbnail,
   background: #ffffff;
 }
 
+.navbar-brand img {
+  margin-top: 5px;
+}
+
 .dark .mf-gallery-app .mf-gallery-ifs .header-line .item-pos {
   background: #464545;
 }
