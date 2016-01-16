@@ -5,130 +5,143 @@ extends: default.j2
 
 {% block mainbox %}
 <div class="panel panel-default">
-	<div class="panel-heading">
-		<h3 class="panel-title">Mainframe</h3>
-	</div>
-	<div class="panel-body">
-{% filter markdown|typogrify -%}
-### Was ist denn ein Mainframe?
+  <div class="panel-heading">
+    <h3 class="panel-title">Mainframe</h3>
+  </div>
+  <div class="panel-body">
 
-Mainframe ist der Name von unserem Hackspace in Oldenburg. Auf ca. 600
-Quadratmeter haben wir uns verschiedene Räume eingerichtet:
+    <h3>Was ist denn ein Mainframe?</h3>
 
-<p class="alert alert-info" role="alert">
-Die Bilder und der Grundriss sind zur Zeit noch von unser alten ca. 200
-Quadratmeter großen Fläche. Bilder von der neuen Fläche folgen demnächst.
-</p>
+    <p>Mainframe ist der Name von unserem Hackspace in Oldenburg. Auf ca. 600
+      Quadratmeter haben wir uns verschiedene Räume eingerichtet:</p>
 
+    <h3>Konferenzraum</h3>
 
-### Konferenzraum
+    <a href="{{ content_url('room/conference.jpg') }}">
+      <img src="{{ content_url('room/small_conference.jpg') }} " style="max-width: 800px"/>
+    </a>
 
-<a href="{{ content_url("room/conference.jpg") }}">
-  <img src="{{ content_url("room/small_conference.jpg") }} " />
-</a>
-
-Hier finden Vorträge und Meetings bei Beamerlicht statt.
+    <p>Hier finden Vorträge und Meetings bei Beamerlicht statt.</p>
 
 
-### 3D-Drucker
+    <h3>3D-Drucker</h3>
 
-<a href="{{ content_url("room/3d_drucker.jpg") }}">
-  <img src="{{ content_url("room/small_3d_drucker.jpg") }} " />
-</a>
-Hier stehen unsere verschiedenen 3D-Drucker und 3D-Scanner. ...
+    <a href="{{ content_url('room/3d_drucker.jpg') }}">
+      <img src="{{ content_url('room/small_3d_drucker.jpg') }} " style="max-width: 800px"/>
+    </a>
 
-
-### Fablab
-
-<a href="{{ content_url("room/fablab.jpg") }}">
-  <img src="{{ content_url("room/small_fablab.jpg") }} " />
-</a>
-
-Hier steht der Lasercutter. Ja, ihr habt richtig gelesen. Wir haben hier
-wirklich einen Lasercutter stehen. Außerdem befindet sich noch ein
-selbstgebauter Styroporschneider hier.
+    <p>Hier stehen unsere verschiedenen 3D-Drucker und 3D-Scanner. ...</p>
 
 
-### Schnittstelle
+    <h3>Fablab</h3>
 
-<a href="{{ content_url("room/schnittstelle.jpg") }}">
-  <img src="{{ content_url("room/small_schnittstelle.jpg") }} " />
-</a>
+    <a href="{{ content_url('room/fablab.jpg') }}">
+      <img src="{{ content_url('room/small_fablab.jpg') }} " style="max-width: 800px"/>
+    </a>
 
-Alles zu Textilien, inklusive Druck auf diese, findet sich hier.
-
-
-### Lounge
-
-<img src="{{ content_url("room/lounge.jpg") }} " />
-
-Unser  Raum zum entspannten Abhängen und Diskutieren. Hier steht auch unser
-Shopsystem mit Mate und anderen Koffein-haltigen Getränken.
-
-### Küche
-
-<img src="{{ content_url("room/kitchen.jpg") }} " />
-
-Wir haben eine prächtig ausgestattete Küche mit Spülmaschine, Backofen,
-Mikrowelle und zwei Kühlschränken. Das ganze nutzen wir auch fleißig beim
-Spacecooking, das wir als Alternative zum Pizzadienst und Döner sehen.
+    <p>Hier steht der Lasercutter. Ja, ihr habt richtig gelesen. Wir haben hier
+      wirklich einen Lasercutter stehen. Außerdem befindet sich noch ein
+      selbstgebauter Styroporschneider hier.</p>
 
 
-### Elektronikwerkstatt
+    <h3>Schnittstelle</h3>
 
-<img src="{{ content_url("room/electronics.jpg") }} " />
+    <a href="{{ content_url('room/schnittstelle.jpg') }}">
+      <img src="{{ content_url('room/small_schnittstelle.jpg') }} " style="max-width: 800px"/>
+    </a>
 
-Dies ist der richtige Ort zum Löten und Elektronikbasteln. WIr haben 6
-Lötarbeitsplätze und viel Material.
+    <p>Alles zu Textilien, inklusive Druck auf diese, findet sich hier.</p>
 
-### Holz- und Metall-Werkstatt
 
-<img src="{{ content_url("room/workshop.jpg") }} " />
+    <h3>Lounge</h3>
 
-Neben Hand- und Elektrowerkzeugen stehen hier auch eine Fräse und eine
-Drehbank.
+    <a href="{{ content_url('room/lounge1.jpg') }}">
+      <img src="{{ content_url('room/small_lounge1.jpg') }} "/>
+    </a>
 
-### Storage
+    <p>Unser Raum zum entspannten Abhängen und Diskutieren. Hier steht auch unser
+      Shopsystem mit Mate und anderen Koffein-haltigen Getränken.</p>
 
-<img src="{{ content_url("room/storage.jpg") }} " />
+    <a href="{{ content_url('room/lounge2.jpg') }}">
+      <img src="{{ content_url('room/small_lounge2.jpg') }} "/>
+    </a>
 
-Tja, wer hätte es gedacht, hier lagern wir Dinge und Kram. Außerdem stehen hier
-Schließfächer, in denen unsere Mitglieder ihre privaten Sachen unterbringen
-können.
 
-### Grundriss
+    <h3>Küche</h3>
 
-<img src="{{ content_url("room/layout.jpg") }} " />
+    <a href="{{ content_url('room/kueche.jpg') }}">
+      <img src="{{ content_url('room/small_kueche.jpg') }} "/>
+    </a>
 
-### Das klingt ja alles richtig super, wann habt ihr denn auf?
+    <p>Wir haben eine Küche mit Spülmaschine, Mikrowelle und zwei Kühlschränken.</p>
 
-Wir haben fast jeden Arbeitstag ab 18.00 Uhr (bis Open End)
-geöffnet. Häufig, insbesondere am Wochenende auch noch früher. Am besten prüfst du vor einem Besuch auf
-unserer [Status-Seite](http://status.kreativitaet-trifft-technik.de), ob der
-Hackspace gerade geöffnet ist. Für Prognosen steht auch eine Seite mit
-[Öffnungsstatistiken](https://status.kreativitaet-trifft-technik.de/stats.html)
-bereit.
 
-Im [Kalender]({{ content_url("/calendar.html") }}) und in der rechten
-Seitenspalte finden sich die Veranstaltungen und Treffen, die im Mainframe
-stattfinden.
+    <h3>Elektronikwerkstatt</h3>
 
-Neben regelmäßigen Treffen von Arbeitsgruppen, unseren eigenen Vorträgen und
-Veranstaltungen treffen sich auch einige befreundete Gruppen wie der
-[Chaostreff](https://www.ccc-ol.de), der
-[Web-Stammtisch](http://www.webstammtisch-oldenburg.de/) und der
-[Web-Montag](http://webmontagol.mixxt.de/) im Mainframe.
+    <img src="{{ content_url('room/electronics.jpg') }} "/>
 
-Komm doch einfach mal vorbei!
+    <p>Dies ist der richtige Ort zum Löten und Elektronikbasteln. WIr haben 6
+      Lötarbeitsplätze und viel Material.</p>
 
-### Und wo finde ich euch?
+    <h3>Holz- und Metall-Werkstatt</h3>
 
-Aus Richtung Innenstadt: Vom Lappan aus am Horst-Janssen-Museum vorbei bis zum
-Gebäude direkt vor der Eisenbahnbrücke auf der selben Strassenseite vordringen.
+    <img src="{{ content_url('room/workshop.jpg') }} "/>
 
-	Bahnhofsplatz 10
-	26122 Oldenburg
-{%- endfilter %}
-	</div>
+    <p>Neben Hand- und Elektrowerkzeugen stehen hier auch eine Fräse und eine
+      Drehbank.</p>
+
+    <h3>Storage</h3>
+
+    <a href="{{ content_url('room/storage1.jpg') }}">
+      <img src="{{ content_url('room/small_storage1.jpg') }} "/>
+    </a>
+
+    <p>Tja, wer hätte es gedacht, hier lagern wir Dinge und Kram.</p>
+
+    <a href="{{ content_url('room/storage2.jpg') }}">
+      <img src="{{ content_url('room/small_storage2.jpg') }} "/>
+    </a>
+
+    <p>Wir haben außerdem Schließfächer, in denen unsere Mitglieder ihre privaten Sachen unterbringen
+      können.</p>
+
+    <h3>Grundriss</h3>
+
+    <p>Einen Grundriss findet ihr unter <a href="//map.kreativitaet-trifft-technik.de/">map.kreativitaet-trifft-technik.de/</a></p>
+
+
+    <h3>Das klingt ja alles richtig super, wann habt ihr denn auf?</h3>
+
+    <p>Wir haben fast jeden Arbeitstag ab 18.00 Uhr (bis Open End)
+      geöffnet. Häufig, insbesondere am Wochenende auch noch früher. Am besten prüfst du vor einem Besuch auf
+      unserer <a href="//status.kreativitaet-trifft-technik.de">Status-Seite</a>, ob der
+      Hackspace gerade geöffnet ist. Für Prognosen steht auch eine Seite mit
+      <a href="//status.kreativitaet-trifft-technik.de/stats.html">Öffnungsstatistiken</a>
+      bereit.</p>
+
+    <p>Im <a href="{{ content_url('/calendar.html')|i18n(resource)|dark(resource) }}">Kalender</a> und in der rechten
+      Seitenspalte finden sich die Veranstaltungen und Treffen, die im Mainframe
+      stattfinden.</p>
+
+    <p>Neben regelmäßigen Treffen von Arbeitsgruppen, unseren eigenen Vorträgen und
+      Veranstaltungen treffen sich auch einige befreundete Gruppen wie der
+      <a href="https://www.ccc-ol.de">Chaostreff</a>, der
+      <a href="http://www.webstammtisch-oldenburg.de/">Web-Stammtisch</a> und der <a href="http://webmontagol.mixxt.de/">Web-Montag</a> im Mainframe.
+    </p>
+
+
+    <p>Komm doch einfach mal vorbei!</p>
+
+    <h3>Und wo finde ich euch?</h3>
+
+    <p>Aus Richtung Innenstadt: Vom Lappan aus am Horst-Janssen-Museum vorbei bis zum
+      Gebäude direkt vor der Eisenbahnbrücke auf der selben Strassenseite vordringen.</p>
+
+    <blockquote>
+      Bahnhofsplatz 10<br>
+      26122 Oldenburg
+    </blockquote>
+
+  </div>
 </div>
 {% endblock mainbox %}
