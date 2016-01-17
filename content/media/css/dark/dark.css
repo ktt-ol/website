@@ -3,3 +3,20 @@ img.img-thumbnail,
 #status img {
   background: #ffffff;
 }
+
+.navbar-brand img {
+  margin-top: 5px;
+}
+
+.dark .mf-gallery-app .mf-gallery-ifs .header-line .item-pos {
+  background: #464545;
+}
+
+.dark .mf-gallery-app footer {
+  background-color: transparent;
+}
+
+.dark .mf-gallery-app .mf-gallery .images li:hover,
+.mf-gallery-app .mf-gallery .images li .gallery-image .overlay {
+  background-color: #00bc8c;
+}
