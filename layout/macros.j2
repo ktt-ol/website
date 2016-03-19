@@ -174,7 +174,7 @@
 </ul>
 {% endmacro %}
 
-{% macro render_lightbox(id, directory, image, prefix="thumbs_") %}
+{% macro render_lightbox(id, directory, image, prefix="thumb_") %}
     <a href="{{ content_url(directory + '/' + image) }}" class="thumbnail" data-toggle="lightbox" data-gallery="multiimages"
        data-parent="body" data-title="{{image}}" title="{{image}}">
         <img src="{{ content_url(directory + '/' + prefix + image) }}" alt="{{image}}">
