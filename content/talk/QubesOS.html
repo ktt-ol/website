@@ -1,0 +1,32 @@
+---
+title: QubesOS — Sichertheit durch Isolation
+created: !!timestamp '2016-05-21 19:00:00'
+status: scheduled
+speaker: kalkin-
+thumbnail: data/talk-0019/thumbnail.svg
+calendar:
+ - 47fnc8q7ftl34qv5nljfkdo370
+---
+
+{% block content %}
+{% filter markdown|typogrify -%}
+
+QubesOS ist ein Betriebssystem, das auf Sicherheit durch Isolation setzt. Es
+erlaubt dem Nutzer, die verschiedenen Aspekte seines digitalen Lebens in
+verschiedene Domänen zu isolieren. Dieser Ansatz stellt sicher, das sowohl ein
+Exploit in der Netzwerkarten-Firmware, als auch ein bösartiger E-Mail Anhang,
+nur begrenzten Schaden anrichten kann. Dies wird erreicht durch ist ein
+Zusammenspiel des Xen Mikrokernels, der CPU eigenen IOMMU und cleveren
+Virtualisierungstechniken.
+
+Der Vortrag stellt das Betriebssystem vor und erklärt die Technischen Lösungen,
+die verwendet werden um die Isolation zu erreichen.
+
+Bahtiar Gadimov aka kalkin- ist ein Early Adopter und Contributor, der sich
+schon öfters die Hände dreckig gemacht hat beim Debuggen und Patchen des
+Betriebssystems.
+
+Termin: <a href="/calendar.html?date=2016-05&ids=47fnc8q7ftl34qv5nljfkdo370">21.05.2016 19:00</a>
+
+{%- endfilter %}
+{% endblock content %}
