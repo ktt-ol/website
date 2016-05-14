@@ -11,40 +11,37 @@ title: Kontakt
 		<h3 class="panel-title">Anschrift &amp; Kontakt</h3>
 	</div>
 	<div class="panel-body">
-		<div class="row">
-			<div class="col-md-4">
-				<div class="panel panel-default">
-					<div class="panel-heading">
-						<h3 class="panel-title">Post-Anschrift</h3>
-					</div>
-					<div class="panel-body">
-						Kreativität trifft Technik e.V.<br>
-						Postfach 3309<br>
-						26023 Oldenburg<br>
-					</div>
-				</div>
-				<div class="panel panel-default">
-					<div class="panel-heading">
-						<h3 class="panel-title">Anschrift</h3>
-					</div>
-					<div class="panel-body">
-						Kreativität trifft Technik e.V.<br>
-						Bahnhofsplatz 10<br>
-						26122 Oldenburg<br>
-					</div>
-				</div>
-				<div class="panel panel-default">
-					<div class="panel-heading">
-						<h3 class="panel-title">Kontakt</h3>
-					</div>
-					<div class="panel-body">
-						Mail: <a href="mailto:vorstand@kreativitaet-trifft-technik.de">vorstand@kreativitaet-trifft-technik.de</a><br>
-						<strike>Space-Telefon: 0441-30962031</strike> (zurzeit nicht verfügbar) <br>
-					</div>
-				</div>
 
+		<div class="row">
+			<div class="col-sm-2 contact-title">Post-Anschrift</div>
+			<div class="col-sm-4 contact-data">
+				Kreativität trifft Technik e.V.<br>
+				Postfach 3309<br>
+				26023 Oldenburg<br>
 			</div>
-			<div class="col-md-8">
+			<div class="col-sm-2 contact-title">Anschrift</div>
+			<div class="col-sm-4 contact-data">
+				Kreativität trifft Technik e.V.<br>
+				Bahnhofsplatz 10<br>
+				26122 Oldenburg<br>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-sm-2 contact-title">Kontakt</div>
+			<div class="col-sm-10 contact-data">
+					Wenn du mit Leuten aus dem <b>Verein</b> in Kontakt treten möchtest, dann sind
+					unsere <a href="{{content_url('communication.html')|i18n(resource)|dark(resource) }}">Mailinglisten</a> der richtige Weg.
+					Möchtest du nur mit dem <b>Vorstand</b> in Kontakt treten, dann schreibe an:
+					<a href="mailto:vorstand@kreativitaet-trifft-technik.de">vorstand@kreativitaet-trifft-technik.de</a>.
+					<!--
+          <strike>Space-Telefon: 0441-30962031</strike> (zurzeit nicht verfügbar) <br>
+          -->
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-12">
 				<div id="map" style="height:400px; border: 1px solid black;"></div>
 			</div>
 		</div>

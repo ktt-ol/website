@@ -103,3 +103,17 @@ body.album {
   margin-bottom: 15px;
   padding-bottom: 15px;
 }
+
+.contact-title {
+	text-decoration: underline;
+}
+.contact-data {
+	padding-bottom: 20px;
+}
+
+/* sm breakpoint */
+@media (min-width: 768px) {
+	.contact-title {
+		text-align: right;
+	}
+}
