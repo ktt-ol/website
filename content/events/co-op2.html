@@ -2,7 +2,7 @@
 title: "co-op2: Spacebus mit MQTT"
 series: co-op
 thumbnail: co-op2/co-op2-logo-web.png
-created: !!timestamp '2016-03-18 20:23:00'
+created: !!timestamp '2016-05-18 00:08:00'
 teaser: Der nächste Hackathon dreht sich ganz um unseren Spacebus, MQTT und die Space-API.
 calendar:
  - lpk8vfhnae0sl5d1v4am6k3858
@@ -18,14 +18,31 @@ Abschluss mit Preisvergabe: Sonntag um 20 Uhr
         <img src="co-op2/co-op2-logo-web.png" alt="" class="img-thumbnail"/>
 </div>
 
-Am 14./15. Mai findet unser nächster Hackathon, die co-op2 im Hackspace statt. Diesmal soll sich alles um den Spacebus drehen, der via <a href="http://mqtt.org/documentation">MQTT</a> Events versendet. Schon jetzt wird dieser Bus bei uns für das Sammeln von Temperatur- und Stromzählerwerten genutzt, es gibt jedoch eine Liste weiterer sinnvoller Anwendungen dafür. Außerdem können die Events auch von eigenen Geräten genutzt werden, um z.B. eine Push-Benachrichtigung bei Space-Öffnung auszulösen. Die Möglichkeiten sind also ziemlich zahlreich.  
-Wer möchte kann auch seinen eigenen MQTT-Server oder die Space-API zum Übertragen von Events benutzen. Ziel soll es sein, gemeinsam den Umgang mit MQTT zu erlenen und coole Projekte daraus zu bauen. 
+Am 14./15. Mai fand unser anstehender Hackathon, die co-op2, im Hackspace statt. Diesmal hat sich alles um den Spacebus gedreht, der via <a href="http://mqtt.org/documentation">MQTT</a> Events versendet. Schon vorher wurde dieser Bus bei uns für das Sammeln von Temperatur- und Stromzählerwerten genutzt, jedoch gab es noch größeres Potenzial bei der Nutzung durch Sensoren und Aktoren. Ziel der Veranstaltung war es, gemeinsam den Umgang mit MQTT zu erlenen und coole Projekte daraus zu bauen, die im Idealfall auch dem Space auch eine Funktionserweiterung bieten.
 
-Wenn Ihr mitmachen wollt, meldet Euch bitte in unserem <a href="https://pad.kreativitaet-trifft-technik.de/p/co-op2">Etherpad zur Veranstaltung</a> an. 
+Von der <a href="https://www.kreativitaet-trifft-technik.de/events/co-op1.html">co-op1</a> haben wir gelernt, dass die Teilnehmer samstags zu sehr unterschiedlichen Uhrzeiten erscheinen können, und haben deswegen mit einem Soft-Opening begonnen. Zwischen 10 und 20 Personen waren über das Wochenende im Space zugange und haben an nützlichen und eindrucksvollen Projekten getüftelt.
 
-Auch dieses Mal sollen die Lieblingsprojekte der Teilnehmer wieder mit Sachpreisen prämiert werden. Dazu unterstützen uns wieder <a href="http://www.oreilly.de/">O’Reilly</a>, der <a href="http://www.dpunkt.de/">dpunkt-Verlag</a>, <a href="http://www.watterott.com/">watterott</a> und <a href="https://www.getdigital.de/">getdigital</a> mit Sachpreisen.
+Die Projekte waren diesmal eher softwarelastig einzuordnen, jedoch wurde hier und dort auch ein ESP als Aktor oder Sensor verbaut, um die Busfunktionen zu erweitern. Unter den Projekten befand sich z.B. eine Gruppe, die die Events des MQTT-Busses persistiert und mit <a href="http://grafana.org/">Grafana</a> visuell aufbereitet hat. Dort kann man nun z.B. den aktuellen Stromverbrauch und die Anzahl der Spacebesucher sehen, sowie den Verlauf der vergangenen Wochen. Das Ablesen des Stromverbrauchs ist im Rahmen dessen auch repariert, bzw. verbessert worden.
 
-Samstagabend wird es etwas warmes zu Essen geben, und sonntags wird es ganztags Frühstück zum Selber-Schmieren geben. Wir werden uns auch um Getränke für die Teilnehmer kümmern. Für Verpflegung ist also gesorgt.
+<div class="article__image-right">
+	<img src="co-op2/co-op2-hacking.jpg" alt="" />
+</div>
+
+Eine weitere Gruppe baute einen Space-Schalter für unsere Fahrradwerkstatt, die sog. Radstelle. Mit diesem kann in baldiger Zukunft der Status der räumlich getrennten Werkstatt signalisiert und über die Homepage als Status abgerufen werden. Das Verlegen der dafür nötigen Netzwerk- und Stromanbindung wurde unterdessen von einem weiteren Teilnehmer vorbereitet und geplant.<br />
+Ebenfalls eindrucksvoll war die Erweiterung unserer <a href="http://map.ktt-ol.de/">Space Map</a>, in der nun unser Stromverbrauch und der Öffnungsstatus live in ein SVG gerendert und angezeigt werden können. Die Grundlage für das Einbinden weiterer Sensoren ist damit gelegt.<br />
+Unsere aus Hamburg angereisten&mdash;und teilweise sehr jungen&mdash;Gäste haben mir nichts, dir nichts unseren Mainframe in <a href="https://minecraft.net/en/">Minecraft</a> nachgebaut, und dabei eine unglaubliche Detailtreue bewiesen. Über diverse Plugins und Kniffe ließ sich der MQTT-Bus dann in das Spiel umleiten, und man konnte z.B. den Öffnungsstatus des Mainframes live im Spiel mitverfolgen. Sogar die Live-Anzeige der Visualisierungsgruppe wurde auf einer virtuellen Leinwand eingespielt.<br />
+Andere Teilnehmer haben auch schlicht den Code ihrer bestehenden MQTT-Projekte erweitert und verbessert, allgemein mit ihrer Erfahrung und ihren Kenntnissen andere Teilnehmer unterstützt, oder mal etwas am Laserschneider gefertigt.
+
+Alles in allem herrschte eine sehr angenehme und konstruktive Stimmung im Space, die mit Suppe am Samstagabend oder Ganztagsfrühstück am Sonntag auch richtig gesellig wurde.<br />
+Ein weiteres Ergebnis des Hackathons ist <a href="https://github.com/ktt-ol/esp-mqtt-nodes">eine Sammlung an Codesnippets für den ESP8266 mit MQTT-Anbindung</a>, die es anderen Mitgliedern erleichtert, eigene Sensoren an den Spacebus anzubinden.
+
+Zum Finale gab es natürlich wieder eine Bewertung der einzelnen Projekte, die anschließend mit tollen Sachpreisen prämiert wurden. Dazu haben uns wieder die Sponsoren <a href="http://www.oreilly.de/">O’Reilly</a>, der <a href="http://www.dpunkt.de/">dpunkt-Verlag</a>, <a href="http://www.watterott.com/">watterott</a> und <a href="https://www.getdigital.de/">getdigital</a> mit Büchern und Papercraft-Modellen unterstützt. Vielen Dank dafür an dieser Stelle!
+
+Vielen Dank auch allen, die bei der Organisation der Veranstaltung unterstützt und mit angepackt haben. Wir freuen uns schon auf's nächste Mal!
+
+<img src="co-op2/co-op2-winners.jpg" alt="" />
+
+Ein Fotoalbum mit weiteren Impressionen der Veranstaltung wird hier in Kürze verlinkt.
 
 {%- endfilter %}
 {% endblock content %}
