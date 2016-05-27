@@ -28,14 +28,29 @@
 {% endblock infobox %}
 
 {% block sidebox %}
-<div class="panel panel-default">
+<div id="statusBox" class="panel panel-default">
 	<div class="panel-heading"><a href="//status.kreativitaet-trifft-technik.de">Status</a></div>
 	<div class="panel-body">
-		{% if resource.meta.language == "de" -%}
-		<div id="status">Space Status Unbekannt.</div>
-		{% else -%}
-		<div id="status">Space Status Unknown.</div>
-		{% endif -%}
+		<div id="statusBox_text">
+			{% if resource.meta.language == "de" -%}
+			Space Status Unbekannt.
+			{% else -%}
+			Space Status Unknown.
+			{% endif -%}
+		</div>
+	</div>
+</div>
+
+<div id="radBox" class="panel panel-default">
+	<div class="panel-heading"><a href="//status.kreativitaet-trifft-technik.de">Radstelle</a></div>
+	<div class="panel-body">
+		<div id="radBox_text">
+			{% if resource.meta.language == "de" -%}
+			Radstelle Status Unbekannt.
+			{% else -%}
+			Radstelle Status Unknown.
+			{% endif -%}
+		</div>
 	</div>
 </div>
 
@@ -110,12 +125,7 @@
 
 
 	<script src="{{ media_url('js/libs/gcalflow/jquery.gcal_flow.js') }}"></script>
-
 	<script src="{{ media_url('js/libs/status.js') }}"></script>
-
-	<script type="text/javascript">
-		spaceStatusPoll();
-	</script>
 
 	<script type="text/javascript">
 		function leadingZero(value) {
@@ -123,6 +133,8 @@
 		}
 
 		$(document).ready(function() {
+			SpaceStatus.init(language);
+
 			$(function() { $('#gcf-simple').gCalFlow({
 				apikey: '{{ calendar.google_api_key }}',
 				calid: '{{ calendar.google_cal_id }}',
@@ -137,17 +149,12 @@
 						return base + " - " + de.getDate() + ". " + monthname[de.getMonth()]
 
 					if(allday_p)
-						return base
+						return base;
 
 					return base + ", " + times
 				}
 			});});
 		});
 	</script>
-
-	<script type="text/javascript">
-		spaceStatusPush();
-	</script>
-
 	{{ super() }}
 {% endblock scripts %}

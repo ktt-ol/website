@@ -1,89 +1,131 @@
 /* JS helpers for Space Status Widget */
 
-var statusmsg = {
-	"open": {
-		"logo": "/media/img/mainframe-open.svg",
-		"class": "panel-success",
-		"de": "Hochgefahren",
-		"en": "Open"
-	},
-	"closed": {
-		"logo": "/media/img/mainframe-closed.svg",
-		"class": "panel-danger",
-		"de": "Runtergefahren",
-		"en": "Closed"
-	},
-	"closing": {
-		"logo": "/media/img/mainframe-closing.svg",
-		"class": "panel-warning",
-		"de": "Am Schließen",
-		"en": "Closing"
-	}
-}
+'use strict';
 
-function spaceStatusSet(status) {
-	img = statusmsg[status]["logo"];
-	cls = statusmsg[status]["class"];
-	msg = statusmsg[status][language];
+var SpaceStatus = (function () {
+  var baseUrl = '//status.kreativitaet-trifft-technik.de/';
+  // var baseUrl = 'http://localhost:9000/';
+  
+  // default
+  var language = 'de';
 
-	$('#status').html("<a href=\"//status.kreativitaet-trifft-technik.de/\"><img src=\""+img+"\" alt=\""+msg+"!\" title=\""+msg+"!\" style='width: 100%' /></a>");
-	$('#status').parent().parent().removeClass("panel-danger panel-success panel-warning");
-	$('#status').parent().parent().addClass(cls)
-}
+  var BASE = {
+    "on": {
+      "class": "panel-success",
+      "de": "Hochgefahren",
+      "en": "Open"
+    },
+    "off": {
+      "class": "panel-danger",
+      "de": "Runtergefahren",
+      "en": "Closed"
+    },
+    "closing": {
+      "class": "panel-warning",
+      "de": "Am Schließen",
+      "en": "Closing"
+    }
+  };
 
-function spaceStatusPoll() {
-	$.getJSON("//status.kreativitaet-trifft-technik.de/api/spaceInfo", function( data ) {
-		spaceStatusSet(data["state"]["open"] ? "open" : "closed");
-	});
-}
+  var SPACE = $.extend(true, {}, BASE, {
+    "domId": 'statusBox',
+    "on": {
+      "logo": "/media/img/mainframe-open.svg"
+    },
+    "off": {
+      "logo": "/media/img/mainframe-closed.svg"
+    },
+    "closing": {
+      "logo": "/media/img/mainframe-closing.svg"
+    }
+  });
 
-function spaceStatusPush() {
-	var CHECK_INTERVAL = 5 * 60 * 1000;
-	var source = new EventSource("//status.kreativitaet-trifft-technik.de/api/statusStream?spaceOpen=1");
+  var RADSTELLE = $.extend(true, {}, BASE, {
+    "domId": 'radBox',
+    "on": {
+      "logo": "/media/img/Radstelle_open.svg"
+    },
+    "off": {
+      "logo": "/media/img/Radstelle_closed.svg"
+    },
+    "closing": {
+      "logo": "/media/img/Radstelle_closed.svg"
+    }
+  });
 
-	source.onopen = function () {
-		console.log('EventSource: connection established');
-		connectionError = false;
-		lastkeepalive = new Date().getTime();
-	};
+  function statusSet(place, status) {
+    var img = place[status]["logo"];
+    var cls = place[status]["class"];
+    var msg = place[status][language];
 
-	source.onerror = function (err) {
-		connectionError = true;
-		console.log('EventSource: connected failed:', err);
-	};
+    var id = '#' + place.domId;
 
-	source.addEventListener('spaceOpen', function (e) {
-		var data = jQuery.parseJSON(e.data);
-		switch (data.state) {
-		case 'off':
-			console.log('EventSource: Space is off');
-			spaceStatusSet("closed");
-			break;
-		case 'on':
-			console.log('EventSource: Space is on');
-			spaceStatusSet("open");
-			break;
-		case 'closing':
-			console.log('EventSource: Space is closing');
-			spaceStatusSet("closing");
-			break;
-		}
-	}, false);
+    $(id).removeClass("panel-danger panel-success panel-warning");
+    $(id).addClass(cls);
+    $(id + '_text').html('<a href="' + baseUrl + '"><img src="' + img + '" alt="' + msg + '!" title="' + msg + '!" style="width: 100%" /></a>');
+  }
 
-	source.addEventListener('keepalive', function (e) {
-		lastkeepalive = new Date().getTime();
-	}, false);
+  function firstPoll() {
+    $.getJSON(baseUrl + "api/openState", function (data) {
+      statusSet(SPACE, data.space.state);
+      statusSet(RADSTELLE, data.radstelle.state);
+    });
+  }
 
-	function checkConnection() {
-		console.log('Checking connection...');
-		var now = new Date().getTime();
-		if ((now - lastkeepalive > 65 * 60 * 1000) || source.readyState === 2) {
-			source.close();
-			setTimeout(init, 3000);
-			return;
-		}
-		setTimeout(checkConnection, CHECK_INTERVAL);
-	}
+  function spaceStatusPush() {
+    var CHECK_INTERVAL = 5 * 60 * 1000;
+    var connectionError, lastkeepalive;
 
-	setTimeout(checkConnection, CHECK_INTERVAL);
-}
+    var source = new EventSource(baseUrl + "api/statusStream?spaceOpen=1&radstelleOpen=1");
+    source.onopen = function () {
+      console.log('EventSource: connection established');
+      connectionError = false;
+      lastkeepalive = new Date().getTime();
+    };
+
+    source.onerror = function (err) {
+      connectionError = true;
+      console.log('EventSource: connected failed:', err);
+    };
+
+    source.addEventListener('spaceOpen', function (e) {
+      listen(SPACE, e);
+    }, false);
+
+    source.addEventListener('radstelleOpen', function (e) {
+      listen(RADSTELLE, e);
+    }, false);
+
+    source.addEventListener('keepalive', function (e) {
+      lastkeepalive = new Date().getTime();
+    }, false);
+
+    function listen(place, event) {
+      var data = jQuery.parseJSON(event.data);
+      console.log('EventSource: ' + data.state);
+      statusSet(place, data.state);
+    }
+
+    function checkConnection() {
+      console.log('Checking connection...');
+      var now = new Date().getTime();
+      if ((now - lastkeepalive > 65 * 60 * 1000) || source.readyState === 2) {
+        source.close();
+        setTimeout(init, 3000);
+        return;
+      }
+      setTimeout(checkConnection, CHECK_INTERVAL);
+    }
+
+    setTimeout(checkConnection, CHECK_INTERVAL);
+  }
+
+  return {
+    init: function (lang) {
+      language = lang;
+
+      firstPoll();
+      spaceStatusPush();
+    }
+  };
+}());
