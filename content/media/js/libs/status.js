@@ -10,12 +10,12 @@ var SpaceStatus = (function () {
   var language = 'de';
 
   var BASE = {
-    "on": {
+    "open": {
       "class": "panel-success",
       "de": "Hochgefahren",
       "en": "Open"
     },
-    "off": {
+    "none": {
       "class": "panel-danger",
       "de": "Runtergefahren",
       "en": "Closed"
@@ -29,10 +29,10 @@ var SpaceStatus = (function () {
 
   var SPACE = $.extend(true, {}, BASE, {
     "domId": 'statusBox',
-    "on": {
+    "open": {
       "logo": "/media/img/mainframe-open.svg"
     },
-    "off": {
+    "none": {
       "logo": "/media/img/mainframe-closed.svg"
     },
     "closing": {
@@ -42,10 +42,10 @@ var SpaceStatus = (function () {
 
   var RADSTELLE = $.extend(true, {}, BASE, {
     "domId": 'radBox',
-    "on": {
+    "open": {
       "logo": "/media/img/Radstelle_open.svg"
     },
-    "off": {
+    "none": {
       "logo": "/media/img/Radstelle_closed.svg"
     },
     "closing": {
