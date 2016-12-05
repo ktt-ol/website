@@ -10,10 +10,25 @@ var SpaceStatus = (function () {
   var language = 'de';
 
   var BASE = {
+    "open+": {
+      "class": "panel-success",
+      "de": "Hochgefahren",
+      "en": "Open House"
+    },
     "open": {
       "class": "panel-success",
       "de": "Hochgefahren",
       "en": "Open"
+    },
+    "member": {
+      "class": "panel-warning",
+      "de": "Nur Mitglieder",
+      "en": "Members Only"
+    },
+    "keyholder": {
+      "class": "panel-warning",
+      "de": "Nur Keyholder",
+      "en": "Keyholder Only"
     },
     "none": {
       "class": "panel-danger",
@@ -29,8 +44,17 @@ var SpaceStatus = (function () {
 
   var SPACE = $.extend(true, {}, BASE, {
     "domId": 'statusBox',
+    "open+": {
+      "logo": "/media/img/mainframe-open-plus.svg"
+    },
     "open": {
       "logo": "/media/img/mainframe-open.svg"
+    },
+    "member": {
+      "logo": "/media/img/mainframe-member.svg"
+    },
+    "keyholder": {
+      "logo": "/media/img/mainframe-keyholder.svg"
     },
     "none": {
       "logo": "/media/img/mainframe-closed.svg"
