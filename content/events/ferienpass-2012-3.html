@@ -5,6 +5,7 @@ thumbnail: ferienpass-2012-3/thumbnail.jpg
 created: !!timestamp '2012-08-26 19:30:00'
 teaser: Heute haben wir unsere letzte Ferienpass-Aktion absolviert und gleich 14 Kinder und deren Eltern begeistert.
 ---
+{% set addGalleryBlock = True %}
 {% block content %}
 {% filter markdown|typogrify -%}
 {{resource.meta.teaser}} Alle haben ihre Klackerlaken fertig bekommen und sich bei den Rennen und anderen Wettbewerben bewährt.
@@ -24,6 +25,10 @@ Last not least auch ein Dankeschön an <a href="http://meyleankronemann.de/">Mey
 die die Idee für die <a href="http://meyleankronemann.de/klackerlaken/">Klackerlaken</a> hatte und
 unter einer freien CC-Lizenz der Allgemeinheit zur Verfügung gestellt hat!
 
-<!-- TODO: gallery -->
+<h2>Fotos</h2>
+
+{% from "macros.j2" import render_gallery with context %}
+{{ render_gallery("mygalley", "events/ferienpass-2012-3/gallery") }}
+
 {%- endfilter %}
 {% endblock content %}

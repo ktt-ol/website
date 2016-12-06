@@ -5,6 +5,7 @@ thumbnail: ferienpass-2012-1/thumbnail.jpg
 created: !!timestamp '2012-07-28 21:00:00'
 teaser: Heute hatten wir den Space voll mit Kids - 12 Energiebündel waren gekommen, um mit uns Klackerlaken zu bauen.
 ---
+{% set addGalleryBlock = True %}
 {% block content %}
 {% filter markdown|typogrify -%}
 {{resource.meta.teaser}}
@@ -25,6 +26,10 @@ Last not least auch ein Dankeschön an <a href="http://meyleankronemann.de/">Mey
 die die Idee für die <a href="http://meyleankronemann.de/klackerlaken/">Klackerlaken</a> hatte und
 unter einer freien CC-Lizenz der Allgemeinheit zur Verfügung gestellt hat!
 
-<!-- TODO: gallery -->
+<h2>Fotos</h2>
+
+{% from "macros.j2" import render_gallery with context %}
+{{ render_gallery("mygalley", "events/ferienpass-2012-1/gallery") }}
+
 {%- endfilter %}
 {% endblock content %}
