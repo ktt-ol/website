@@ -1,0 +1,137 @@
+&socgpio {
+	i2cgpio0irq: i2cgpio0irq {
+		brcm,pins = <0x17>;
+		brcm,function = <0>;
+		brcm,pull = <2>;
+	};
+
+	i2cgpio1irq: i2cgpio1irq {
+		brcm,pins = <0x11>;
+		brcm,function = <0>;
+		brcm,pull = <2>;
+	};
+};
+
+&i2c1 {
+	i2cgpio0: gpio@21 {
+		compatible = "microchip,mcp23017";
+		gpio-controller;
+		#gpio-cells = <0x2>;
+		reg = <0x21>;
+		interrupt-parent = <&socgpio>;
+		interrupts = <0x17 0x8>;
+		interrupt-names = "mcp23017@21 irq";
+		interrupt-controller;
+		#interrupt-cells = <0x2>;
+		microchip,irq-mirror;
+		pinctrl-names = "default";
+		pinctrl-0 = <&i2cgpio0irq>;
+	};
+
+	i2cgpio1: gpio@22 {
+		compatible = "microchip,mcp23017";
+		gpio-controller;
+		#gpio-cells = <0x2>;
+		reg = <0x22>;
+		interrupt-parent = <&socgpio>;
+		interrupts = <0x11 0x8>;
+		interrupt-names = "mcp23017@22 irq";
+		interrupt-controller;
+		#interrupt-cells = <0x2>;
+		microchip,irq-mirror;
+		pinctrl-names = "default";
+		pinctrl-0 = <&i2cgpio1irq>;
+	};
+};
+
+/ {
+	gpio-keys {
+		compatible = "gpio-keys";
+		label = "main-door keypad";
+
+		0 {
+			label = "Key 0";
+			linux,code = <11>;
+			gpios = <&i2cgpio0 15 1>;
+			debounce-interval = <20>;
+		};
+
+		1 {
+			label = "Key 1";
+			linux,code = <2>;
+			gpios = <&i2cgpio0 14 1>;
+			debounce-interval = <20>;
+		};
+
+		2 {
+			label = "Key 2";
+			linux,code = <3>;
+			gpios = <&i2cgpio0 13 1>;
+			debounce-interval = <20>;
+		};
+
+		3 {
+			label = "Key 3";
+			linux,code = <4>;
+			gpios = <&i2cgpio0 12 1>;
+			debounce-interval = <20>;
+		};
+
+		4 {
+			label = "Key 4";
+			linux,code = <5>;
+			gpios = <&i2cgpio0 11 1>;
+			debounce-interval = <20>;
+		};
+
+		5 {
+			label = "Key 5";
+			linux,code = <6>;
+			gpios = <&i2cgpio0 10 1>;
+			debounce-interval = <20>;
+		};
+
+		6 {
+			label = "Key 6";
+			linux,code = <7>;
+			gpios = <&i2cgpio0 9 1>;
+			debounce-interval = <20>;
+		};
+
+		7 {
+			label = "Key 7";
+			linux,code = <8>;
+			gpios = <&i2cgpio0 8 1>;
+			debounce-interval = <20>;
+		};
+
+		8 {
+			label = "Key 8";
+			linux,code = <9>;
+			gpios = <&i2cgpio0 7 1>;
+			debounce-interval = <20>;
+		};
+
+		9 {
+			label = "Key 9";
+			linux,code = <10>;
+			gpios = <&i2cgpio0 6 1>;
+			debounce-interval = <20>;
+		};
+
+		cancel {
+			label = "Key Cancel";
+			linux,code = <223>;
+			gpios = <&i2cgpio0 5 1>;
+			debounce-interval = <20>;
+		};
+
+		ok {
+			label = "Key Ok";
+			linux,code = <0x160>;
+			gpios = <&i2cgpio0 4 1>;
+			debounce-interval = <20>;
+		};
+	};
+};
+

@@ -1,0 +1,123 @@
+---
+title: Hackspace Access Control System
+thumbnail: project/acs/hacs-logo.png
+cover: project/acs/hacs-logo.svg
+created: !!timestamp '2016-12-06 00:00:00'
+type: infrastructure
+author: sre
+status: beta
+repository: https://github.com/ktt-ol/access-control-system/
+---
+
+{% filter markdown|typogrify -%}
+
+While the status-switch is nice, it does not help to actually
+get into a hackspace. For this you need some keys and with
+multiple people having access rights having a single key
+is quite annoying. While there are a few simple solutions
+they usually lack some desired features. Thus we decided to
+implement a digital access control system, that can open
+our doors.
+
+## Hardware
+
+As visible in the <a href="//map.mainframe.io">space map</a>, there are multiple
+ways to get into our Hackspace. Let's have a look at the main entrance for now.
+The first door is the building's entrance downstairs. This is not yet handled
+by the access control system, since its not exclusively used by us and needs
+agreements with different people first.
+
+Then in the second floor (not counting the ground level - the building has no
+first floor) there is a glass-door from the staircase to our front corridor.
+This door has been armed with a few sensors by us, a door opener as well as a
+bell button next to it. The corridor is also used as emergency exit from our
+neighbours, so the glass-door contains a panic lock. It will automatically
+unlock the door if somebody uses the inner doorhandle. We notice any door
+opening by the door using a small reed-contact and always know if the door is
+locked using a bolt-switch. This information is fed into our <a
+href="//grafana.mainframe.io">Grafana</a> instance. If the door is not locked,
+it can be opened using a door opener (buzzer). Our access control system opens
+the door, if the bell button is pressed and the space is not closed. If it is
+closed, the bell button rings the bell instead. A small ws2812b LED inside of
+the bell button gives a hint about the current space status.
+
+Next, there are two doors going from the corridor onto our main area. One going
+straight to the main area (AKA main-door) and one going via our conference
+room. The one going via the conference room is not yet upgraded, but the main-door
+has the same sensors as the glass-door, as well as the door opener and the bell
+button. Additionally it already had a keypad, which has been integrated into our
+access control system. This door also has a motor-lock (using an ABUS CFA1000).
+
+Historically we used the status-switch, to change the space-status and a normal
+key to (un)lock the door. We are currently migrating away from the switch to a
+SSH based setup (and an Android app using our custom ssh interface) for changing
+the space-status. Then the door-lock will automatically (un)lock the space based
+upon the status provided via ssh. Once unlocked the door can be opened by our
+members using the keypad. Guests can ring the bell using the bell button instead.
+There is also an "Open House" mode, which is called "open+" by us. In this mode
+the bell button directly opens the door.
+
+Below you can see a diagram of all hardware implementing the above. The green
+boxes are related to the glass-door and the blue boxes to the main-door. The
+orange boxes relate to hardware on our main area. The red dashed line is a
+ws2812b bus provided by an attiny85 and provides status indications. The green
+dashed lines are GPIO handles. Note that those are slightly simplified, as
+they sometimes contain pull-ups/pull-downs, logic-level converters or even
+relays to control the actual hardware.
+
+<img src="{{ content_url("project/acs/hardware-overview.svg") }}" alt="Hardware Interconnection Overview" width="100%" />
+
+## Sofware
+
+The handling of the GPIOs and other hardware components happens on a Raspberry
+Pi 2 running a (minimal) Debian and Debian kernel. The <a
+href="//en.wikipedia.org/wiki/Device_tree">device tree</a> has been modificated
+slightly, so that the kernel knows about the mcp23017 port expanders and the
+keypad.
+
+Since there is no userspace support for DT overlays in the mainline/Debian
+kernel so far; the standard DT blob must be modified instead. The one provided
+by Debian's kernel package can be made readable again using `dtc -I dtb -O dts
+-o rpi.dts /path/to/rpi.dtb`.  Then we add our custom modifications from <a
+href="{{ content_url("project/acs/devicetree-additions.dts")
+}}">devicetree-additions.dts</a>.
+
+With that done the software from the github repository linked above can be used.
+It comes with multiple daemons:
+
+<table class="table table-striped">
+	<tr><th>Binary                  </th><th>Description                               </th></tr>
+	<tr><td>acs-abus-cfa1000-sensor </td><td>Send Bolt State of Abus CFA1000 to MQTT   </td></tr>
+	<tr><td>acs-abus-cfa1000-setup  </td><td>Setup Abus CFA1000 (use after power loss) </td></tr>
+	<tr><td>acs-gio-actor           </td><td>Make output GPIO accessible from MQTT     </td></tr>
+	<tr><td>acs-gpio-sensor         </td><td>Make input  GPIO accessible from MQTT     </td></tr>
+	<tr><td>acs-i2c-led             </td><td>Control LEDs connected to the attiny85    </td></tr>
+	<tr><td>acs-keyboard            </td><td>Handle for keypad device                  </td></tr>
+	<tr><td>acs-status-display      </td><td>Handler for usb-serial display            </td></tr>
+	<tr><td>acs-switch              </td><td>Handler for status switch                 </td></tr>
+	<tr><td>acs-keyholder-interface </td><td>SSH interface                             </td></tr>
+	<tr><td>acs-mqtt-fwd            </td><td>Forward SSH data to MQTT                  </td></tr>
+	<tr><td>acs-doorctrl            </td><td>Control ABUS CFA1000 based from SSH data  </td></tr>
+	<tr><td>acs-main-door           </td><td>Handler for main-door bell-button         </td></tr>
+	<tr><td>acs-glass-door          </td><td>Handler for glass-door bell-button        </td></tr>
+</table>
+
+## SSH Setup
+
+On the RPi a new system user is created e.g. "keyholder". For this user
+the login shell is set to "acs-keyholder-interface", which runs with
+suid bit. It only supports a few commands (actually just "set-status"
+and "set-next-status" at the moment). Apart from that you provide a
+~/.ssh/authorized_keys in the usual format. Last but not least the user
+information must be added to the user DB (usually `/var/lib/acs.db`).
+
+If you now try to set the state using `ssh keyholder@access-control-system
+set-status open+ "Open 4 all!"` the system will check the fingerprint of the
+key, that did the ssh login and infer the user information from that generating
+a few simple files in `/run/acs-state`. These files are interpreted by
+acs-mqtt-fwd and acs-doorctrl respectively.
+
+If the deprecated status switch is used to change the status, the files in
+/run/acs-state are deleted.
+
+{%- endfilter %}
