@@ -1,0 +1,6 @@
+uses_template: false
+thumbnails:
+  - width: 220
+    prefix: thumb_
+    include:
+    - '*.JPG'

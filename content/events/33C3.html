@@ -1,0 +1,34 @@
+---
+title: 33C3
+series: CCC
+thumbnail: 33C3/33c3-logo.svg
+created: !!timestamp '2016-12-27 23:42:00'
+teaser: Besuch des 33. Chaos Communication Congress durch den Mainframe.
+---
+{% set addGalleryBlock = True %}
+
+{% block content %}
+{% filter markdown|typogrify -%}
+
+<img src="{{ content_url("events/33C3/33c3-logo.svg") }}" alt="33C3 Logo" class="img-thumbnail" style="max-width: 400px; float:right; padding-left: 10px;" />
+
+Natürlich ist der Mainframe auch in diesem Jahr auf dem Chaos Communication
+Congress vertreten. Informationen zu unserer <a
+href="//events.ccc.de/congress/2016/wiki/Assembly:Mainframe"> Assembly lassen
+sich direkt im 33C3 Wiki finden</a>. Dieses Jahr sind wir voraussichtlich mit
+über 20 Personen vor Ort, von denen rund die Hälfte bereits am zweiten
+Weihnachtstag anreist. Geplant ist unter anderem einen Workshop für MQTT
+basiertes Kühlschrankmonitoring anzubieten.
+
+Aus diesem Grund ist vom 26.12.2016 bis zum 30.12.2016 mit
+reduzierten Öffnungszeiten des Mainframes zu rechnen.
+
+<!--
+<h2>Fotos</h2>
+
+{% from "macros.j2" import render_gallery with context %}
+{{ render_gallery("mygalley", "events/33C3") }}
+-->
+
+{%- endfilter %}
+{% endblock content %}
