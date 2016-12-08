@@ -8,6 +8,7 @@ var SpaceStatus = (function () {
   
   // default
   var language = 'de';
+  var theme = 'light';
 
   var BASE = {
     "open+": {
@@ -82,6 +83,10 @@ var SpaceStatus = (function () {
     var cls = place[status]["class"];
     var msg = place[status][language];
 
+	if (theme == "dark") {
+		img = img.replace(/\.svg$/, ".dark.svg")
+	}
+
     var id = '#' + place.domId;
 
     $(id).removeClass("panel-danger panel-success panel-warning");
@@ -145,8 +150,9 @@ var SpaceStatus = (function () {
   }
 
   return {
-    init: function (lang) {
+    init: function (lang, style) {
       language = lang;
+	  theme = style;
 
       firstPoll();
       spaceStatusPush();
