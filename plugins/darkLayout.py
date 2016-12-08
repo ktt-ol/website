@@ -3,6 +3,7 @@ import copy
 import sys
 import unittest
 import urlparse
+import os.path
 
 from hyde.plugin import Plugin
 from hyde.site import Resource
@@ -33,7 +34,17 @@ def patch_filename(path, clean_before=False):
     path_split = result.path.split(".")
     ext = path_split[-1]
 
-    if ext != "html":
+    if ext in ["png", "svg"]:
+        path_split.insert(-1, 'dark')
+        darkpath = ".".join(path_split)
+        darkcontentpath = "content/" + darkpath
+
+        if not os.path.isfile(darkcontentpath):
+            return None
+
+        return darkpath
+
+    elif ext != "html":
         return None
 
     if clean_before:
