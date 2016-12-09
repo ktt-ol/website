@@ -1,3 +1,11 @@
+.navbar-inverse {
+	background-color: #464545;
+}
+
+.navbar-inverse .navbar-nav > li > a:hover {
+	color: #0ce3ac;
+}
+
 .navbar-brand img {
   margin-top: 5px;
 }
