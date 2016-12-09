@@ -1,0 +1,6 @@
+===
+title: Events Feed
+crawl_directory: events
+extends: atom.j2
+listable: false
+===
