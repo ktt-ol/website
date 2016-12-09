@@ -43,6 +43,10 @@ class CalendarPlugin(Plugin):
                 except AttributeError:
                     lang = default_language
 
+                if calids == None:
+                    self.logger.warn("skip empty calendar node in %s" % resource.relative_path)
+                    continue
+
                 for id in calids:
                     if result.has_key(id):
                         if result[id].has_key(lang):
