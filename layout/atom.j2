@@ -20,7 +20,7 @@
 
     <id>{{ content_url(resource.url) }}/</id>
 
-    {% for res in site.content.node_from_relative_path(resource.meta.crawl_directory).walk_resources_sorted_by_time() %}
+    {% for res in site.content.node_from_relative_path(resource.meta.crawl_directory).walk_resources_sorted_by_time() if match_lang(res, resource) and match_dark(res, resource) %}
         <entry>
             <title type="html">{{ res.meta.title|forceescape }}</title>
             <author><name>{{ res.meta.author }}</name></author>
@@ -37,7 +37,7 @@
             <content type="html">
 				<![CDATA[
                 {% refer to res.relative_path as article -%}
-                {{ article.container|markdown|typogrify }}
+                {{ article.mainbox }}
 				]]>
             </content>
         </entry>
