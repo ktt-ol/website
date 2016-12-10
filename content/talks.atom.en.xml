@@ -1,0 +1,6 @@
+===
+title: Talks Feed
+crawl_directory: talk
+extends: atom.j2
+listable: false
+===

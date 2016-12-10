@@ -7,6 +7,8 @@ title: Mainframe
 
 {% block endhead %}
 	<link href="projects.atom.xml" type="application/atom+xml" rel="alternate" title="Projects ATOM Feed">
+	<link href="events.atom.xml" type="application/atom+xml" rel="alternate" title="Events ATOM Feed">
+	<link href="talks.atom.xml" type="application/atom+xml" rel="alternate" title="Talks ATOM Feed">
 	{{ super() }}
 {% endblock endhead %}
 
@@ -67,7 +69,7 @@ title: Mainframe
 
 <div class="panel panel-default">
 	<div class="panel-heading">
-		Neuste Vorträge
+		Neuste Vorträge <a href="/talks.atom.xml" style="float: right;"><img src="/media/img/feed.svg" title="Atom Feed für neuste Vorträge" alt="Atom Feed" style="height: 1em;"/></a>
 	</div>
 	<div class="panel-body">
 		<div class="row">

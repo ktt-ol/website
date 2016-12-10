@@ -6,7 +6,9 @@ title: Mainframe
 {% from "macros.j2" import render_event_excerpt with context %}
 
 {% block endhead %}
-	<link href="projects.atom.xml" type="application/atom+xml" rel="alternate" title="Projects ATOM Feed">
+	<link href="projects.atom.en.xml" type="application/atom+xml" rel="alternate" title="Projects ATOM Feed">
+	<link href="events.atom.en.xml" type="application/atom+xml" rel="alternate" title="Events ATOM Feed">
+	<link href="talks.atom.en.xml" type="application/atom+xml" rel="alternate" title="Talks ATOM Feed">
 	{{ super() }}
 {% endblock endhead %}
 
@@ -67,7 +69,7 @@ title: Mainframe
 
 <div class="panel panel-default">
 	<div class="panel-heading">
-		Latest Talks
+		Latest Talks <a href="/talks.atom.en.xml" style="float: right;"><img src="/media/img/feed.svg" title="Atom Feed for latest talks" alt="Atom Feed" style="height: 1em;"/></a>
 	</div>
 	<div class="panel-body">
 		<div class="row">
