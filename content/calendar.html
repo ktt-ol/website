@@ -89,6 +89,7 @@ no_translation_needed: True
 <script type="text/javascript" src="{{ media_url('js/libs/fullcalendar/gcal.js') }}"></script>
 <script type="text/javascript" src="{{ media_url('js/libs/md5.js') }}"></script>
 <script type="text/javascript" src="{{ media_url('js/calusers.js') }}"></script>
+<script type="text/javascript" src="{{ media_url('js/rooms.js') }}"></script>
 {% if resource.meta.language =="de" %}
 <script type="text/javascript" src="{{ media_url('js/libs/fullcalendar/lang/de.js') }}"></script>
 {% endif %}
@@ -162,6 +163,10 @@ no_translation_needed: True
 
 			event.url = (id in calendar_links) ? calendar_links[id]["{{ resource.meta.language }}"] : 'null'
 
+			room = null
+			if (event.location && event.location != 'null')
+				room = analyze_location_string(event.location.escapeHTML())
+
 {% if resource.meta.language =="en" %}
 			if (event.title in calendar_translations)
 				event.title = calendar_translations[event.title]
@@ -174,6 +179,13 @@ no_translation_needed: True
 			if (selected_ids && selected_ids != 'null' && selected_ids.indexOf(id) === -1) {
 				element.addClass("event-disabled");
 			} else {
+				if (room && room.bgcolor && room.bgcolor != "default") {
+					$(element).css('background-color', room.bgcolor)
+				}
+				if (room && room.color && room.color != "default") {
+					$(element).css('color', room.color)
+				}
+
 				/* TODO: colorize */
 			}
 		}
@@ -225,6 +237,10 @@ no_translation_needed: True
 		allDay = event.allDay
 		creator = event.creator
 
+		room = null
+		if (pos && pos != 'null')
+			room = analyze_location_string(pos.escapeHTML())
+
 		if (description == null)
 			description = "";
 
@@ -262,7 +278,13 @@ no_translation_needed: True
 			{% endif %}
 		}
 
-		if (pos && pos != 'null') {
+		if (room) {
+{% if resource.meta.language =="de" %}
+			$("#eventLocation").html("<b>Raum:</b> " + room.name + "<br />")
+{% else %}
+			$("#eventLocation").html("<b>Room:</b> " + room.name + "<br />")
+{% endif %}
+		} else if (pos && pos != 'null') {
 {% if resource.meta.language =="de" %}
 			$("#eventLocation").html("<b>Ort:</b> " + pos.escapeHTML() + "<br />")
 {% else %}
