@@ -22,7 +22,12 @@ no_translation_needed: True
         <![endif]-->
         <div ng-view=""></div>
     </div>
+    <div id="ifs-cast-box" style="display: none">
+      <button onclick="initIfsCast()" id="initIfsCastTag" class="btn btn-default" style="display: none">Auf Chromecast abspielen</button>
+      <button onclick="ifsCast.play(0)" id="ifsCastElement" class="btn btn-success" style="display: none">Jetzt Senden!</button>
+    </div>
 </div>
+
 
 <!--[if lt IE 9]>
 <script src="{{ media_url('mfGallery/scripts/ie_extras.js') }}"></script>
@@ -39,5 +44,25 @@ no_translation_needed: True
 
 <script src="{{ media_url('mfGallery/scripts/vendor.js') }}"></script>
 <script src="{{ media_url('mfGallery/scripts/scripts.js') }}"></script>
+
+<script type="text/javascript" src="https://www.gstatic.com/cv/js/sender/v1/cast_sender.js"></script>
+<script src="{{ media_url('js/ifsSender.js') }}"></script>
+
+<script type="text/javascript">
+    window.onload = function () {
+        window.ifsCast = new IfsSender(function (hasSupport) {
+            if (hasSupport) {
+              document.getElementById('ifs-cast-box').style.display = 'block';
+                document.getElementById('initIfsCastTag').style.display = 'block';
+            }
+        }, false);
+    };
+    function initIfsCast() {
+        ifsCast.init(function () {
+            document.getElementById('initIfsCastTag').style.display = 'none';
+            document.getElementById('ifsCastElement').style.display = 'block';
+        });
+    }
+</script>
 
 {% endblock mainbox %}

@@ -117,3 +117,8 @@ body.album {
 		text-align: right;
 	}
 }
+
+#ifs-cast-box {
+	border-top: 1px solid #ddd;
+	padding: 10px;
+}
