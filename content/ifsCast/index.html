@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="css/ifsReceiver.css">
+  <title>Mainframe - Image from Space</title>
+</head>
+<body>
+<div id="slideShow"></div>
+<div id="label">Mainframe - Image from Space</div>
+
+<script src="js-libs/jquery-1.8.2.min.js" type="text/javascript"></script>
+<script src="js-libs/kenburns_patched.js" type="text/javascript"></script>
+<script type="text/javascript" src="//www.gstatic.com/cast/sdk/libs/receiver/2.0.0/cast_receiver.js"></script>
+
+<script src="js/ifsReceiver.js" type="text/javascript"></script>
+<script>
+  $(document).ready(function () {
+    new IfsReceiver(true);
+  });
+</script>
+</body>
+</html>
