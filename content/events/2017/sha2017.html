@@ -1,0 +1,57 @@
+---
+title: SHA2017
+thumbnail: 2017/img/sha2017.png
+created: !!timestamp '2017-08-26 23:42:00'
+teaser: Hacker gehen campen
+---
+{% set addGalleryBlock = True %}
+
+{% block content %}
+{% filter markdown|typogrify -%}
+
+Nachdem unsere Delegation vom CCCamp 2015 quasi nur gutes
+zu berichten hatte sind dieses mal mit ganzen 12 Personen
+zur <a href="https://www.sha2017.org">SHA2017</a> aufgebrochen.
+
+Nach den Erfahrungen vom letzten Camp sind wir dieses mal bereits
+an Tag -1 angereist, um unser Village aufzubauen (und generell beim
+Aufbau zu helfen). Vor Ort wurde schonmal klar, warum unser Village
+kurz vor dem Event nocheinmal verschoben wurde: Der ursprüngliche
+Platz bestand zum Teil aus einem Gebüsch und zum anderem Teil aus
+Sumpf. Kaum war der Pavillon aufgebaut began auch schon der erste
+Regen - keine Spur vom guten Wetter des 2015er Chaos Communication
+Camp. Dies hat sich während des Camps zum Glück noch geändert, so
+dass man nicht 24/7 im Pavillion hocken musste.
+
+An Tag -1 funktionierte das WLAN noch nicht (flächendeckend?), so
+dass relativ früh unsere mitgebrachten 50 Meter Twin-Verlegekabel
+mit Dosen versehen wurden, so dass vom nächsten Datenklo schnelles
+Internet organisiert werden konnte. Ebenfalls problematisch war
+initial die Stromversorgung - für diese hatten wir einen kleinen
+Stromgenerator dabei, allerdings auch längere Leitungen, um für
+Redundanz zu sorgen. Dies war gerade am ersten (und am letzten)
+Tag nötig, da der nächste Stromverteiler zunächst nicht
+funktionstüchtig war.
+
+Wie in den letzten Jahren für derartige Events üblich, hat auch die
+SHA2017-Crew ein hübsches Badge designt, welches aus einem ESP32
+(Microcontroller mit WLAN und Bluetooth), sowie einem Touch-Controller,
+einem Li-Ion Akku und einem E-Paper-Display bestand. Für das Badge
+existierte eine Art App-Store, auf welchem bereits am Tag 1 Ransomware
+verteilt wurde ("Bring a Club Mate to Tent XYZ to unlock your badge").
+
+Einen bleibende Erinnerung haben sich auch die Finnen erarbeitet, die
+sich in ihr Village eine Sauna haben liefern lassen, oder das aus
+Leuchtstoffröhren gebaute Logo an einem Bauzaun.
+
+Alles in allem hat uns das Camp gut gefallen und wir freuen uns bereits
+auf das nächste CCCamp (einige spielen auch mit dem Gedanken nächstes
+Jahr zur EMF nach England zu reisen).
+
+<h2>Fotos</h2>
+
+{% from "macros.j2" import render_gallery with context %}
+{{ render_gallery("mygalley", "events/2017/sha2017") }}
+
+{%- endfilter %}
+{% endblock content %}
