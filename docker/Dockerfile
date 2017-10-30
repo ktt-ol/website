@@ -8,4 +8,6 @@ RUN set -ex && \
 RUN set -ex && \
   pip install hyde==0.8.9
 
+EXPOSE 8080
+
 WORKDIR /root/website
