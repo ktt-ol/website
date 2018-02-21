@@ -20,7 +20,13 @@ forcegenfiles = content/index.html \
 				content/media/calendar-links.json
 
 build: $(forcegenfiles)
-	hyde gen
+	docker run -it --rm -v "$(shell pwd)":/root/website mainframe-website-build hyde gen
+
+preview:
+	docker run -it --rm -p 8080:8080 -v "$(shell pwd)":/root/website mainframe-website-build hyde serve -a 0.0.0.0
+
+docker:
+	cd docker ; docker build -t mainframe-website-build .
 
 # manual dependencies, touching files makes hyde regenerating it
 content/index.html: $(projects) $(talks) $(events)
@@ -58,4 +64,4 @@ upload:
 clean:
 	test -d && rm -rf deploy/
 
-.PHONY: build upload
+.PHONY: build docker preview upload
