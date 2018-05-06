@@ -41,19 +41,6 @@
 	</div>
 </div>
 
-<div id="radBox" class="panel panel-default">
-	<div class="panel-heading"><a href="//status.kreativitaet-trifft-technik.de">Radstelle</a></div>
-	<div class="panel-body">
-		<div id="radBox_text">
-			{% if resource.meta.language == "de" -%}
-			Radstelle Status Unbekannt.
-			{% else -%}
-			Radstelle Status Unknown.
-			{% endif -%}
-		</div>
-	</div>
-</div>
-
 <div id="machiningBox" class="panel panel-default">
 	{% if resource.meta.language == "de" -%}
 	<div class="panel-heading"><a href="//status.kreativitaet-trifft-technik.de">Zerspanungstechnik</a></div>
@@ -68,6 +55,21 @@
 			Machining Status Unknown.
 			{% endif -%}
 		</div>
+	</div>
+</div>
+
+<div id="radBox" class="panel panel-default">
+	<div class="panel-heading"><a href="//status.kreativitaet-trifft-technik.de">Radstelle</a></div>
+	<div class="panel-body">
+		<div id="radBox_text">
+			{% if resource.meta.language == "de" -%}
+			Radstelle Status Unbekannt.
+			{% else -%}
+			Radstelle Status Unknown.
+			{% endif -%}
+		</div>
+
+		Zurzeit nur nach Terminabsprache: Micha O. (0177-4334616)
 	</div>
 </div>
 
