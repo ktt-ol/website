@@ -54,6 +54,23 @@
 	</div>
 </div>
 
+<div id="machiningBox" class="panel panel-default">
+	{% if resource.meta.language == "de" -%}
+	<div class="panel-heading"><a href="//status.kreativitaet-trifft-technik.de">Zerspanungstechnik</a></div>
+	{% else -%}
+	<div class="panel-heading"><a href="//status.kreativitaet-trifft-technik.de">Machining</a></div>
+	{% endif -%}
+	<div class="panel-body">
+		<div id="machiningBox_text">
+			{% if resource.meta.language == "de" -%}
+			Zerspanungstechnik Status Unbekannt.
+			{% else -%}
+			Machining Status Unknown.
+			{% endif -%}
+		</div>
+	</div>
+</div>
+
 <div class="panel panel-default panel-sponsors">
 	<div class="panel-heading">
         <a href="{{ content_url('sponsors/index.html')|i18n(resource)|dark(resource)}}">

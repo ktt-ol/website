@@ -78,6 +78,16 @@ var SpaceStatus = (function () {
     }
   });
 
+  var MACHINING = $.extend(true, {}, BASE, {
+    "domId": 'machiningBox',
+    "open": {
+      "logo": "/media/img/machining-room-open.svg"
+    },
+    "none": {
+      "logo": "/media/img/machining-room-closed.svg"
+    }
+  });
+
   function statusSet(place, status) {
     var img = place[status]["logo"];
     var cls = place[status]["class"];
@@ -98,6 +108,7 @@ var SpaceStatus = (function () {
     $.getJSON(baseUrl + "api/openState", function (data) {
       statusSet(SPACE, data.space.state);
       statusSet(RADSTELLE, data.radstelle.state);
+      statusSet(MACHINING, data.machining.state);
     });
   }
 
@@ -105,7 +116,7 @@ var SpaceStatus = (function () {
     var CHECK_INTERVAL = 5 * 60 * 1000;
     var connectionError, lastkeepalive;
 
-    var source = new EventSource(baseUrl + "api/statusStream?spaceOpen=1&radstelleOpen=1");
+    var source = new EventSource(baseUrl + "api/statusStream?spaceOpen=1&radstelleOpen=1&machining=1");
     source.onopen = function () {
       console.log('EventSource: connection established');
       connectionError = false;
@@ -123,6 +134,10 @@ var SpaceStatus = (function () {
 
     source.addEventListener('radstelleOpen', function (e) {
       listen(RADSTELLE, e);
+    }, false);
+
+    source.addEventListener('machining', function (e) {
+      listen(MACHINING, e);
     }, false);
 
     source.addEventListener('keepalive', function (e) {
