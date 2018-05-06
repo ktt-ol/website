@@ -10,4 +10,4 @@ RUN set -ex && \
 
 EXPOSE 8080
 
-WORKDIR /root/website
+WORKDIR /tmp/website

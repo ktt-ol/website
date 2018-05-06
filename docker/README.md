@@ -16,11 +16,11 @@ In the main directory:
 ### Preview mode
 
 ```
-docker run -it --rm -p 8080:8080 -v "$(pwd)":/root/website mainframe-website-build hyde serve -a 0.0.0.0
+docker run -it --rm --user `id -u` -p 8080:8080 -v "$(pwd)":/tmp/website mainframe-website-build hyde serve -a 0.0.0.0
 ```
 
 ### Generate static pages
 
 ```
-docker run -it --rm -v "$(pwd)":/root/website mainframe-website-build hyde gen
+docker run -it --rm --user `id -u` -v "$(pwd)":/tmp/website mainframe-website-build hyde gen
 ```
