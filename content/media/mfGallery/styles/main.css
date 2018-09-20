@@ -203,3 +203,11 @@
   width: 100%;
   text-align: center;
   background-color: #fff; }
+
+/* fix for thumbnail. */
+.mf-gallery-app .mf-gallery .lightbox .image {
+  background-size: contain;
+}
+.mf-gallery-app .mf-gallery {
+  padding: 0;
+}
