@@ -58,6 +58,24 @@
 	</div>
 </div>
 
+<div id="lab3dBox" class="panel panel-default">
+	{% if resource.meta.language == "de" -%}
+	<div class="panel-heading"><a href="//status.kreativitaet-trifft-technik.de">3D Lab</a></div>
+	{% else -%}
+	<div class="panel-heading"><a href="//status.kreativitaet-trifft-technik.de">3D Lab</a></div>
+	{% endif -%}
+	<div class="panel-body">
+		<div id="lab3dBox_text">
+			{% if resource.meta.language == "de" -%}
+			3D Lab Status Unbekannt.
+			{% else -%}
+			3D Lab Status Unknown.
+			{% endif -%}
+		</div>
+	</div>
+</div>
+
+
 <div id="radBox" class="panel panel-default">
 	<div class="panel-heading"><a href="//status.kreativitaet-trifft-technik.de">Radstelle</a></div>
 	<div class="panel-body">
