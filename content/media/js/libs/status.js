@@ -88,6 +88,16 @@ var SpaceStatus = (function () {
     }
   });
 
+  var LAB3D = $.extend(true, {}, BASE, {
+    "domId": 'lab3dBox',
+    "open": {
+      "logo": "/media/img/3d-lab-open.svg"
+    },
+    "none": {
+      "logo": "/media/img/3d-lab-closed.svg"
+    }
+  });
+
   function statusSet(place, status) {
     var img = place[status]["logo"];
     var cls = place[status]["class"];
@@ -109,6 +119,7 @@ var SpaceStatus = (function () {
       statusSet(SPACE, data.space.state);
       statusSet(RADSTELLE, data.radstelle.state);
       statusSet(MACHINING, data.machining.state);
+      statusSet(LAB3D, data.lab3d.state);
     });
   }
 
@@ -116,7 +127,7 @@ var SpaceStatus = (function () {
     var CHECK_INTERVAL = 5 * 60 * 1000;
     var connectionError, lastkeepalive;
 
-    var source = new EventSource(baseUrl + "api/statusStream?spaceOpen=1&radstelleOpen=1&machining=1");
+    var source = new EventSource(baseUrl + "api/statusStream?spaceOpen=1&radstelleOpen=1&machining=1&lab3dOpen=1");
     source.onopen = function () {
       console.log('EventSource: connection established');
       connectionError = false;
@@ -138,6 +149,10 @@ var SpaceStatus = (function () {
 
     source.addEventListener('machining', function (e) {
       listen(MACHINING, e);
+    }, false);
+
+    source.addEventListener('lab3d', function (e) {
+      listen(LAB3D, e);
     }, false);
 
     source.addEventListener('keepalive', function (e) {
