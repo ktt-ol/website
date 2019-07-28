@@ -6,8 +6,10 @@ RUN set -ex && \
 	&& rm -rf /var/lib/apt/lists/*
 
 RUN set -ex && \
-  pip install hyde==0.8.9
+  pip install wheel
 
+RUN set -ex && \
+  pip install hyde==0.8.9
 EXPOSE 8080
 
 WORKDIR /tmp/website
