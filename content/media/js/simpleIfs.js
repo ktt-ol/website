@@ -23,7 +23,7 @@
   window.SimpleIfs = {
     init: function (options) {
       opt = options;
-      $.get(options.folder + '/meta-last.json', function (data) {
+      $.get(options.folder + '/meta-first.json', function (data) {
         imageData = data;
         imageData.images.push({
           teaser: true
