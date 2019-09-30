@@ -12,39 +12,39 @@ var SpaceStatus = (function () {
 
   var BASE = {
     "open+": {
-      "class": "panel-success",
-      "de": "Hochgefahren",
+      "class": "bg-success",
+      "de": "Offen",
       "en": "Open House"
     },
     "open": {
-      "class": "panel-success",
-      "de": "Hochgefahren",
+      "class": "bg-success",
+      "de": "Offen",
       "en": "Open"
     },
     "member": {
-      "class": "panel-warning",
+      "class": "bg-warning",
       "de": "Nur Mitglieder",
       "en": "Members Only"
     },
     "keyholder": {
-      "class": "panel-warning",
+      "class": "bg-warning",
       "de": "Nur Keyholder",
       "en": "Keyholder Only"
     },
     "none": {
-      "class": "panel-danger",
-      "de": "Runtergefahren",
+      "class": "bg-danger",
+      "de": "Geschlossen",
       "en": "Closed"
     },
     "closing": {
-      "class": "panel-warning",
+      "class": "bg-warning",
       "de": "Am Schließen",
       "en": "Closing"
     }
   };
 
   var SPACE = $.extend(true, {}, BASE, {
-    "domId": 'statusBox',
+    "domId": 'statusLine',
     "open+": {
       "logo": "/media/img/mainframe-open-plus.svg"
     },
@@ -66,7 +66,7 @@ var SpaceStatus = (function () {
   });
 
   var RADSTELLE = $.extend(true, {}, BASE, {
-    "domId": 'radBox',
+    "domId": 'radLine',
     "open": {
       "logo": "/media/img/Radstelle_open.svg"
     },
@@ -79,7 +79,7 @@ var SpaceStatus = (function () {
   });
 
   var MACHINING = $.extend(true, {}, BASE, {
-    "domId": 'machiningBox',
+    "domId": 'machiningLine',
     "open": {
       "logo": "/media/img/machining-room-open.svg"
     },
@@ -89,7 +89,7 @@ var SpaceStatus = (function () {
   });
 
   var LAB3D = $.extend(true, {}, BASE, {
-    "domId": 'lab3dBox',
+    "domId": 'lab3Line',
     "open": {
       "logo": "/media/img/3d-lab-open.svg"
     },
@@ -99,19 +99,14 @@ var SpaceStatus = (function () {
   });
 
   function statusSet(place, status) {
-    var img = place[status]["logo"];
     var cls = place[status]["class"];
     var msg = place[status][language];
 
-	if (theme == "dark") {
-		img = img.replace(/\.svg$/, ".dark.svg")
-	}
+    var id = $('#' + place.domId);
 
-    var id = '#' + place.domId;
-
-    $(id).removeClass("panel-danger panel-success panel-warning");
-    $(id).addClass(cls);
-    $(id + '_text').html('<a href="' + baseUrl + '"><img src="' + img + '" alt="' + msg + '!" title="' + msg + '!" style="width: 100%" /></a>');
+    id.removeClass("bg-danger bg-success bg-warning");
+    id.addClass(cls);
+    $('.status', id).text(msg);
   }
 
   function firstPoll() {

@@ -22,3 +22,19 @@
 .mf-gallery-app .mf-gallery .images li .gallery-image .overlay {
   background-color: #00bc8c;
 }
+
+.panel, .list-group-item {
+  background-color: unset;
+}
+
+body {
+  color: #ffffff;
+}
+
+a {
+  color: #0ce3ac;
+}
+
+.main-page-intro {
+  background: #464545;
+}

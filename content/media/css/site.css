@@ -1,13 +1,47 @@
-.content {
-}
-
 body {
+	color: inherit;
+	font-size: 16px;
 	padding-top: 10px;
 	padding-bottom: 40px;
 }
 body.album {
   /* we need the scroll bar at the beginning for a correct width calculation */
   overflow-y: scroll;
+}
+
+h1 > a, h2 > a, h3 > a, .panel-heading > a {
+	color: #00a0ff;
+}
+
+a {
+	color: #004987
+}
+
+.navbar-default {
+	background-color: transparent;
+	border: none;
+}
+
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:hover,
+.navbar-default .navbar-nav > .active > a:focus,
+.navbar-default .navbar-nav > .open > a,
+.navbar-default .navbar-nav > .open > a:hover,
+.navbar-default .navbar-nav > .open > a:focus
+{
+	color: #555;
+	background-color: inherit;
+	border-bottom: 1px solid #00a0ff;
+
+}
+
+.navbar-nav > li > a {
+	padding-bottom: 10px;
+	margin-bottom: 5px;
+}
+
+.navbar-default .navbar-nav > li > a {
+	color: inherit;
 }
 
 /* center logo on medium devices */
@@ -27,6 +61,22 @@ body.album {
 	}
 }
 
+.panel {
+	margin-bottom: 0;
+	border: none;
+	box-shadow: none;
+}
+
+.panel-default > .panel-heading {
+	color: #00a0ff;
+	border-color: #00a0ff;
+	background-color: transparent;
+}
+
+.panel-title {
+	font-size: 18px;
+}
+
 .vbottom {
 	float: none;
 	display: inline-block;
@@ -34,6 +84,11 @@ body.album {
 
 	/* whitespace removal hack (inline-block accounts whitespaces between elements) */
 	margin: 0 -0.125em;
+}
+
+.main-page-intro {
+	background: #e6e6e659;
+	padding: 8px;
 }
 
 .project-img {
@@ -121,4 +176,58 @@ body.album {
 #ifs-cast-box {
 	border-top: 1px solid #ddd;
 	padding: 10px;
+}
+
+.ifs-on-main-page footer {
+	display: none;
+}
+
+.status-list .line {
+	float: left;
+	width: 100%;
+	margin-bottom: 2px;
+	padding: 2px 6px;
+
+	color: black;
+}
+.status-list .line > span:first-child {
+	float: left;
+	font-weight: bold;
+}
+.status-list .line > span.status {
+	float: right;
+}
+
+.simple-ifs {
+	position: relative;
+}
+
+.simple-ifs img {
+	margin: auto;
+	max-height: 500px;
+}
+
+.simple-ifs .carousel-control.left {
+	cursor: pointer;
+	background-image: linear-gradient(to right,rgba(187, 187, 187, 0.46) 0,rgba(0,0,0,.0001) 100%);
+}
+.simple-ifs .carousel-control.right {
+	cursor: pointer;
+	background-image: linear-gradient(to right,rgba(0,0,0,.0001) 0, rgba(187, 187, 187, 0.46) 100%);
+}
+
+.simple-ifs .teaser-page {
+	display: none;
+}
+.simple-ifs.teaser .teaser-page {
+	display: flex;
+	height: 300px;
+	justify-content: center;
+	align-items: center;
+}
+.simple-ifs.teaser .teaser-page a {
+	padding: 0 5px;
+}
+.simple-ifs.teaser img {
+	display: none;
 }

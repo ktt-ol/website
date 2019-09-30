@@ -5,80 +5,93 @@ title: Mainframe
 {% extends "default.j2" %}
 {% from "macros.j2" import render_event_excerpt with context %}
 
+{% block css %}
+<link rel="stylesheet" href="{{ media_url('mfGallery/styles/main.css') }}">
+{{ super() }}
+{% endblock css %}
+
+
 {% block endhead %}
-	<link href="projects.atom.en.xml" type="application/atom+xml" rel="alternate" title="Projects ATOM Feed">
-	<link href="events.atom.en.xml" type="application/atom+xml" rel="alternate" title="Events ATOM Feed">
-	<link href="talks.atom.en.xml" type="application/atom+xml" rel="alternate" title="Talks ATOM Feed">
-	{{ super() }}
+<link href="projects.atom.en.xml" type="application/atom+xml" rel="alternate" title="Projects ATOM Feed">
+<link href="events.atom.en.xml" type="application/atom+xml" rel="alternate" title="Events ATOM Feed">
+<link href="talks.atom.en.xml" type="application/atom+xml" rel="alternate" title="Talks ATOM Feed">
+{{ super() }}
 {% endblock endhead %}
 
 {% block mainbox %}
+
+<p class="main-page-intro">The Mainframe is a <a href="//en.wikipedia.org/wiki/Hackerspace">Hackspace</a>
+	in <a href="//en.wikipedia.org/wiki/Oldenburg_(Oldenburg)">Oldenburg</a>. It
+	provides a meeting place for persons interested in engineering, computer science
+	and similar topics. At the Mainframe we are »hacking« together.
+	<a href="{{ content_url('about.html')|i18n(resource)|dark(resource) }}">More...</a> </p>
+</p>
+
 <div class="panel panel-default">
 	<div class="panel-heading">
-		<h3 class="panel-title">Mainframe</h3>
+		<h3 class="panel-title">
+			<a href="{{ content_url('images_from_space.html')|i18n(resource)|dark(resource) }}">Recent Images from Space</a>
+			<a href="/media/ifs-images/feed.xml" style="float: right;">
+				<img src="/media/img/feed.svg" title="Atom Feed for Images from Space" alt="Atom Feed" style="height: 1em;"/>
+			</a>
+		</h3>
 	</div>
 	<div class="panel-body">
-		<p>The Mainframe is a <a href="//en.wikipedia.org/wiki/Hackerspace">Hackspace</a>
-		in <a href="//en.wikipedia.org/wiki/Oldenburg_(Oldenburg)">Oldenburg</a>. It
-		provides a meeting place for persons interested in engineering, computer science
-		and similar topics. At the Mainframe we are »hacking« together. This term is
-		understood as exploration of technical, social and political systems concerning
-		potentials and limits.</p>
+		<div id="simpleIfs" class="simple-ifs">
+			<img id="simpleIfs_image" title="loading" class="img-responsive"/>
+			<div class="teaser-page">
+				You'll find more photos on the
+				<a href="{{ content_url('images_from_space.html')|i18n(resource)|dark(resource) }}">Image from Space</a>
+				page.
+			</div>
 
-		<p>The Mainframe provides on approximately 1200 square meters the required
-		infrastructure: A conference room for working and <a href="{{
-		content_url('talks.html')|i18n(resource)|dark(resource) }}">Talks</a>, a Lounge
-		for chilling, a Wood- and Metall workshop, a workshop for electronics,
-		a kitchen and some more multi-purpose rooms.</p>
+			<div class="controls">
+				<a class="left carousel-control"  role="button" onclick="SimpleIfs.previous()">
+					<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+					<span class="sr-only">Previous</span>
+				</a>
+				<a class="right carousel-control" role="button" onclick="SimpleIfs.next()">
+					<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+					<span class="sr-only">Next</span>
+				</a>
+			</div>
 
-		<p>The rooms are usually opened by no later than 19:00 (often earlier) and
-		visitors - especially from other hackspaces - are always welcome.</p>
+		</div>
 	</div>
 </div>
 
 <div class="panel panel-default">
 	<div class="panel-heading">
-		Latest Events <a href="/events.atom.en.xml" style="float: right;"><img src="/media/img/feed.svg" title="Atom Feed for latest events" alt="Atom Feed" style="height: 1em;"/></a>
+		<h3 class="panel-title">
+			<a href="{{ content_url('events.html')|i18n(resource)|dark(resource) }}">Latest Events</a>
+			<a href="/events.atom.en.xml" style="float: right;">
+				<img src="/media/img/feed.svg" title="Atom Feed for latest events" alt="Atom Feed" style="height: 1em;"/>
+			</a>
+		</h3>
 	</div>
 	<div class="panel-body">
 		<ul class="list-group article-list">
-      {% for res in site.content.node_from_relative_path("events").walk_resources_sorted_by_time()
-        if match_lang(res, resource) and match_dark(res, resource) %}
-          {% if loop.index > 3 %} {% break %} {% endif %}
-            {{ render_event_excerpt(res, "borderless") }}
-      {% endfor %}
+			{% for res in site.content.node_from_relative_path("events").walk_resources_sorted_by_time()
+			if match_lang(res, resource) and match_dark(res, resource) %}
+			{% if loop.index > 3 %} {% break %} {% endif %}
+			{{ render_event_excerpt(res, "borderless") }}
+			{% endfor %}
 		</ul>
 	</div>
 </div>
 
 
-<div class="panel panel-default">
-	<div class="panel-heading">
-		Latest Projects <a href="/projects.atom.en.xml" style="float: right;"><img src="/media/img/feed.svg" title="Atom Feed for latest projects" alt="Atom Feed" style="height: 1em;"/></a>
-	</div>
-	<div class="panel-body">
-		<div class="row">
-      {% for res in site.content.node_from_relative_path("project").walk_resources_sorted_by_time()
-        if match_lang(res, resource) and match_dark(res, resource) %}
-          {% if loop.index > 3 %} {% break %} {% endif %}
-          {{ render_thumbnail(res, "img/project.svg") }}
-      {% endfor %}
-		</div>
-	</div>
-</div>
-
-<div class="panel panel-default">
-	<div class="panel-heading">
-		Latest Talks <a href="/talks.atom.en.xml" style="float: right;"><img src="/media/img/feed.svg" title="Atom Feed for latest talks" alt="Atom Feed" style="height: 1em;"/></a>
-	</div>
-	<div class="panel-body">
-		<div class="row">
-      {% for res in site.content.node_from_relative_path("talk").walk_resources_sorted_by_time()
-        if not res.meta.status == "scheduled" and match_lang(res, resource) and match_dark(res, resource) %}
-          {% if loop.index > 3 %} {% break %} {% endif %}
-          {{ render_thumbnail(res, "img/talk.svg") }}
-      {% endfor %}
-		</div>
-	</div>
-</div>
 {% endblock mainbox %}
+
+{% block scripts %}
+
+<script src="{{ media_url('js/simpleIfs.js') }}"></script>
+<script type="text/javascript">
+	SimpleIfs.init({
+		domId: 'simpleIfs',
+		folder: "{{ media_url('ifs-images') }}",
+	});
+
+</script>
+{{ super() }}
+{% endblock scripts %}

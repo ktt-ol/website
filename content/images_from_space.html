@@ -3,8 +3,7 @@ title: Images from Space
 no_translation_needed: True
 ---
 
-{% extends "default.j2" %}
-
+{% extends "topbar.j2" %}
 
 {% block css %}
 <!--<link rel="stylesheet" href="{{ media_url('mfGallery/styles/bootstrap-custom.css') }}">-->
@@ -12,14 +11,10 @@ no_translation_needed: True
 {{ super() }}
 {% endblock css %}
 
-{% block mainbox %}
+{% block container %}
 <div class="panel panel-default mf-gallery-app" ng-app="mfGalleryApp">
     <div class="panel-heading"><h3 class="panel-title">{{ resource.meta.title }} <a href="/media/ifs-images/feed.xml" style="float: right;"><img src="/media/img/feed.svg" title="Atom Feed for Images from Space" alt="Atom Feed" style="height: 1em;"/></a></h3></div>
     <div class="panel-body">
-        <!--[if lt IE 7]>
-        <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a>
-            to improve your experience.</p>
-        <![endif]-->
         <div ng-view=""></div>
     </div>
     <div id="ifs-cast-box" style="display: none">
@@ -29,17 +24,14 @@ no_translation_needed: True
 </div>
 
 
-<!--[if lt IE 9]>
-<script src="{{ media_url('mfGallery/scripts/ie_extras.js') }}"></script>
-<![endif]-->
 <script type="text/javascript">var mfGalleryConfig = {
     staticPath: "{{ media_url('mfGallery') }}/",
     folder: "{{ media_url('ifs-images') }}/",
     mode: 'ifs',
     pageSize: 30,
-    preferedImageHeight: 250,
+    preferedImageHeight: 600,
     thumbSmall: 300,
-    thumbLightbox: 750
+    thumbLightbox: 1200
 };</script>
 
 <script src="{{ media_url('mfGallery/scripts/vendor.js') }}"></script>
@@ -65,4 +57,4 @@ no_translation_needed: True
     }
 </script>
 
-{% endblock mainbox %}
+{% endblock container %}

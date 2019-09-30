@@ -28,66 +28,42 @@
 {% endblock infobox %}
 
 {% block sidebox %}
-<div id="statusBox" class="panel panel-default">
-	<div class="panel-heading"><a href="//status.kreativitaet-trifft-technik.de">Status</a></div>
-	<div class="panel-body">
-		<div id="statusBox_text">
-			{% if resource.meta.language == "de" -%}
-			Space Status Unbekannt.
-			{% else -%}
-			Space Status Unknown.
-			{% endif -%}
-		</div>
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h3 class="panel-title"><a href="//status.kreativitaet-trifft-technik.de">Status</a></h3>
 	</div>
-</div>
-
-<div id="machiningBox" class="panel panel-default">
-	{% if resource.meta.language == "de" -%}
-	<div class="panel-heading"><a href="//status.kreativitaet-trifft-technik.de">Zerspanungstechnik</a></div>
-	{% else -%}
-	<div class="panel-heading"><a href="//status.kreativitaet-trifft-technik.de">Machining</a></div>
-	{% endif -%}
-	<div class="panel-body">
-		<div id="machiningBox_text">
-			{% if resource.meta.language == "de" -%}
-			Zerspanungstechnik Status Unbekannt.
-			{% else -%}
-			Machining Status Unknown.
-			{% endif -%}
-		</div>
-	</div>
-</div>
-
-<div id="lab3dBox" class="panel panel-default">
-	{% if resource.meta.language == "de" -%}
-	<div class="panel-heading"><a href="//status.kreativitaet-trifft-technik.de">3D Lab</a></div>
-	{% else -%}
-	<div class="panel-heading"><a href="//status.kreativitaet-trifft-technik.de">3D Lab</a></div>
-	{% endif -%}
-	<div class="panel-body">
-		<div id="lab3dBox_text">
-			{% if resource.meta.language == "de" -%}
-			3D Lab Status Unbekannt.
-			{% else -%}
-			3D Lab Status Unknown.
-			{% endif -%}
-		</div>
+	<div class="panel-body status-list">
+		<a id="statusLine" class="line" href="//status.kreativitaet-trifft-technik.de"><span>Hackspace:</span><span class="status">?</span></a>
+		<a id="machiningLine" class="line" href="//status.kreativitaet-trifft-technik.de"><span>Zerspanungstechnik:</span> <span class="status">?</span></a>
+		<a id="lab3Line" class="line" href="//status.kreativitaet-trifft-technik.de"><span>3D Lab:</span><span class="status">?</span></a>
+		<a id="radLine" class="line" href="//status.kreativitaet-trifft-technik.de"><span>Radstelle:</span><span class="status">?</span></a>
 	</div>
 </div>
 
 
-<div id="radBox" class="panel panel-default">
-	<div class="panel-heading"><a href="//status.kreativitaet-trifft-technik.de">Radstelle</a></div>
+<div class="panel panel-default">
+	<div class="panel-heading"><a href="{{ content_url('calendar.html')|i18n(resource)|dark(resource) }}">
+		{% if resource.meta.language == "de" -%}
+		Termine
+		{% else -%}
+		Dates
+		{% endif -%}
+	</a></div>
 	<div class="panel-body">
-		<div id="radBox_text">
-			{% if resource.meta.language == "de" -%}
-			Radstelle Status Unbekannt.
-			{% else -%}
-			Radstelle Status Unknown.
-			{% endif -%}
+		<div id="gcf-simple">
+			<div class="gcf-item-container-block">
+				<div class="gcf-item-block">
+					<div class="gcf-item-header-block">
+						<div class="gcf-item-date-block">
+							[<span class="gcf-item-daterange"></span>]
+						</div>
+						<div class="gcf-item-title-block">
+							<strong class="gcf-item-title"></strong>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
-
-		Zurzeit nur nach Terminabsprache: Micha O. (0177-4334616)
 	</div>
 </div>
 
@@ -116,31 +92,6 @@
 	</div>
 </div>
 
-<div class="panel panel-default">
-	<div class="panel-heading"><a href="{{ content_url('calendar.html')|i18n(resource)|dark(resource) }}">
-		{% if resource.meta.language == "de" -%}
-			Termine
-		{% else -%}
-			Dates
-		{% endif -%}
-	</a></div>
-	<div class="panel-body">
-		<div id="gcf-simple">
-			<div class="gcf-item-container-block">
-				<div class="gcf-item-block">
-					<div class="gcf-item-header-block">
-						<div class="gcf-item-date-block">
-							[<span class="gcf-item-daterange"></span>]
-						</div>
-						<div class="gcf-item-title-block">
-							<strong class="gcf-item-title"></strong>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
 {% endblock sidebox %}
 
 {% block scripts %}

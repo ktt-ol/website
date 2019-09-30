@@ -12,16 +12,9 @@ title: Album
 
 {% block container %}
 <div class="panel panel-default mf-gallery-app" ng-app="mfGalleryApp">
-    <!--[if lt IE 7]>
-    <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a>
-        to improve your experience.</p>
-    <![endif]-->
     <div ng-view=""></div>
 </div>
 
-<!--[if lt IE 9]>
-<script src="{{ media_url('mfGallery/scripts/ie_extras.js') }}"></script>
-<![endif]-->
 <script type="text/javascript">var mfGalleryConfig = {
     staticPath: "{{ media_url('mfGallery') }}/",
     folder: "{{ media_url('album-images') }}/",
