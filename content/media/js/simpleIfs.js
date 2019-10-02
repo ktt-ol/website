@@ -18,6 +18,13 @@
     var imgNode = $('#' + opt.domId + '_image');
     imgNode.attr('src', opt.folder + '/.thumbs/750-' + image.filename);
     imgNode.attr('title', image.filename);
+
+    var timePart = '';
+    if (image.exif && image.exif.time) {
+      var d = new Date(image.exif.time);
+      timePart = ' - ' + d.toLocaleDateString() + ' ' + d.toLocaleTimeString();
+    }
+    $('#impleIfs_metainfo').text(image.filename + timePart);
   }
 
   window.SimpleIfs = {

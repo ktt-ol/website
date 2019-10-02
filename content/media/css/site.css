@@ -1,25 +1,26 @@
 body {
-	color: inherit;
-	font-size: 16px;
-	padding-top: 10px;
-	padding-bottom: 40px;
+  color: inherit;
+  font-size: 16px;
+  padding-top: 10px;
+  padding-bottom: 40px;
 }
+
 body.album {
   /* we need the scroll bar at the beginning for a correct width calculation */
   overflow-y: scroll;
 }
 
 h1 > a, h2 > a, h3 > a, .panel-heading > a {
-	color: #00a0ff;
+  color: #00a0ff;
 }
 
 a {
-	color: #004987
+  color: #004987
 }
 
 .navbar-default {
-	background-color: transparent;
-	border: none;
+  background-color: transparent;
+  border: none;
 }
 
 .navbar-default .navbar-nav > .active > a,
@@ -27,99 +28,99 @@ a {
 .navbar-default .navbar-nav > .active > a:focus,
 .navbar-default .navbar-nav > .open > a,
 .navbar-default .navbar-nav > .open > a:hover,
-.navbar-default .navbar-nav > .open > a:focus
-{
-	color: #555;
-	background-color: inherit;
-	border-bottom: 1px solid #00a0ff;
+.navbar-default .navbar-nav > .open > a:focus {
+  color: #555;
+  background-color: inherit;
+  border-bottom: 1px solid #00a0ff;
 
 }
 
 .navbar-nav > li > a {
-	padding-bottom: 10px;
-	margin-bottom: 5px;
+  padding-bottom: 10px;
+  margin-bottom: 5px;
 }
 
 .navbar-default .navbar-nav > li > a {
-	color: inherit;
+  color: inherit;
 }
 
 /* center logo on medium devices */
 @media (min-width: 769px) and  (max-width: 991px) {
-	.navbar-header {
-		width: 100%;
-	}
+  .navbar-header {
+    width: 100%;
+  }
 
-	.navbar-brand {
-		width: 100%;
-		text-align: center;
-	}
+  .navbar-brand {
+    width: 100%;
+    text-align: center;
+  }
 
-	.navbar-collapse.collapse {
-		display: table !important;
-		margin: auto;
-	}
+  .navbar-collapse.collapse {
+    display: table !important;
+    margin: auto;
+  }
 }
 
 .panel {
-	margin-bottom: 0;
-	border: none;
-	box-shadow: none;
+  margin-bottom: 0;
+  border: none;
+  box-shadow: none;
 }
 
 .panel-default > .panel-heading {
-	color: #00a0ff;
-	border-color: #00a0ff;
-	background-color: transparent;
+  color: #00a0ff;
+  border-color: #00a0ff;
+  background-color: transparent;
 }
 
 .panel-title {
-	font-size: 18px;
+  font-size: 18px;
 }
 
 .vbottom {
-	float: none;
-	display: inline-block;
-	vertical-align: bottom;
+  float: none;
+  display: inline-block;
+  vertical-align: bottom;
 
-	/* whitespace removal hack (inline-block accounts whitespaces between elements) */
-	margin: 0 -0.125em;
+  /* whitespace removal hack (inline-block accounts whitespaces between elements) */
+  margin: 0 -0.125em;
 }
 
 .main-page-intro {
-	background: #e6e6e659;
-	padding: 8px;
+  background: #e6e6e659;
+  padding: 8px;
 }
 
 .project-img {
-	width: 480px;
+  width: 480px;
 }
 
 .centered {
-	display: block;
-	margin-left: auto;
-	margin-right: auto;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .left-with-margin {
-	float: left;
-	margin-right: 10px;
-	margin-bottom: 10px;
+  float: left;
+  margin-right: 10px;
+  margin-bottom: 10px;
 }
 
 .right-with-margin {
-	float: right;
-	margin-left: 10px;
-	margin-bottom: 10px;
+  float: right;
+  margin-left: 10px;
+  margin-bottom: 10px;
 }
 
 .borderless {
-	border: 0px;
+  border: 0px;
 }
 
 .article-list h3 {
   margin-top: 5px;
 }
+
 .article-list small.date {
   color: #999;
 }
@@ -129,6 +130,7 @@ a {
   padding-right: 20px;
   padding-bottom: 10px;
 }
+
 .article__image-right {
   float: right;
   padding-left: 20px;
@@ -145,14 +147,14 @@ a {
 }
 
 .olControlPanZoomBar {
-	z-index: 750 !important;
+  z-index: 750 !important;
 }
 
 .no-list-margin {
-	margin-left: 0px;
+  margin-left: 0px;
 }
 
-.page-sponsors .sponsor-detail{
+.page-sponsors .sponsor-detail {
   border-top: 1px solid #ddd;
   margin-top: 15px;
   margin-bottom: 15px;
@@ -160,74 +162,106 @@ a {
 }
 
 .contact-title {
-	text-decoration: underline;
+  text-decoration: underline;
 }
+
 .contact-data {
-	padding-bottom: 20px;
+  padding-bottom: 20px;
 }
 
 /* sm breakpoint */
 @media (min-width: 768px) {
-	.contact-title {
-		text-align: right;
-	}
+  .contact-title {
+    text-align: right;
+  }
 }
 
 #ifs-cast-box {
-	border-top: 1px solid #ddd;
-	padding: 10px;
+  border-top: 1px solid #ddd;
+  padding: 10px;
 }
 
 .ifs-on-main-page footer {
-	display: none;
+  display: none;
 }
 
 .status-list .line {
-	float: left;
-	width: 100%;
-	margin-bottom: 2px;
-	padding: 2px 6px;
+  float: left;
+  width: 100%;
+  margin-bottom: 2px;
+  padding: 2px 6px;
 
-	color: black;
+  color: black;
 }
+
 .status-list .line > span:first-child {
-	float: left;
-	font-weight: bold;
+  float: left;
+  font-weight: bold;
 }
+
 .status-list .line > span.status {
-	float: right;
+  float: right;
 }
 
 .simple-ifs {
-	position: relative;
+  position: relative;
 }
 
 .simple-ifs img {
-	margin: auto;
-	max-height: 500px;
+  margin: auto;
+  max-height: 500px;
 }
 
 .simple-ifs .carousel-control.left {
-	cursor: pointer;
-	background-image: linear-gradient(to right,rgba(187, 187, 187, 0.46) 0,rgba(0,0,0,.0001) 100%);
+  cursor: pointer;
+  background-image: linear-gradient(to right, rgba(187, 187, 187, 0.46) 0, rgba(0, 0, 0, .0001) 100%);
 }
+
 .simple-ifs .carousel-control.right {
-	cursor: pointer;
-	background-image: linear-gradient(to right,rgba(0,0,0,.0001) 0, rgba(187, 187, 187, 0.46) 100%);
+  cursor: pointer;
+  background-image: linear-gradient(to right, rgba(0, 0, 0, .0001) 0, rgba(187, 187, 187, 0.46) 100%);
 }
 
 .simple-ifs .teaser-page {
-	display: none;
+  display: none;
 }
+
 .simple-ifs.teaser .teaser-page {
-	display: flex;
-	height: 300px;
-	justify-content: center;
-	align-items: center;
+  display: flex;
+  height: 300px;
+  justify-content: center;
+  align-items: center;
 }
+
 .simple-ifs.teaser .teaser-page a {
-	padding: 0 5px;
+  padding: 0 5px;
 }
+
 .simple-ifs.teaser img {
-	display: none;
+  display: none;
+}
+
+.simple-ifs .image-info {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  height: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.simple-ifs .image-info span {
+  font-size: 20px;
+  color: #fff;
+  opacity: 0.5;
+}
+
+.simple-ifs:hover .image-info {
+  background: rgba(0, 0, 0, 1);
+}
+
+.simple-ifs:hover .image-info span {
+  opacity: 1;
 }
