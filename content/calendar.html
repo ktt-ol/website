@@ -251,6 +251,7 @@ no_translation_needed: True
 	}
 
 	var selected_ids = splitCSV(getURLParameter("ids"))
+	var selected_title = getURLParameter("eventname")
 
 	var calendar_config = {
 		header: {
@@ -282,6 +283,8 @@ no_translation_needed: True
 			element.click(function() { openEventInfo(event); });
 
 			if (selected_ids && selected_ids != 'null' && selected_ids.indexOf(id) === -1) {
+				element.addClass("event-disabled");
+			} else if (selected_title && selected_title != 'null' && !event.title.includes(selected_title)) {
 				element.addClass("event-disabled");
 			} else {
 				if (room && room.bgcolor && room.bgcolor != "default") {
