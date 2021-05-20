@@ -60,68 +60,59 @@ title: Kontakt
 {% endblock mainbox %}
 
 {% block scripts %}
-<script type="text/javascript" src="{{ media_url('js/libs/openlayers/OpenLayers.js') }}"></script>
+<link rel="stylesheet" href="{{ media_url('css/ol.css') }}" type="text/css">
+<script type="text/javascript" src="{{ media_url('js/libs/ol.js') }}"></script>
 <script type="text/javascript">
-	var zoom           = 15;
+  spaceFeature = new ol.Feature({
+    geometry: new ol.geom.Point(ol.proj.fromLonLat([8.2207, 53.14375])),
+    name: 'Mainframe',
+  });
 
-	var fromProjection = new OpenLayers.Projection("EPSG:4326");   // Transform from WGS 1984
-	var toProjection   = new OpenLayers.Projection("EPSG:900913"); // to Spherical Mercator Projection
+  var spaceIconStyle = new ol.style.Style({
+    image: new ol.style.Icon({
+      anchor: [15, 15],
+      anchorXUnits: 'pixels',
+      anchorYUnits: 'pixels',
+      size: [30, 30],
+      src: '/media/img/logo-small.svg',
+    }),
+  });
 
-	var center         = new OpenLayers.LonLat(8.2179, 53.144398).transform(fromProjection, toProjection);
+  spaceFeature.setStyle(spaceIconStyle);
 
-	var layer          = new OpenLayers.Layer.OSM("OSM", ["//www.kreativitaet-trifft-technik.de/tiles/${z}/${x}/${y}.png"]);
+  var vectorSource = new ol.source.Vector({
+    features: [spaceFeature],
+  });
 
-	map = new OpenLayers.Map("map", { controls: [] });
-	map.addLayer(layer);
+  var vectorLayer = new ol.layer.Vector({
+    source: vectorSource,
+  });
 
-	var vectorLayer = new OpenLayers.Layer.Vector("Overlay");
+  var osmLayer = new ol.layer.Tile({
+    source: new ol.source.OSM()
+  });
 
-	/*
-	var feature = new OpenLayers.Feature.Vector(
-		new OpenLayers.Geometry.Point( 8.215161, 53.1450458 ).transform(fromProjection, toProjection),
-            {description:'Space 2.0'} ,
-            {externalGraphic: '/media/img/logo-small.svg', graphicHeight: 30, graphicWidth: 30, graphicXOffset:-15, graphicYOffset:-15  }
-        );
-	feature.style.cursor = "pointer";
-    vectorLayer.addFeatures(feature);
-	*/
+  map = new ol.Map({
+          interactions: ol.interaction.defaults({dragPan: false, mouseWheelZoom: false}).extend([
+            new ol.interaction.DragPan({
+              condition: function (event) {
+                return this.getPointerCount() === 2 || ol.events.condition.platformModifierKeyOnly(event);
+              },
+            }),
+            new ol.interaction.MouseWheelZoom({
+              condition: ol.events.condition.platformModifierKeyOnly,
+            })
+          ]),
+          target: 'map',
+          layers: [osmLayer, vectorLayer],
+          view: new ol.View({
+              center: ol.proj.fromLonLat([8.2179, 53.144398]),
+              zoom: 16
+          })
+  });
 
-	var feature = new OpenLayers.Feature.Vector(
-		new OpenLayers.Geometry.Point( 8.2207, 53.14375 ).transform(fromProjection, toProjection),
-            {description:'Mainframe'} ,
-            {externalGraphic: '/media/img/logo-small.svg', graphicHeight: 30, graphicWidth: 30, graphicXOffset:-15, graphicYOffset:-15  }
-        );
-	feature.style.cursor = "pointer";
-    vectorLayer.addFeatures(feature);
-
-	map.addLayer(vectorLayer);
-
-	map.addControl(new OpenLayers.Control.Attribution());
-	map.addControl(new OpenLayers.Control.Navigation({'zoomWheelEnabled': false}));
-	map.addControl(new OpenLayers.Control.PanZoomBar());
-	map.addControl(new OpenLayers.Control.ScaleLine());
-	var selector = new OpenLayers.Control.SelectFeature(vectorLayer, { onSelect: createPopup, onUnselect: destroyPopup });
-	map.addControl(selector);
-	selector.activate();
-
-	map.setCenter(center, zoom);
-
-	function createPopup(feature) {
-		feature.popup = new OpenLayers.Popup.FramedCloud("pop",
-			feature.geometry.getBounds().getCenterLonLat(),
-			null,
-			'<div class="markerContent">'+feature.attributes.description+'</div>',
-			null,
-			true,
-			function() { selector.unselectAll(); }
-		);
-		map.addPopup(feature.popup);
-	}
-
-	function destroyPopup(feature) {
-		feature.popup.destroy();
-		feature.popup = null;
-	}
+  map.addControl(new ol.control.ScaleLine());
+  map.addControl(new ol.control.Attribution());
 </script>
 {{ super() }}
 {% endblock scripts %}
