@@ -1,9 +1,11 @@
 #!/bin/bash
 
-SERVER=homepage@v4.kreativitaet-trifft-technik.de:/var/www/website/
+SERVER=homepage@mainframe.io
+REMOTE=/var/www/website/
 LOCAL=deploy/
+PORT=2310
 
-rsync -n -zvcrluPi --delete --exclude-from=sync-ignores -e 'ssh -p 2206' $LOCAL $SERVER
+rsync -n -zvcrluPi --delete --exclude-from=sync-ignores -e "ssh -p $PORT" $LOCAL "$SERVER:$REMOTE"
 
 echo ""
 echo "Das war ein dry run! rsync wirklich ausführen?"
@@ -12,6 +14,6 @@ read IN
 
 echo "run"
 git log -1 --format="%h - %aN - %ai" > deploy/status.txt
-rsync -zvcrluPi --delete --exclude-from=sync-ignores -e 'ssh -p 2206' $LOCAL $SERVER
+rsync -zvcrluPi --delete --exclude-from=sync-ignores -e "ssh -p $PORT" $LOCAL "$SERVER:$REMOTE"
 rm deploy/status.txt
-ssh -p 2206 homepage@v4.kreativitaet-trifft-technik.de "chmod -R a+r /var/www/website/"
+ssh -p $PORT $SERVER "chmod -R a+r /var/www/website/"
