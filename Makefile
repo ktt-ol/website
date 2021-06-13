@@ -21,6 +21,7 @@ forcegenfiles = content/index.html \
 
 build: $(forcegenfiles)
 	docker run -it --rm --user `id -u` --volume "$(shell pwd)":/tmp/website mainframe-website-build hyde gen
+	cp content/media/js/libs/ol.js deploy/media/js/libs/ol.js
 
 preview:
 	docker run -it --rm  --user `id -u` -p 8080:8080 --volume "$(shell pwd)":/tmp/website mainframe-website-build hyde serve -a 0.0.0.0
