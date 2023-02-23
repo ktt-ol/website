@@ -404,6 +404,14 @@ no_translation_needed: True
 		}
 
 		/* provide simple markup support */
+		tmp = description
+		tmp = tmp.replace(/<\/?html-blob>/g, '');
+		tmp = tmp.replace(/<\/?span>/g, '');
+		tmp = tmp.replace(/<\/?u>/g, '');
+		tmp = tmp.replace(/<a href="(https?:\/\/\S*)".*?>.*?<\/a>/g, '$1 ');
+		tmp = tmp.replace(/&nbsp;/g, ' ');
+		tmp = tmp.replace(/<br\/?>/g, '[br]');
+		tmp = tmp.escapeHTML()+"\n" // escape incoming string
 		tmp = description.escapeHTML()+"\n" // escape incoming string
 		tmp = tmp.replace(/(https?:\/\/\S*)/g, '<a href="$1">$1<\/a>'); // links
 		tmp = listMarkup(tmp) // bullet point list
