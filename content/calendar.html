@@ -269,6 +269,9 @@ no_translation_needed: True
 
 			event.url = (id in calendar_links) ? calendar_links[id]["{{ resource.meta.language }}"] : 'null'
 
+			if (event.url && window.location.href.toString().includes(".dark.html"))
+				event.url = event.url.replace(".html", ".dark.html")
+
 			room = null
 			if (event.location && event.location != 'null')
 				room = analyze_location_string(event.location.escapeHTML())
