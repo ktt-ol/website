@@ -412,7 +412,6 @@ no_translation_needed: True
 		tmp = tmp.replace(/&nbsp;/g, ' ');
 		tmp = tmp.replace(/<br\/?>/g, '[br]');
 		tmp = tmp.escapeHTML()+"\n" // escape incoming string
-		tmp = description.escapeHTML()+"\n" // escape incoming string
 		tmp = tmp.replace(/(https?:\/\/\S*)/g, '<a href="$1">$1<\/a>'); // links
 		tmp = listMarkup(tmp) // bullet point list
 		tmp = paragraphMarkup(tmp) // generate <p> elements
