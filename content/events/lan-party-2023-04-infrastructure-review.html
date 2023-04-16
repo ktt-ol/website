@@ -1,0 +1,129 @@
+---
+title: LAN Party Infrastructure Review
+thumbnail: lan-party-2023-04-infrastructure-review/thumbnail.jpg
+created: !!timestamp '2023-04-16 23:42:00'
+teaser: Die LAN Party ist um; dieses mal mit Infrastructure Review!
+---
+
+{% block content %}
+{% filter markdown|typogrify -%}
+
+<div class="article__image-left">
+	<img src="lan-party-2023-04-infrastructure-review/01-freiflaeche-overview.jpg" alt="" class="img-thumbnail"/>
+</div>
+
+Moin Moin, 
+
+über das vergangene Wochenende gab es bei uns in Kooperation mit der Informatik
+Fachschaft der Uni Oldenburg wieder eine LAN Party für die Erstsemester. 
+
+Spoiler vorweg; Es gab zwischen 18:00 Uhr und 21:00 am Freitag Probleme mit
+unserem ISP (natürlich zur Beginn der LAN Party, Murphy lässt grüßen). Deswegen
+gibt es dort eine Lücke in der Auswertung. Ab 21:00 war das Problem gefixt und
+wir haben brauchbare Daten. 
+
+Die grundlegende Infrastruktur sieht dabei wie folgt aus. 
+
+<video style="width: 100%" controls>
+	<source src="lan-party-2023-04-infrastructure-review/02-intermapper-map.webm" type="video/webm">
+	Your browser does not support the video tag.
+</video>
+
+Wir betreiben einen Steam LAN Cache im Netzwerk um Downloadanfragen nach
+Spielen/Updates oder dergleichen nicht nur effizient mit Wirespeed bedienen zu
+können sondern entsprechend auch die begrenzte Internetkapazität freizuhalten
+für Anfragen welche nicht gecached werden können.
+
+Alle Access Switche sind mit 10G am Core angebunden. Der LAN-Cache ist mit 40G
+am Core angebunden.
+
+Bei der Betrachtung des LAN-Cache würde man ein asymetrisches Trafficverhalten
+erwarten. Die Idee des Caches ist es Content vorzuhalten und bei erneuter
+Anfrage direkt ausliefern zu können. Also ist hier in Relation zueinander mehr
+"Out"-going als "In"-coming wünschenswert.
+
+<div class="article__image-left">
+	<img src="lan-party-2023-04-infrastructure-review/03-steamcache.png" alt="" class="img-thumbnail"/>
+</div>
+
+Das ist auch genau so eingetreten. Die Ausnahme am Samstagnachmittag war der
+händisch getriggerte Steam Prefill unsererseits.
+
+Die Trafficprofile der Switche auf der Freifläche lesen sich wie folgt.
+
+<div class="article__image-left">
+	<img src="lan-party-2023-04-infrastructure-review/04-event-ff1.png" alt="" class="img-thumbnail"/>
+	<img src="lan-party-2023-04-infrastructure-review/05-event-ff2.png" alt="" class="img-thumbnail"/>
+</div>
+
+Die Gesamtauslastung Internet sieht wie folgt aus. 
+
+<div class="article__image-left">
+	<img src="lan-party-2023-04-infrastructure-review/06-opnsense-wan.png" alt="" class="img-thumbnail"/>
+</div>
+
+Nüchtern und ehrlich betrachtet haben wir weder den LAN-Cache noch die 10G
+Anbindung an den Access Switchen gebraucht. Aber das hat uns noch nie davon
+abgehalten coolen Krams mit Technik zu machen! ;)
+
+Für WLAN Enthuasiasten dürften folgende Statistiken interessant sein. 
+
+<div class="article__image-left">
+	<img src="lan-party-2023-04-infrastructure-review/07-lounge-clients-5G.png" alt="" class="img-thumbnail"/>
+	<img src="lan-party-2023-04-infrastructure-review/08-lounge-airtime-5G.png" alt="" class="img-thumbnail"/>
+	<img src="lan-party-2023-04-infrastructure-review/09-lounge-clients-2G.png" alt="" class="img-thumbnail"/>
+	<img src="lan-party-2023-04-infrastructure-review/10-lounge-airtime-2G.png" alt="" class="img-thumbnail"/>
+</div>
+
+Der Access Point in der Lounge hat sichtbar mit Beginn der LAN Party immer mehr
+Clients aufgenommen. Es freut uns, dass hier primär das 5 GHz aktiv ist und nur
+wenig bis keine Geräte sich in das legacy 2.4 GHz Band verbinden.
+
+<h3>Die Sache mit dem ISP Problem</h3>
+Wie bereits erwähnt hatten wir zu Beginn der LAN Party um ca. 18:00 Uhr
+Probleme mit der Internetleitung. Wir sind jetzt (Sonntagabend) mit der
+Diagnostik etwas weiter und glauben das Problem identifiziert, wenn auch noch
+nicht gelöst, zu haben.
+
+Während der LAN Party hatten wir plötzlich mit starken Paketverlusten ins
+Internet zu kämpfen.
+Da wir kurzzeitig einen alternativen ISP Uplink organisieren konnten, war ab
+21:00 Uhr das Problem erst einmal umgangen. Ab dann konnten wir uns auf die
+Suche nach dem eigentlichen Problem begeben.
+
+Nach bisheriger Diagnostik macht das Modem vom Provider schlapp, sobald es mit
+viel Internettraffic umgehen muss und hat mit stark erhöhten Latenzen zu
+kämpfen.
+
+Unser Test sah vor, künstlich erzeugten Traffic durch Steam Prefill des
+LAN-Cache zu erzeugen. Während unser eigenes ISP Modem dies nicht gut
+verkraftete, deutliche Latenzen verzeichnete und sogar im Downloadspeed über
+Zeit merklich nachlies, war die Alternativleitung davon total unbeeindruckt und
+lieferte 500 Mbit über den gesamten Testzeitraum ohne erhöhte Latenzen.
+
+<div class="article__image-left">
+	<img src="lan-party-2023-04-infrastructure-review/11-switch-an-fritzbox.png" alt="" class="img-thumbnail"/>
+	<img src="lan-party-2023-04-infrastructure-review/12-smokeping-fritzbox.png" alt="" class="img-thumbnail"/>
+	<img src="lan-party-2023-04-infrastructure-review/13-switch-an-vodafone-station.png" alt="" class="img-thumbnail"/>
+	<img src="lan-party-2023-04-infrastructure-review/14-smokeping-an-vodafone-station.png" alt="" class="img-thumbnail"/>
+</div>
+
+Jetzt heisst es, das defekte Modem auszutauschen.
+
+Wir bedanken uns bei allen Gästen, Teilnehmern, Helfern, insbesondere der
+Person die kurzzeitig für alternativen Internetuplink gesorgt hat. Wir hoffen
+ihr hattet alle Spaß. Wir hatten ihn. Und haben mal wieder eine Menge gelernt.
+Außerdem freuen wir uns auf das nächste Event im Oktober.
+
+Nerdige Grüße
+
+Mainframe Oldenburg
+
+Benutzte Tools: 
+
+1. Intermapper
+2. LibreNMS
+3. SmokePing
+
+{%- endfilter %}
+{% endblock content %}
