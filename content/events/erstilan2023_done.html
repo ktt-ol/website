@@ -1,0 +1,36 @@
+---
+title: Ersti LAN 2023 ist vorbei
+thumbnail: erstilan2023_done/thumbnail.jpg
+created: !!timestamp '2023-10-15 19:53:00'
+teaser: Hier sind die glory Details :)
+---
+{% set addGalleryBlock = True %}
+
+{% block content %}
+{% markdown %}
+
+Die Rückbauten sind noch im vollen Gange. Aber schon jetzt können wir sagen, es hat wieder eine Riesenfreude gemacht. Mit knapp 60 Teilnehmern der Uni Oldenburg flogen die Bits & Bytes durch die Datenkabel als gäbe es kein Morgen mehr. 
+
+Das grundlegende Setup hat sich dabei zum <a href="/events/lan-party-2023-04-infrastructure-review.dark.html">letzten Mal</a> nicht stark geändert. Weiterhin hilft der LAN-Cache Anfragen ins Internet teilweise lokal zu cachen und somit Internetbandbreite zu sparen. 
+
+Neu dazugekommen in der diesmaligen Ausführung sind selbstgehostete Gamingserver für Minecraft und Factorio, ein eigenes Grafana Dashboard speziell für die LAN-Party und eine nochmals erhöhte Anzahl von Switchen um Netzwerkanbindung wirklich an jeder Ecke bereitstellen zu können. 
+
+Hier ein kleiner Teaser an Impressionen. Weitere Bilder werden zeitnah im <a href="/album.dark.html#/a/0/LANs/2023-10-13_Ersti-Lan">Album</a> oder auf <a href="/images_from_space.dark.html">IFS</a> zu sehen sein. 
+
+
+{% from "macros.j2" import render_gallery with context %}
+{{ render_gallery("mygalley", "events/erstilan2023_done/gallery") }}
+
+Wir hoffen es hat gefallen! 
+
+Die Planungen für die nächste LAN-Party des Sommersemester 2024 haben bereits begonnen. 
+
+Alle "Käufer" des 0€ Planungstickets werden in den kommenden Tagen eine E-Mail zwecks Feedbacksammlung erhalten. 
+Wir bitten darum sich kurz Zeit zu nehmen uns an dieser Stelle mit Rückmeldung zu unterstützen, damit wir in Zukunft noch besser werden können. 
+
+Unser besonderer Dank gilt allen Helfern, sei es in noch so kleiner Funktion, die es möglich machten dieses Event auf die Beine zu stellen!
+
+Vielen Dank! 
+
+{% endmarkdown %}
+{% endblock content %}
