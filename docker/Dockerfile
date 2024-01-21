@@ -1,5 +1,7 @@
 from debian:stretch-slim
 
+COPY sources.list /etc/apt/sources.list
+
 RUN set -ex && \
   apt-get update && apt-get install -y --no-install-recommends \
 		git python2.7 python-pip wget python-imaging python-setuptools \
