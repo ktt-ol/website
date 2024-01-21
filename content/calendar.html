@@ -414,8 +414,10 @@ no_translation_needed: True
 		tmp = tmp.replace(/<a href="(https?:\/\/\S*)".*?>.*?<\/a>/g, '$1 ');
 		tmp = tmp.replace(/&nbsp;/g, ' ');
 		tmp = tmp.replace(/<br\/?>/g, '[br]');
+		tmp = tmp.replace(/<a href="(mailto:\S*@\S*)">([^<>]*)<\/a>/g, '$1 '); // mailto
 		tmp = tmp.escapeHTML()+"\n" // escape incoming string
-		tmp = tmp.replace(/(https?:\/\/\S*)/g, '<a href="$1">$1<\/a>'); // links
+		tmp = tmp.replace(/(https?:\/\/\S*)/g, '<a href="$1">$1<\/a>'); // links2
+		tmp = tmp.replace(/mailto:(\S*@\S*)/g, '<a href="mailto:$1">$1<\/a>'); // mailto
 		tmp = listMarkup(tmp) // bullet point list
 		tmp = paragraphMarkup(tmp) // generate <p> elements
 		tmp = tmp.replace(/(\[br\])/g, '<br />'); // newlines
