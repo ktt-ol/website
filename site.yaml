@@ -59,6 +59,8 @@ context:
               type: menu
               basename: spacewalk
               menu:
+                - title: {de: Panorama-Rundgang, en: Panorama Walk}
+                  url: pano-walk.html
                 - title: {de: Geräte, en: devices}
                   url: machines.html
                 - title: {de: Räume, en: rooms}
