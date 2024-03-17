@@ -24,7 +24,10 @@ def match_lang(res1, res2):
 
 
 def get_lang(resource):
-        language = resource.relative_path.split(".")[-2]
+        path_split = resource.relative_path.split(".")
+        if len(path_split) < 2:
+            return None
+        language = path_split[-2]
         if language not in available_languages:
             return None
         return language
@@ -36,7 +39,7 @@ def make_real_path(filepath):
 
 def get_i18n_path(path, lang):
     path_split = path.split(".")
-    reslang = path_split[-2]
+    reslang = path_split[-2] if len(path_split) >= 2 else None
     if reslang not in available_languages:
         reslang = None
 
@@ -104,19 +107,25 @@ class LangPlugin(Plugin):
         self.template.env.globals.update(globals)
 
     def begin_site(self):
-        for node in self.site.content.walk():
-            added_resources = []
-            for res in node.resources:
-                for lang in available_languages:
-                    newres = gen_i18n_resource(node, res, lang)
-                    if newres is not None:
-                        added_resources.append(newres)
-                        self.logger.warn("auto-generated missing translation: %s [%s]" % (res.relative_path, lang))
-                if not hasattr(res.meta, 'language'):
-                    res.meta.language = get_lang(res)
-                    if res.meta.language is None:
-                        res.meta.language = default_language
-            node.resources += added_resources
+        try:
+            for node in self.site.content.walk():
+                added_resources = []
+                for res in node.resources:
+                    for lang in available_languages:
+                        newres = gen_i18n_resource(node, res, lang)
+                        if newres is not None:
+                            added_resources.append(newres)
+                            self.logger.warn("auto-generated missing translation: %s [%s]" % (res.relative_path, lang))
+                    if not hasattr(res.meta, 'language'):
+                        res.meta.language = get_lang(res)
+                        if res.meta.language is None:
+                            res.meta.language = default_language
+                node.resources += added_resources
+        except Exception as e:
+            print("Error running LangPlugin: %s" % e)
+            import traceback 
+            traceback.print_exc()
+            raise
 
 
 class TestSequenceFunctions(unittest.TestCase):
