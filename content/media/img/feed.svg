@@ -1,18 +1,15 @@
-<?xml version="1.0"?>
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"> 
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="128px" height="128px" id="RSSicon" viewBox="0 0 256 256">
-<defs>
-<linearGradient x1="0.085" y1="0.085" x2="0.915" y2="0.915" id="RSSg">
-<stop  offset="0.0" stop-color="#E3702D"/><stop  offset="0.1071" stop-color="#EA7D31"/>
-<stop  offset="0.3503" stop-color="#F69537"/><stop  offset="0.5" stop-color="#FB9E3A"/>
-<stop  offset="0.7016" stop-color="#EA7C31"/><stop  offset="0.8866" stop-color="#DE642B"/>
-<stop  offset="1.0" stop-color="#D95B29"/>
-</linearGradient>
-</defs>
-<rect width="256" height="256" rx="55" ry="55" x="0"  y="0"  fill="#CC5D15"/>
-<rect width="246" height="246" rx="50" ry="50" x="5"  y="5"  fill="#F49C52"/>
-<rect width="236" height="236" rx="47" ry="47" x="10" y="10" fill="url(#RSSg)"/>
-<circle cx="68" cy="189" r="24" fill="#FFF"/>
-<path d="M160 213h-34a82 82 0 0 0 -82 -82v-34a116 116 0 0 1 116 116z" fill="#FFF"/>
-<path d="M184 213A140 140 0 0 0 44 73 V 38a175 175 0 0 1 175 175z" fill="#FFF"/>
-</svg>
+<?xml version="1.0" ?>
+<svg height="512px" id="Layer_1" style="enable-background:new 0 0 512 512;" version="1.1"
+	viewBox="0 0 512 512" width="512px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg"
+	xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+	xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+	xmlns:svg="http://www.w3.org/2000/svg"><defs id="defs19"/>
+	<g id="g3021"/>
+	<g id="Layer_1_1_"/>
+	<g id="Layer_1_1_-7" transform="translate(-819.672,-61.929991)"/>
+	<g id="g2989"><rect height="512" id="rect2989" rx="70" ry="70" style="fill:#ea7819;fill-opacity:1;stroke:none" transform="scale(-1,-1)" width="512" x="-512" y="-512"/>
+		<path
+			d="m 81.05643,267.04958 c 43.7041,0 84.78879,17.07214 115.66407,48.12395 30.93179,31.05179 47.96156,72.41184 47.96156,116.44072 h 67.34951 c 0,-127.8857 -103.61898,-231.92124 -230.97514,-231.92124 v 67.35657 z M 81.1624,147.65054 c 155.7603,0 282.48808,127.4197 282.48808,284.04844 H 431 C 431,237.92528 274.05354,80.30102 81.1624,80.30102 v 67.34952 z m 93.13421,236.99769 c 0,25.75647 -20.89183,46.6483 -46.6483,46.6483 C 101.89184,431.29653 81,410.41176 81,384.64823 c 0,-25.7706 20.88477,-46.64831 46.64124,-46.64831 25.75649,0 46.65537,20.87771 46.65537,46.64831 z"
+			id="path3844" style="fill:#ffffff"/></g></svg>
