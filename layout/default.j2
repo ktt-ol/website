@@ -41,14 +41,17 @@
 </div>
 
 
-<div class="panel panel-default">
-	<div class="panel-heading"><a href="{{ content_url('calendar.html')|i18n(resource)|dark(resource) }}">
-		{% if resource.meta.language == "de" -%}
-		Termine
-		{% else -%}
-		Dates
-		{% endif -%}
-	</a></div>
+ <div class="panel-heading">
+  <h3 class="panel-title">
+   <a href="{{ content_url('calendar.html')|i18n(resource)|dark(resource) }}">
+    {% if resource.meta.language == "de" -%}
+    Termine
+    {% else -%}
+    Dates
+    {% endif -%}
+   </a>
+  </h3>
+ </div>
 	<div class="panel-body">
 		<div id="gcf-simple">
 			<div class="gcf-item-container-block">
