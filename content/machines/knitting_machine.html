@@ -1,0 +1,154 @@
+---
+title: Strickmaschine
+thumbnail: knitting_machine/thumbnail.jpg
+created: !!timestamp '2025-04-16 12:00:00'
+state: active
+---
+
+{% block mainbox %}
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h3 class="panel-title">{{ resource.meta.title }}</h3>
+	</div>
+	<div class="panel-body">
+{% filter markdown|typogrify -%}
+
+# Strickmaschinen – Handarbeit trifft Technik
+
+Schon seit einigen Jahren gibt es in unserem Space mehrere Strickmaschinen.
+Lange standen sie ungenutzt herum, doch inzwischen haben wir sie gründlich
+gereinigt, teilweise repariert und wieder in Betrieb genommen. Mit viel Einsatz
+– und ein paar selbstgebauten Ersatzteilen – laufen sie jetzt richtig gut.
+
+Wer schon einmal mit der Hand gestrickt hat, weiß, wie viel Zeit das kostet.
+Strickmaschinen machen es möglich, große Flächen Stoff in kurzer Zeit
+herzustellen – zum Beispiel für Schals, Pullover oder Socken. Trotzdem ist
+Maschinenstricken kein „Knopfdruck und fertig“: Es ist ein Handwerk, bei dem man
+lernen muss, welche Garne geeignet sind, wie die Maschine vorbereitet wird und
+welche Einstellungen nötig sind. Wir haben in den letzten Monaten viel über die
+Technik gelernt und geben dieses Wissen gerne weiter. Wer Interesse hat, kann
+sich jederzeit an uns wenden – wir zeigen euch gerne, wie’s funktioniert!
+
+<p>
+  <img src="knitting_machine/knitting-machine.jpg" title="Strickmaschine" class="project-img centered" />
+</p>
+
+Hauptsächlich arbeiten wir zurzeit mit einer Singer Memo II, auch bekannt unter
+der Marke Superba. Diese Doppelbett-Strickmaschine hat 360 Nadeln und kann
+verschiedene Muster stricken: zum Beispiel Rechts-Links-Muster, Patentmuster,
+Lochmuster. Auch das Stricken in Runden ist unter bestimmten Voraussetzungen
+möglich. Die Maschine hat eine automatische Nadelwahl, mit der einfache Muster
+(bis 12x16 Maschen) automatisch gestrickt werden können.
+
+Weil uns das nicht gereicht hat, haben wir die Maschine – nach Vorbild des
+<a href="https://www.hackerspace-bamberg.de/Singer_Superba">Bamberger Hackspaces</a>
+– mit einem Arduino erweitert. Dadurch sind jetzt auch
+größere Muster möglich. Die ursprüngliche Steuerung per Druckfeld funktioniert
+damit zwar erstmal nicht mehr, aber in Zukunft wollen wir die Bedienung noch
+weiter verbessern.
+
+## Schlitten
+
+Die beiden Hauptschlitten sind dafür zuständig, die Nadeln in einer Wellenform
+nach oben und unten zu schieben, während sie über das Nadelbett geschoben
+werden.  Dabei werden die alten Maschen von den Nadeln abgeworfen und
+gleichzeitig ein neuer Faden eingelegt.
+
+<p>
+  <img src="knitting_machine/knitting-machine-close-up.jpeg" title="Close-up vorderes Nadelbett" class="project-img centered" />
+</p>
+
+Für bestimmte Strickmuster oder Farbtechniken werden Sonderschlitten benötigt.
+Auch ein Wollwickler darf im Zubehörkasten nicht fehlen.
+
+<p>
+  <img src="knitting_machine/carriages.jpeg" title="Mitgeliefertes Zubehör." class="project-img centered" />
+</p>
+
+## Projektbeispiele
+
+### Socken
+
+Socken können komplett auf der Maschine gestrickt werden und müssen lediglich oben am Bündchen zusammengenäht werden.
+Die Verse wird als Bumerangverse gearbeitet, wie man sie von gekauften Socken kennt.
+
+<p>
+  <img src="knitting_machine/project-sock-01.jpeg" title="Identisch gestrickte Socken mit bunten Streifen" width="30%" class="img-responsive centered" />
+</p>
+
+Mit der Memo-Einheit können auch Muster eingestrickt werden – dann muss
+allerdings ein größerer Bereich zusammengehäht werden.
+
+<p>
+  <img src="knitting_machine/project-sock-02.jpeg" title="Socken mit Muster aus der Memo II-Einheit" width="30%" class="img-responsive centered" />
+</p>
+
+Auch mit Wollresten lassen sich noch tolle Socken stricken.
+
+<p>
+  <img src="knitting_machine/project-sock-03.jpeg" title="Restesocken mit diversen unterschiedlichen Wollresten" width="30%" class="img-responsive centered" />
+</p>
+
+### Sofa- und Schoßdecken
+
+Mithilfe der beiden Betten können große Decken in Runden oder in Halbrunden gestrickt werden. Wir haben beides ausprobiert.
+(Die Details, wie Ränder oder Verzierungen sind per Hand gearbeitet.)
+
+<p>
+  <img src="knitting_machine/project-small-blanket.jpg" title="Kleine Decke mit aufgesticktem Tucan" class="project-img centered" />
+</p>
+
+## Musterbeispiele
+
+<table class="table">
+	<tr>
+		<td><img src="knitting_machine/samples-garter.jpeg" style="width:200px;" /></td>
+		<td>Ein kraus-rechts Muster. Was per Hand super einfach zu stricken ist, erfordert auf der Maschine in jeder Reihe einen zusätzlichen Durchlauf mit dem Links-Links-Schlitten.</td>
+	</tr>
+	<tr>
+		<td><img src="knitting_machine/samples-brioche.jpeg" style="width:200px;" /></td>
+		<td>Ein Patentmuster (auch Doppelfang-Muster genannt). Hier entsteht ein voluminöser Stoff, der sich gut für Pullover und Schals eignet.</td>
+	</tr>
+	<tr>
+		<td><img src="knitting_machine/samples-slip-stitch.jpeg" style="width:200px;" /></td>
+		<td>Ein Hebemuster, das automatisch per Memo-Einheit gestrickt werden kann.</td>
+	</tr>
+	<tr>
+		<td><img src="knitting_machine/samples-lace.jpeg" style="width:200px;" /></td>
+		<td>Auch Lochmuster kann die Maschine per Memo-Einheit.</td>
+	</tr>
+	<tr>
+		<td><img src="knitting_machine/samples-logo.jpeg" style="width:200px;" /></td>
+		<td>Größere Jacquardmuster (z. B. unser Space-Logo) funktionieren mit dem Arduino-Hack – hier merkt man aber auch, dass manche Muster besser geeignet sind als andere. Man sollte zum Beispiel darauf achten, dass keine zu langen Spannfäden aus einer Farbe auf der Rückseite entstehen; denn dann bilden sich an den Farbübergängen kleine Löcher.</td>
+	</tr>
+	<tr>
+		<td><img src="knitting_machine/samples-color-knitty.jpeg" style="width:200px;" /></td>
+		<td>Ein weiteres Jacquardmuster, diesmal besser für die Maschine geeignet.</td>
+	</tr>
+</table>
+
+
+## Weitere Maschinen
+
+Neben der Singer haben wir auch zwei Empisal-Strickmaschinen, die einfacher
+aufgebaut sind. Sie können nur rechte Maschen stricken, eignen sich aber gut zum
+Lernen. Und linke Maschen für Bündchen können immer noch "nachträglich"
+hinzugefügt werden, indem man die passenden rechten Maschen fallen lässt und
+links wieder hochhäkelt. Auch größere Projekte wie Pullover sind so auf diesen
+Maschinen möglich – mit ein bisschen Handarbeit an den passenden Stellen.
+
+## Neugierig geworden?
+
+Maschinenstricken verbindet klassische Handarbeit mit spannender Technik – und
+macht dabei richtig Spaß. Wenn ihr neugierig geworden seid, kommt gerne vorbei,
+schaut euch die Maschinen an und probiert es aus!
+
+<p>
+  <img src="knitting_machine/cones.jpeg" title="Close-up vorderes Nadelbett" class="project-img centered" />
+</p>
+
+{%- endfilter %}
+		<div style="clear: both;"></div>
+	</div>
+</div>
+{% endblock mainbox %}
